@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westside SciOly</title>
+  <style>
+    /* ===== COLORS & FONTS ===== */
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+    }
+    .countdown {
+        text-align: center;
+        padding: 2rem;
+        font-family: var(--font-heading);
+        background-color: var(--dark-base);
+        color: var(--hover-gold);
+    }
+
+    #timer {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    /* Dark overlay on background image */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://chat.google.com/u/0/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fjpeg&attachment_token=AOo0EEWv3I4lhKFXuvUE2yZ8is%2BALGhC4m99z6zoRG8jNWWp2g05ugNjg9oVLwXcFMeO3YbO8BdbfISuQEYYcV7jnAOlkcc4tEYVT2v9V%2F%2B4ai0qTzos5NYjNdKIT56FptwYguG0yPs%2FKax4kADyklP5shjk2SZLuienB4fkV2AuEbqfl%2BVjlEYQao7MaOcOxjyDUnF%2BLyMle3mSj0GLhJxx2FixYz4pUtbUBLEA0Uxhj0gIrqHzEi6VOlAssmSn%2B3sb6QKU%2B1idcbQ7Vrm%2B9i%2FDwpnVmsADvmxRSTttRUyqVLN84%2B83FLaLDFZF0UsXFewL%2FQnmsFUhVVzU8i55X9uMFb%2BVxvT3wsbkO68RzLUwE5j8cTzJBnelO732VqpzQAnLpwPceQrxkQCLdXP6awABt8M9uBzhjj5SZEM%2BENfi0u0WY%2BnjtatJiMaA%2F%2FWb5rFq%2Fkw24yTLMnod1xmWGxjJHzuxMUisxaPmeUu2v9Rv6WV5dEy37SBS3iZDkXtdscljF%2FBU0ymARtAvZKo2J9RS2d%2F%2F6kZKf%2FnLT1NbUixSb184TbCzActbdXnRUznSoSqnok8ZDoWmC3oMA%2FqSB%2FofWnOi7cxvNk1eiw%3D%3D&allow_caching=true&sz=w2940-h1662&auditContext=forDisplay') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: -2;
+    }
+
+    /* Gradient overlay for subtle ombre feel */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--light-base);
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+    /* Logo styling */
+    .logo {
+      width: 150px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 4px var(--hover-gold));
+    }
+
+    /* ===== ANNOUNCEMENTS & WINS ===== */
+    .announcements {
+      background-color: var(--dark-base);
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+      color: var(--light-base);
+      font-family: var(--font-body);
+    }
+
+    .announcements h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .announcement-item {
+      background-color: var(--main-red);
+      padding: 1rem 1.5rem;
+      margin: 0.8rem 0;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(255, 183, 3, 0.5);
+      color: var(--light-base);
+      transition: background-color 0.3s ease;
+    }
+
+    .announcement-item:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+      cursor: pointer;
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .announcements {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+  <!-- Fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div>Westside SciOly</div>
+    <nav>
+  <ul class="nav-list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="accomplishments.html">Accomplishments</a></li>
+    <li><a href="donate.html">Donate</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="memberportal.html">Member Portal</a></li>
+  </ul>
+</nav>
+
+<style>
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* a little tighter spacing, still classy */
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .nav-list li a {
+    color: #FFD700; /* GOLD BABY */
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    white-space: nowrap; /* keeps emojis and text on one line, no weird wrap */
+    transition: color 0.3s ease;
+  }
+
+  .nav-list li a:hover {
+    text-decoration: underline;
+    color: #B8860B; /* DARKER GOLD FOR HOVER, SO CHIC */
+  }
+</style>
+
+    
+    
+    
+    
+        
+  </header>
+
+  <section class="hero">
+    <img src="https://chat.google.com/u/0/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fpng&attachment_token=AOo0EEW9YakeIi4ChKl4W%2FszbijQeianDMiCWPgVBH8z%2Bn7mBkw2ld%2Fdx%2FSVkawrdRNRl1pu%2FFxhBOeFblz%2B82gM8KThYrk8gEOlGmmUmR%2FYXulM6tduTJjWfI0PUvFjHYFo04JlYwYhHaipa62znS947ZVdeiA7xdXezy%2FKlUNM3twXPok1dpgCu2v7QnhkN9p5oaGJTqetnax9iwzNa3%2BsehaVXOR2bQAQHCXAkU3kzxQzt6xaR33b62ekAEjqIRTA6eQ%2BEl%2B%2FCxupBv8CbKm%2F8VTOI7n8CnjqwiyLOANbvdpHw0Wvt8MdmkSVPv4AbKRD7u5hHA2X1LXc%2FCTW221whQYH3rAnj9n4L6maxArzRykbLWwIaRpmaF%2FQ080U9se2MSQgZ6CkmOw0RXmJ%2FoJzCUoWirHSkupCCJ3kBKzsLEa2Ka%2FekSt9H%2B%2BCqc7vWl3l1Gz%2FrJN%2Bp9wi6aNwaciUl8PQFtvSawHAylYHD3%2BIfkQMvKqN4Rjhoz1c4tmhSYEHJTzku8ywQXsgnPf8HYrcoC3kH0vJavokYuGcSvrQbTKxIxVXeAOYG5Vsfn7SsboHz%2F0%3D&allow_caching=true&sz=w512" alt="Westside SciOly Logo" class="logo" />
+    <h1>Welcome to Westside SciOly</h1>
+    <!-- Placeholder for dynamic login message -->
+    <!-- If logged in, replace with "Hey, Anahita! Ready to crush it?" -->
+    <p>yeah idk what to put here</p>
+  </section>
+
+  <section class="announcements">
+    <h2>Recent Announcements & Wins</h2>
+    <div class="announcement-item">We're still surprisingly locked in</div>
+    <div class="announcement-item">Next meet: June 1st, 2-4pm ?????</div>
+    <div class="announcement-item">bro idk what to put here</div>
+  </section>
+
+  <section class="countdown">
+    <h2>Next Meeting Countdown</h2>
+    <div id="timer">
+      <span id="days">00</span>d :
+      <span id="hours">00</span>h :
+      <span id="minutes">00</span>m :
+      <span id="seconds">00</span>s
+    </div>
+  </section>
+  <div id="countdown" style="text-align: center; font-weight: bold; padding: 1rem; color: var(--hover-gold);"></div>
+
+
+  <canvas id="particles-js"></canvas>
+
+  <footer>
+    &copy; 2025 Westside SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
+
+  <!-- Simple particle animation script -->
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+
+  // Set the date and time for next Sunday at 2 PM
+  const nextMeeting = new Date();
+  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay() + 0) % 7 || 7)); // Sunday
+  nextMeeting.setHours(14, 0, 0, 0); // 2:00 PM
+
+  const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = nextMeeting.getTime() - now;
+
+    if (distance <= 0) {
+      clearInterval(countdown);
+      document.getElementById("timer").innerHTML = "It's meeting time! 🎉";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = String(days).padStart(2, '0');
+    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+  }, 1000);
+  </script>
+</body>
+</html>
