@@ -31,26 +31,7 @@
   }
 
   /* Dot pattern background */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background:
-      radial-gradient(circle, var(--hover-gold) 2px, transparent 2px),
-      radial-gradient(circle, var(--hover-gold) 2px, transparent 2px);
-    background-position: 0 0, 20px 20px;
-    background-size: 40px 40px;
-    opacity: 0.1;
-    pointer-events: none;
-    animation: moveDots 60s linear infinite;
-    z-index: 0;
-  }
-
-  @keyframes moveDots {
-    0% {background-position: 0 0, 20px 20px;}
-    100% {background-position: 40px 40px, 60px 60px;}
-  }
-
+  
   a {
     color: var(--hover-gold);
     text-decoration: none;
