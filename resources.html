@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resources | Westside JH SciOly</title>
+  <title>Westside JH SciOly | Resources</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <style>
     :root {
       --main-red: #D62828;
@@ -20,14 +19,24 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
 
-    body {
+    body, html {
+      height: 100%;
       font-family: var(--font-body);
       background-color: var(--dark-base);
       color: var(--light-base);
+      overflow-x: hidden;
+      padding-bottom: 3rem;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
 
     header {
@@ -41,15 +50,20 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
     }
 
-    .nav-list {
+    nav ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
     }
 
-    .nav-list li a {
+    nav ul li a {
       color: var(--hover-gold);
       font-family: var(--font-body);
       font-weight: 600;
@@ -59,100 +73,96 @@
       transition: all 0.3s ease;
     }
 
-    .nav-list li a:hover {
+    nav ul li a:hover {
       color: white;
+      text-decoration: none;
       transform: translateY(-2px);
     }
 
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem 2rem 2rem;
-      background: linear-gradient(135deg, rgba(214,40,40,0.8), rgba(255,183,3,0.7));
-      color: var(--dark-base);
-      font-family: var(--font-heading);
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
-    }
-
-    .hero p {
-      font-size: 1.2rem;
+    main {
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      padding: 0 2rem;
       font-family: var(--font-body);
-      color: var(--dark-base);
     }
 
-    .resource-container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
-    }
-
-    .resource-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .resource-card {
-      background-color: var(--main-red);
-      padding: 1.5rem;
-      border-radius: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 12px rgba(255, 183, 3, 0.3);
-      color: var(--light-base);
-    }
-
-    .resource-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.5);
-    }
-
-    .resource-card h3 {
+    h1 {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      color: var(--hover-gold);
+      text-align: center;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    section.category {
+      margin-bottom: 3rem;
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+    }
+
+    section.category h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 2px solid var(--hover-gold);
+      padding-bottom: 0.3rem;
+    }
+
+    ul.events-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    ul.events-list li {
+      padding: 0.3rem 0.5rem;
+      font-weight: 600;
+      color: var(--light-base);
+      cursor: default;
+      transition: color 0.3s ease;
+    }
+    ul.events-list li:hover {
       color: var(--hover-gold);
     }
 
-    .resource-card p {
-      font-size: 0.95rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .resource-card a {
-      color: white;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
+    /* Footer */
     footer {
       background-color: var(--main-red);
       color: var(--light-base);
-      text-align: center;
       padding: 1rem 2rem;
+      text-align: center;
       font-size: 0.9rem;
       font-weight: 600;
-      margin-top: 3rem;
+      position: relative;
+      z-index: 10;
     }
 
     @media (max-width: 600px) {
-      .hero h1 {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      h1 {
         font-size: 2.2rem;
       }
-      .hero p {
-        font-size: 1rem;
+      main {
+        padding: 0 1rem;
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div>Westside JH SciOly</div>
     <nav>
-      <ul class="nav-list">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="events.html">Events</a></li>
@@ -165,48 +175,78 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Science Olympiad Resources</h1>
-    <p>Level up your prep. Study smarter. Win harder.</p>
-  </section>
+  <main>
+    <h1>Resources by Event Category</h1>
 
-  <section class="resource-container">
-    <div class="resource-grid">
-      <div class="resource-card">
-        <h3>Study Packet (Anatomy & Physiology)</h3>
-        <p>Comprehensive guide for mastering A&P. Includes diagrams, notes, and practice questions.</p>
-        <a href="pdfs/anatomy-packet.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="resource-card">
-        <h3>Codebusters Cipher Sheet</h3>
-        <p>Crack codes like a pro with this complete reference sheet.</p>
-        <a href="pdfs/codebusters-sheet.pdf" target="_blank">Download</a>
-      </div>
-      <div class="resource-card">
-        <h3>Flight Build Tips</h3>
-        <p>Tips and tricks from top teams on glider aerodynamics, materials, and competition setup.</p>
-        <a href="pdfs/flight-tips.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="resource-card">
-        <h3>Dynamic Planet Crib Notes</h3>
-        <p>Quick-reference guide to Earth's systems, geology, and maps.</p>
-        <a href="pdfs/dynamic-planet-notes.pdf" target="_blank">Download</a>
-      </div>
-      <div class="resource-card">
-        <h3>Team Study Drive</h3>
-        <p>All team-curated Google Docs, flashcards, and shared folders.</p>
-        <a href="https://drive.google.com/" target="_blank">Visit Drive</a>
-      </div>
-      <div class="resource-card">
-        <h3>Science Olympiad Official Site</h3>
-        <p>Rules, event descriptions, practice tests, and updates from the national org.</p>
-        <a href="https://www.soinc.org/" target="_blank">Go to SOINC</a>
-      </div>
-    </div>
-  </section>
+    <section class="category">
+      <h2>Physical Science & Chemistry</h2>
+      <ul class="events-list">
+        <li>Air Trajectory</li>
+        <li>Optics</li>
+        <li>Potions and Poisons</li>
+        <li>Scrambler</li>
+        <li>Wind Power</li>
+        <li>Circuit Lab</li>
+        <li>Machines</li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2>Inquiry & Nature of Science</h2>
+      <ul class="events-list">
+        <li>Codebusters</li>
+        <li>Crime Busters</li>
+        <li>Experimental Design</li>
+        <li>Write It Do It</li>
+        <li>Metric Mastery</li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2>Technology & Engineering Design</h2>
+      <ul class="events-list">
+        <li>Helicopter</li>
+        <li>Mission Possible</li>
+        <li>Tower</li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2>Earth & Space Science</h2>
+      <ul class="events-list">
+        <li>Dynamic Planet (Oceanography)</li>
+        <li>Fossils</li>
+        <li>Meteorology (World Climate and Climate Change)</li>
+        <li>Remote Sensing</li>
+        <li>Rocks and Minerals</li>
+        <li>Solar System</li>
+        <li>Reach for the Stars</li>
+        <li>Road Scholar</li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2>Life, Personal & Social Science</h2>
+      <ul class="events-list">
+        <li>Anatomy and Physiology</li>
+        <li>Disease Detectives</li>
+        <li>Ecology</li>
+        <li>Entomology</li>
+        <li>Microbe Mission</li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2>Featured Trial Events</h2>
+      <ul class="events-list">
+        <li>Hovercraft</li>
+      </ul>
+    </section>
+
+  </main>
 
   <footer>
-    &copy; 2025 Westside JH SciOly | Built with ✨love and CSS rage✨
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 </body>
 </html>
