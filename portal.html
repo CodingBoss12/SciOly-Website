@@ -2,41 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Member Portal | Westside JH SciOly</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Portal - Westside SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
-      --secondary-blue: #0077B6;
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    body, html {
-      height: 100%;
-      font-family: var(--font-body);
+    body {
       background-color: var(--dark-base);
       color: var(--light-base);
-      overflow-x: hidden;
-    }
-
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
@@ -49,152 +41,95 @@
       font-size: 1.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
     }
 
-    .hero {
-      position: relative;
-      height: 80vh;
+    .container {
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
       font-family: var(--font-heading);
       color: var(--hover-gold);
-      padding: 0 2rem;
-      z-index: 1;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd47') center/cover no-repeat;
-      filter: brightness(0.35);
-      z-index: -2;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
-      mix-blend-mode: multiply;
-      z-index: -1;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
-    }
-
-    .hero p {
-      font-size: 1.6rem;
-      font-weight: 700;
       margin-bottom: 2rem;
+      text-shadow: 0 0 6px rgba(255, 183, 3, 0.8);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .login-btn {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+    }
+
+    .signup-btn {
+      background-color: var(--main-red);
       color: var(--light-base);
-      text-shadow: 0 0 5px rgba(0,0,0,0.8);
     }
 
-    .logo {
-      width: 150px;
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 4px var(--hover-gold));
-    }
-
-    .countdown {
-      text-align: center;
-      padding: 2rem;
-      font-family: var(--font-heading);
-      background-color: var(--dark-base);
-      color: var(--hover-gold);
-    }
-
-    #timer {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-top: 0.5rem;
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     footer {
       background-color: var(--main-red);
       color: var(--light-base);
-      padding: 1rem 2rem;
       text-align: center;
+      padding: 1rem;
       font-size: 0.9rem;
-      font-weight: 600;
-      position: relative;
-      z-index: 10;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
-
-    .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-
-    .nav-list li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateY(-2px);
     }
 
     @media (max-width: 600px) {
-      header {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+
+      .btn-group {
         flex-direction: column;
         gap: 1rem;
-      }
-
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div>Westside JH SciOly</div>
-    <ul class="nav-list">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Portal</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    Westside JH SciOly
   </header>
-
-  <section class="hero">
-    <h1>Member Portal</h1>
-    <p>Welcome to the Westside SciOly Member Portal!</p>
-  </section>
-
-  <section class="countdown">
-    <h2>Countdown to Regionals</h2>
-    <div id="timer">Loading...</div>
-  </section>
-
+  <div class="container">
+    <h1>Member Portal Access</h1>
+    <div class="btn-group">
+      <a href="login.html"><button class="btn login-btn">Log In</button></a>
+      <a href="signup.html"><button class="btn signup-btn">Sign Up</button></a>
+    </div>
+  </div>
   <footer>
-    &copy; 2025 Westside Junior High Science Olympiad. All rights reserved.
+    &copy; 2025 Westside JH SciOly | Questions? <a href="mailto:info@westsidescioly.com" style="color: var(--hover-gold);">Email Us</a>
   </footer>
 </body>
 </html>
