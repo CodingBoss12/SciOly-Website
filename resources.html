@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Westside JH SciOly</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    main {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      font-family: var(--font-body);
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .contact-header h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-header p {
+      font-size: 1.2rem;
+      color: var(--light-base);
+      margin-top: 0.5rem;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-form {
+      background-color: var(--dark-base);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .contact-form button {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+    }
+
+    .contact-info {
+      background-color: var(--main-red);
+      padding: 2rem;
+      border-radius: 15px;
+      color: var(--light-base);
+      box-shadow: 0 0 15px rgba(214, 40, 40, 0.5);
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--hover-gold);
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contact-header">
+      <h1>Contact Us</h1>
+      <p>Have a question or comment? Drop us a message!</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="contact-form">
+        <form action="mailto:info@westsidescioly.com" method="post" enctype="text/plain">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Club Contact Info</h2>
+        <p><strong>Email:</strong> info@westsidescioly.com</p>
+        <p><strong>School:</strong> Westside Junior High School</p>
+        <p><strong>Location:</strong> West Lafayette, Indiana</p>
+        <p><strong>Meeting Times:</strong> Sundays, 2–4pm</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Designed by Anahita Rai
+  </footer>
+</body>
+</html>
