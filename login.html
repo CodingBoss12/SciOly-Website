@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Westside JH SciOly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #1F1F1F;
+      color: #F5F5F5;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #D62828;
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 183, 3, 0.7);
+      width: 320px;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Bebas Neue', cursive;
+      margin-bottom: 1.5rem;
+      color: #FFB703;
+      letter-spacing: 0.1em;
+    }
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #FFB703;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #1F1F1F;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #D46B03;
+      color: white;
+    }
+    a {
+      color: #FFB703;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 1rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Log In</h1>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
+    </form>
+    <a href="signup.html">Don't have an account? Sign Up</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Basic fake validation example
+      if(email === 'user@example.com' && password === 'password123') {
+        alert('Login successful! Welcome back, champ 💅');
+        // Redirect or do whatever after login
+        window.location.href = 'memberportal.html';
+      } else {
+        alert('Oops! Wrong email or password. Try again, queen.');
+      }
+    });
+  </script>
+</body>
+</html>
