@@ -2,105 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Westside JH SciOly</title>
-  <link rel="icon" href="images/logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources | Westside JH SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
   <style>
-    main {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: var(--font-body);
-    }
-
-    .contact-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .contact-header h1 {
-      font-family: var(--font-heading);
-      font-size: 3rem;
-      color: var(--hover-gold);
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-    }
-
-    .contact-header p {
-      font-size: 1.2rem;
-      color: var(--light-base);
-      margin-top: 0.5rem;
-    }
-
-    .contact-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-
-    .contact-form {
       background-color: var(--dark-base);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
-    }
-
-    .contact-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1.2rem;
-      border-radius: 8px;
-      border: none;
-      font-family: var(--font-body);
-    }
-
-    .contact-form button {
-      background-color: var(--main-red);
       color: var(--light-base);
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    .contact-form button:hover {
-      background-color: var(--hover-gold);
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem 2rem;
+      background: linear-gradient(135deg, rgba(214,40,40,0.8), rgba(255,183,3,0.7));
+      color: var(--dark-base);
+      font-family: var(--font-heading);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      font-family: var(--font-body);
       color: var(--dark-base);
     }
 
-    .contact-info {
-      background-color: var(--main-red);
+    .resource-container {
+      max-width: 1000px;
+      margin: 2rem auto;
       padding: 2rem;
-      border-radius: 15px;
-      color: var(--light-base);
-      box-shadow: 0 0 15px rgba(214, 40, 40, 0.5);
     }
 
-    .contact-info h2 {
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .resource-card {
+      background-color: var(--main-red);
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 12px rgba(255, 183, 3, 0.3);
+      color: var(--light-base);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.5);
+    }
+
+    .resource-card h3 {
       font-family: var(--font-heading);
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
       color: var(--hover-gold);
     }
 
-    .contact-info p {
-      margin: 0.5rem 0;
+    .resource-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
     }
 
-    @media (max-width: 768px) {
-      .contact-container {
-        grid-template-columns: 1fr;
+    .resource-card a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -122,40 +165,48 @@
     </nav>
   </header>
 
-  <main>
-    <div class="contact-header">
-      <h1>Contact Us</h1>
-      <p>Have a question or comment? Drop us a message!</p>
-    </div>
+  <section class="hero">
+    <h1>Science Olympiad Resources</h1>
+    <p>Level up your prep. Study smarter. Win harder.</p>
+  </section>
 
-    <div class="contact-container">
-      <div class="contact-form">
-        <form action="mailto:info@westsidescioly.com" method="post" enctype="text/plain">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required />
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
+  <section class="resource-container">
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h3>Study Packet (Anatomy & Physiology)</h3>
+        <p>Comprehensive guide for mastering A&P. Includes diagrams, notes, and practice questions.</p>
+        <a href="pdfs/anatomy-packet.pdf" target="_blank">View PDF</a>
       </div>
-
-      <div class="contact-info">
-        <h2>Club Contact Info</h2>
-        <p><strong>Email:</strong> info@westsidescioly.com</p>
-        <p><strong>School:</strong> Westside Junior High School</p>
-        <p><strong>Location:</strong> West Lafayette, Indiana</p>
-        <p><strong>Meeting Times:</strong> Sundays, 2–4pm</p>
+      <div class="resource-card">
+        <h3>Codebusters Cipher Sheet</h3>
+        <p>Crack codes like a pro with this complete reference sheet.</p>
+        <a href="pdfs/codebusters-sheet.pdf" target="_blank">Download</a>
+      </div>
+      <div class="resource-card">
+        <h3>Flight Build Tips</h3>
+        <p>Tips and tricks from top teams on glider aerodynamics, materials, and competition setup.</p>
+        <a href="pdfs/flight-tips.pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="resource-card">
+        <h3>Dynamic Planet Crib Notes</h3>
+        <p>Quick-reference guide to Earth's systems, geology, and maps.</p>
+        <a href="pdfs/dynamic-planet-notes.pdf" target="_blank">Download</a>
+      </div>
+      <div class="resource-card">
+        <h3>Team Study Drive</h3>
+        <p>All team-curated Google Docs, flashcards, and shared folders.</p>
+        <a href="https://drive.google.com/" target="_blank">Visit Drive</a>
+      </div>
+      <div class="resource-card">
+        <h3>Science Olympiad Official Site</h3>
+        <p>Rules, event descriptions, practice tests, and updates from the national org.</p>
+        <a href="https://www.soinc.org/" target="_blank">Go to SOINC</a>
       </div>
     </div>
-  </main>
+  </section>
 
   <footer>
-    &copy; 2025 Westside JH SciOly | Designed by Anahita Rai
+    &copy; 2025 Westside JH SciOly | Built with ✨love and CSS rage✨
   </footer>
 </body>
 </html>
