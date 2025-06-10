@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sign Up | Westside JH SciOly</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
@@ -98,13 +98,16 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
       text-align: center;
       padding: 2rem;
+      max-width: 480px;
+      margin: 0 auto;
+      gap: 1rem;
     }
 
-    .portal-container h1 {
+    main.portal-container h1 {
       font-family: var(--font-heading);
       font-size: 3rem;
       margin-bottom: 1rem;
@@ -112,37 +115,53 @@
       text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
     }
 
-    .form-container {
-      background: #2e2e2e;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
+    form {
       width: 100%;
-      max-width: 400px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .form-container input {
-      padding: 0.8rem;
+    input, select, textarea {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
       border-radius: 8px;
       border: none;
-      font-size: 1rem;
+      outline: none;
+      font-family: var(--font-body);
     }
 
-    .form-container button {
-      padding: 0.8rem;
+    input[type="text"], input[type="email"], input[type="password"], select, textarea {
+      background-color: #333;
+      color: var(--light-base);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    label {
+      font-weight: 600;
+      text-align: left;
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 1rem;
       background-color: var(--main-red);
       color: var(--light-base);
-      font-weight: bold;
       border: none;
       border-radius: 10px;
+      font-family: var(--font-body);
+      font-weight: bold;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .form-container button:hover {
+    button:hover {
       background-color: var(--hover-gold);
       color: var(--dark-base);
       transform: scale(1.05);
@@ -158,21 +177,12 @@
       margin-top: auto;
     }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0; left: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     @media (max-width: 600px) {
       header {
         flex-direction: column;
         gap: 1rem;
       }
-      .portal-container h1 {
+      main.portal-container h1 {
         font-size: 2.2rem;
       }
     }
@@ -197,10 +207,46 @@
     </header>
 
     <main class="portal-container">
-      <h1>Create an Account</h1>
-      <form id="signup-form" class="form-container">
-        <input type="email" id="email" placeholder="Email" required />
-        <input type="password" id="password" placeholder="Password" required />
+      <h1>Sign Up</h1>
+
+      <form id="signup-form">
+        <input id="displayName" type="text" placeholder="Display Name" required />
+        <input id="realName" type="text" placeholder="Full Name" required />
+        <input id="email" type="email" placeholder="Email" required />
+        <input id="password" type="password" placeholder="Password" required minlength="6" />
+        
+        <label for="grade">Grade:</label>
+        <select id="grade" required>
+          <option value="" disabled selected>Select your grade</option>
+          <option value="7">7th Grade</option>
+          <option value="8">8th Grade</option>
+          <option value="9">9th Grade</option>
+          <option value="10">10th Grade</option>
+          <option value="11">11th Grade</option>
+          <option value="12">12th Grade</option>
+        </select>
+
+        <label for="events">Event Preferences (hold Ctrl/Cmd to select multiple):</label>
+        <select id="events" multiple required>
+          <option value="event1">Event 1</option>
+          <option value="event2">Event 2</option>
+          <option value="event3">Event 3</option>
+          <option value="event3">Event 4</option>
+          <option value="event3">Event 5</option>
+          <option value="event3">Event 6</option>
+          <option value="event3">Event 7</option>
+          <option value="event3">Event 8</option>
+          <option value="event3">Event 9</option>
+          <option value="event3">Event 10</option>
+          <option value="event3">Event 11</option>
+          <option value="event3">Event 12</option>
+
+          <!-- Replace these with actual event names -->
+        </select>
+
+        <label for="question1">Why do you want to join Westside SciOly?</label>
+        <textarea id="question1" rows="4" placeholder="Your answer here..." required></textarea>
+
         <button type="submit">Sign Up</button>
       </form>
     </main>
@@ -210,101 +256,61 @@
     </footer>
   </div>
 
-  <canvas id="particles-js"></canvas>
-
-  <script>
-    const canvas = document.getElementById('particles-js');
-    const ctx = canvas.getContext('2d');
-    let particlesArray;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = 'rgba(255, 183, 3, 0.8)';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 80; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
-
-    init();
-    animate();
-  </script>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-analytics.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDnGd4encwMoRl7i7ks0Dkpxy_h_glxYUw",
       authDomain: "westside-scioly.firebaseapp.com",
       projectId: "westside-scioly",
-      storageBucket: "westside-scioly.firebasestorage.app",
+      storageBucket: "westside-scioly.appspot.com",
       messagingSenderId: "795634851228",
       appId: "1:795634851228:web:b297b85b9b1ad05fa5fc59",
       measurementId: "G-0YF1862VQD"
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("signup-form");
+    const form = document.getElementById('signup-form');
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-        try {
-          await createUserWithEmailAndPassword(auth, email, password);
-          alert("🎉 Sign-up successful! Welcome to Westside SciOly 💥");
-          window.location.href = "memberportal.html";
-        } catch (error) {
-          console.error("Signup error:", error);
-          alert("⚠️ Error: " + error.message);
-        }
-      });
+      const displayName = document.getElementById('displayName').value.trim();
+      const realName = document.getElementById('realName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const grade = document.getElementById('grade').value;
+      const eventsSelect = document.getElementById('events');
+      const events = Array.from(eventsSelect.selectedOptions).map(opt => opt.value);
+      const question1 = document.getElementById('question1').value.trim();
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save additional user info to Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          displayName,
+          realName,
+          email,
+          grade,
+          events,
+          question1,
+          createdAt: serverTimestamp()
+        });
+
+        alert("🎉 Sign-up successful! Welcome to Westside SciOly 💥");
+        form.reset();
+        // Optional: Redirect to login or member portal
+        // window.location.href = "login.html";
+      } catch (error) {
+        alert(`⚠️ Error: ${error.message}`);
+      }
     });
   </script>
 </body>
