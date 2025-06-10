@@ -3,143 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Member Portal | Westside JH SciOly</title>
+  <title>Sign Up | Westside JH SciOly</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <style>
     :root {
-    --main-red: #D62828;
-    --dark-base: #1F1F1F;
-    --light-base: #F5F5F5;
-    --hover-gold: #FFB703;
-    --secondary-blue: #0077B6;
-    --font-heading: 'Bebas Neue', cursive;
-    --font-body: 'Poppins', sans-serif;
-  }
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
 
-  * {
-    box-sizing: border-box;
-    margin: 0; padding: 0;
-  }
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
 
-  body, html {
-    height: 100%;
-    font-family: var(--font-body);
-    background-color: var(--dark-base);
-    color: var(--light-base);
-    overflow-x: hidden;
-    position: relative;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* Dot pattern background */
-  
-  a {
-    color: var(--hover-gold);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  a:hover {
-    text-decoration: underline;
-    color: #fff;
-  }
+    body, html {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
 
-  header {
-    background-color: var(--main-red);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 10;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    padding: 0;
-    margin: 0;
-    align-items: center;
-  }
-
-  nav ul li a {
-    color: var(--hover-gold);
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
-  }
-
-  nav ul li a:hover {
-    color: white;
-    text-decoration: none;
-    transform: translateY(-2px);
-  }
-
-  main {
-    max-width: 900px;
-    margin: 2rem auto 4rem auto;
-    padding: 0 2rem;
-    font-family: var(--font-body);
-    position: relative;
-    z-index: 10;
-  }
-
-  h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    color: var(--hover-gold);
-    text-align: center;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-
-    main.portal-container {
-      flex: 1;
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .form-container {
+      min-height: 100vh;
+      display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 2rem;
+      z-index: 1;
+      position: relative;
     }
 
-    .portal-container h1 {
+    form {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
       font-family: var(--font-heading);
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       color: var(--hover-gold);
       text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
     }
 
-    .button-group {
-      display: flex;
-      gap: 2rem;
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
     }
 
-    .portal-btn {
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
+    button {
+      width: 100%;
+      padding: 0.75rem;
       background-color: var(--main-red);
       color: var(--light-base);
       border: none;
-      border-radius: 10px;
-      font-family: var(--font-body);
+      border-radius: 8px;
+      font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .portal-btn:hover {
+    button:hover {
       background-color: var(--hover-gold);
       color: var(--dark-base);
       transform: scale(1.05);
@@ -164,53 +142,41 @@
       z-index: 0;
       pointer-events: none;
     }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .portal-container h1 {
-        font-size: 2.2rem;
-      }
-      .button-group {
-        flex-direction: column;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div>Westside JH SciOly</div>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="accomplishments.html">Accomplishments</a></li>
-          <li><a href="donate.html">Donate</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="memberportal.html">Member Portal</a></li>
-        </ul>
-      </nav>
-    </header>
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main class="portal-container">
-      <h1>Member Portal</h1>
-      <div class="button-group">
-        <a href="login.html"><button class="portal-btn">Log In</button></a>
-        <a href="signup.html"><button class="portal-btn">Sign Up</button></a>
-      </div>
-    </main>
-
-    <footer>
-      &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
-    </footer>
+  <div class="form-container">
+    <form onsubmit="alert('Sign Up Successful 🎉'); return false;">
+      <h1>Create Account</h1>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
   </div>
 
   <canvas id="particles-js"></canvas>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
 
   <script>
     const canvas = document.getElementById('particles-js');
