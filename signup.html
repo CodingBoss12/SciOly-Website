@@ -21,11 +21,10 @@
       font-family: var(--font-body);
       background-color: var(--dark-base);
       color: var(--light-base);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      flex-direction: column;
+      overflow-x: hidden;
       position: relative;
     }
     #particles-js {
@@ -36,6 +35,18 @@
       top: 0;
       left: 0;
     }
+    header, footer {
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      z-index: 3;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
     .form-container {
       background-color: rgba(31, 31, 31, 0.95);
       padding: 2rem 3rem;
@@ -44,6 +55,7 @@
       z-index: 2;
       width: 90%;
       max-width: 500px;
+      margin: 2rem auto;
     }
     .form-container h1 {
       font-family: var(--font-heading);
@@ -78,8 +90,16 @@
   </style>
 </head>
 <body>
-
 <canvas id="particles-js"></canvas>
+
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
 
 <div class="form-container">
   <h1>Sign Up</h1>
@@ -88,7 +108,7 @@
     <input id="realName" type="text" placeholder="Full Name" required />
     <input id="email" type="email" placeholder="Email" required />
     <input id="password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
-    
+
     <select id="grade" required>
       <option value="" disabled selected>Select Grade</option>
       <option value="7">7th</option>
@@ -109,14 +129,16 @@
   </form>
 </div>
 
+<footer>
+  <p>&copy; 2025 Westside JH Science Olympiad. All rights reserved.</p>
+</footer>
+
 <script>
 const canvas = document.getElementById('particles-js');
 const ctx = canvas.getContext('2d');
 let particlesArray;
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
