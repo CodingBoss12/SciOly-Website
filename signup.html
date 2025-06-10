@@ -221,6 +221,7 @@ init(); animate();
       });
 
       alert("🎉 Sign-up successful! Welcome to Westside SciOly 💥 You can take the questionnaire anytime from your member portal.");
+      document.getElementById("signup-form").reset();
 
     } catch (err) {
       alert(`⚠️ Error: ${err.message}`);
