@@ -257,12 +257,10 @@
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
     let particlesArray;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
+  
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -285,14 +283,14 @@
         ctx.fill();
       }
     }
-
+  
     function init() {
       particlesArray = [];
       for (let i = 0; i < 80; i++) {
         particlesArray.push(new Particle());
       }
     }
-
+  
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(particle => {
@@ -301,23 +299,15 @@
       });
       requestAnimationFrame(animate);
     }
-
+  
     window.addEventListener('resize', () => {
-      resizeCanvas();
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       init();
     });
-
-    resizeCanvas();
+  
     init();
     animate();
-
-    // Basic form submit behavior placeholder (prevent default)
-    const form = document.getElementById('signupForm');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      alert("Thanks for signing up! (This is just a demo, no data is saved.)");
-      form.reset();
-    });
   </script>
 </body>
 </html>
