@@ -216,41 +216,6 @@
       </ul>
     </nav>
   </header>
-
-  <main>
-    <h1>Create Your Account</h1>
-    <form id="signupForm" action="#" method="POST" autocomplete="off" novalidate>
-      <label for="realname">Real Name <span style="color:#FFB703;">*</span></label>
-      <input type="text" id="realname" name="realname" placeholder="Your full name" required />
-
-      <label for="email">Email <span style="color:#FFB703;">*</span></label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required />
-
-      <label for="password">Password <span style="color:#FFB703;">*</span></label>
-      <input type="password" id="password" name="password" placeholder="Make it strong!" required />
-
-      <label for="username">Username <span class="optional">(Optional)</span></label>
-      <input type="text" id="username" name="username" placeholder="What should we call you?" />
-
-      <!-- Optional quiz placeholder -->
-      <label for="eventquiz">Which SciOly event interests you most? <span class="optional">(Optional)</span></label>
-      <select id="eventquiz" name="eventquiz">
-        <option value="" selected>-- Choose one --</option>
-        <option value="bridge">Bridge Building</option>
-        <option value="robotics">Robotics</option>
-        <option value="chemistry">Chemistry Lab</option>
-        <option value="astronomy">Astronomy</option>
-        <option value="others">Other / Not Sure</option>
-      </select>
-
-      <button type="submit">Sign Up</button>
-    </form>
-  </main>
-
-  
-
-  <!-- Particle background script (same as homepage) -->
-  <canvas id="particles-js"></canvas>
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
@@ -307,6 +272,41 @@
     init();
     animate();
   </script>
+  <main>
+    <h1>Create Your Account</h1>
+    <form id="signupForm" action="#" method="POST" autocomplete="off" novalidate>
+      <label for="realname">Real Name <span style="color:#FFB703;">*</span></label>
+      <input type="text" id="realname" name="realname" placeholder="Your full name" required />
+
+      <label for="email">Email <span style="color:#FFB703;">*</span></label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="password">Password <span style="color:#FFB703;">*</span></label>
+      <input type="password" id="password" name="password" placeholder="Make it strong!" required />
+
+      <label for="username">Username <span class="optional">(Optional)</span></label>
+      <input type="text" id="username" name="username" placeholder="What should we call you?" />
+
+      <!-- Optional quiz placeholder -->
+      <label for="eventquiz">Which SciOly event interests you most? <span class="optional">(Optional)</span></label>
+      <select id="eventquiz" name="eventquiz">
+        <option value="" selected>-- Choose one --</option>
+        <option value="bridge">Bridge Building</option>
+        <option value="robotics">Robotics</option>
+        <option value="chemistry">Chemistry Lab</option>
+        <option value="astronomy">Astronomy</option>
+        <option value="others">Other / Not Sure</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+
+  
+
+  <!-- Particle background script (same as homepage) -->
+  <canvas id="particles-js"></canvas>
+  
   <footer>
     &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
