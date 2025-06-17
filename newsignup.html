@@ -82,99 +82,113 @@
     transform: translateY(-2px);
   }
 
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 2rem;
+    font-family: var(--font-body);
+    position: relative;
+    z-index: 10;
+  }
 
-    /* ===== SIGNUP FORM ===== */
-    main {
-      max-width: 480px;
-      background-color: var(--dark-base);
-      margin: 3rem auto 5rem auto;
-      padding: 2.5rem 3rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(214,40,40,0.7);
-      font-family: var(--font-body);
-    }
-    
-    main h1 {
-      font-family: var(--font-heading);
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: var(--hover-gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-shadow: 0 0 5px rgba(255, 183, 3, 0.8);
-    }
+  h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--hover-gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
 
-    form {
-      display: flex;
+  section.category {
+    margin-bottom: 3rem;
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 15px rgba(214,40,40,0.7);
+  }
+
+  section.category h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--main-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--hover-gold);
+    padding-bottom: 0.3rem;
+  }
+
+  ul.events-list {
+    list-style: none;
+    padding-left: 1rem;
+  }
+
+  ul.events-list li {
+    padding: 0.5rem 0;
+    font-weight: 600;
+    color: var(--light-base);
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  ul.events-list li:hover {
+    color: var(--hover-gold);
+  }
+
+  /* Resource link button */
+  .resource-link {
+    background: var(--main-red);
+    color: var(--light-base);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .resource-link:hover {
+    background-color: var(--hover-gold);
+    color: var(--dark-base);
+  }
+
+  footer {
+    background-color: var(--main-red);
+    color: var(--light-base);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (max-width: 600px) {
+    header {
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1rem;
     }
-
-    label {
-      font-weight: 600;
-      color: var(--hover-gold);
-      letter-spacing: 0.05em;
-      font-size: 1.1rem;
+    h1 {
+      font-size: 2.2rem;
     }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      padding: 0.75rem 1rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      font-family: var(--font-body);
-      background-color: #2a2a2a;
-      color: var(--light-base);
-      transition: background-color 0.3s ease;
+    main {
+      padding: 0 1rem;
     }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus {
-      outline: none;
-      background-color: #3a3a3a;
+    ul.events-list li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
     }
-
-    input::placeholder {
-      color: #bbb;
+    .resource-link {
+      width: 100%;
+      text-align: center;
     }
-
-    .optional {
-      font-weight: 400;
-      font-size: 0.9rem;
-      color: #999;
-      font-style: italic;
-    }
-
-    button {
-      margin-top: 1.5rem;
-      padding: 0.9rem 1rem;
-      background-color: var(--main-red);
-      color: var(--light-base);
-      font-weight: 700;
-      font-family: var(--font-heading);
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 8px rgba(214,40,40,0.9);
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: var(--hover-gold);
-      color: var(--dark-base);
-      box-shadow: 0 6px 10px rgba(255, 183, 3, 1);
-    }
-  
-  
-
-
+  }
   #particles-js {
   position: fixed;
   width: 100%;
@@ -183,8 +197,6 @@
   z-index: 0;
   pointer-events: none;
 }
-
-
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
