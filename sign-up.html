@@ -7,82 +7,81 @@
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <style>
-    /* ===== COLORS & FONTS ===== */
     :root {
-      --main-red: #D62828;
-      --dark-base: #1F1F1F;
-      --light-base: #F5F5F5;
-      --hover-gold: #FFB703;
-      --secondary-blue: #0077B6;
+    --main-red: #D62828;
+    --dark-base: #1F1F1F;
+    --light-base: #F5F5F5;
+    --hover-gold: #FFB703;
+    --secondary-blue: #0077B6;
+    --font-heading: 'Bebas Neue', cursive;
+    --font-body: 'Poppins', sans-serif;
+  }
 
-      --font-heading: 'Bebas Neue', cursive;
-      --font-body: 'Poppins', sans-serif;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
 
-    /* ===== GLOBAL STYLES ===== */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  body, html {
+    height: 100%;
+    font-family: var(--font-body);
+    background-color: var(--dark-base);
+    color: var(--light-base);
+    overflow-x: hidden;
+    position: relative;
+  }
 
-    body, html {
-      height: 100%;
-      font-family: var(--font-body);
-      background-color: var(--dark-base);
-      color: var(--light-base);
-      overflow-x: hidden;
-    }
+  /* Dot pattern background */
+  
+  a {
+    color: var(--hover-gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #fff;
+  }
 
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-    }
+  header {
+    background-color: var(--main-red);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
 
-    /* ===== HEADER ===== */
-    header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
-    }
+  nav ul li a {
+    color: var(--hover-gold);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
 
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
-
-    .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-
-    .nav-list li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
+  nav ul li a:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
     
     /* ===== SIGNUP FORM ===== */
     main {
