@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | Westside JH SciOly</title>
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | Westside JH SciOly</title>
+  <link rel="icon" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --main-red: #D62828;
@@ -13,251 +13,221 @@
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
       --secondary-blue: #0077B6;
-
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-body);
       background-color: var(--dark-base);
       color: var(--light-base);
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
-      position: relative;
-      z-index: 1;
-    }
-
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
-
-    .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-
-    .nav-list li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
-
-    main.portal-container {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .portal-container h1 {
-      font-family: var(--font-heading);
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--hover-gold);
-      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
-    }
-
-    .button-group {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .portal-btn {
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
-      background-color: var(--main-red);
-      color: var(--light-base);
-      border: none;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .portal-btn:hover {
-      background-color: var(--hover-gold);
-      color: var(--dark-base);
-      transform: scale(1.05);
-    }
-
-    footer {
-      background-color: var(--main-red);
-      color: var(--light-base);
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
+      overflow-x: hidden;
       position: relative;
-      z-index: 10;
     }
-
     #particles-js {
       position: fixed;
       width: 100%;
       height: 100%;
-      top: 0; left: 0;
       z-index: 0;
-      pointer-events: none;
+      top: 0;
+      left: 0;
     }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .portal-container h1 {
-        font-size: 2.2rem;
-      }
-      .button-group {
-        flex-direction: column;
-      }
+    header, footer {
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      z-index: 3;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    .form-container {
+      background-color: rgba(31, 31, 31, 0.95);
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+      z-index: 2;
+      width: 90%;
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+    .form-container h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--hover-gold);
+      text-align: center;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-family: var(--font-body);
+    }
+    input, select {
+      background-color: #333;
+      color: white;
+    }
+    button {
+      background-color: var(--main-red);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div>Westside JH SciOly</div>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="accomplishments.html">Accomplishments</a></li>
-          <li><a href="donate.html">Donate</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="memberportal.html">Member Portal</a></li>
-        </ul>
-      </nav>
-    </header>
+<canvas id="particles-js"></canvas>
 
-    <main class="portal-container">
-      <h1>Member Login</h1>
-      <div class="button-group">
-        <a href="login.html"><button class="portal-btn">Log In</button></a>
-        <a href="signup.html"><button class="portal-btn">Sign Up</button></a>
-      </div>
-    </main>
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
 
-    <footer>
-      &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
-    </footer>
-  </div>
+<div class="form-container">
+  <h1>Sign Up</h1>
+  <form id="signup-form">
+    <input id="displayName" type="text" placeholder="Display Name" required />
+    <input id="realName" type="text" placeholder="Full Name" required />
+    <input id="email" type="email" placeholder="Email" required />
+    <input id="password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
 
-  <canvas id="particles-js"></canvas>
+    <select id="grade" required>
+      <option value="" disabled selected>Select Grade</option>
+      <option value="7">7th</option>
+      <option value="8">8th</option>
+      <option value="9">9th</option>
+    </select>
 
-  <script>
-    const canvas = document.getElementById('particles-js');
-    const ctx = canvas.getContext('2d');
-    let particlesArray;
+    <label style="font-size: 0.9rem;">Event Preferences (hold Ctrl/Cmd to select multiple):</label>
+    <select id="events" multiple required>
+      <option value="anatomy">Anatomy</option>
+      <option value="experimental-design">Experimental Design</option>
+      <option value="roller-coaster">Roller Coaster</option>
+      <option value="meteorology">Meteorology</option>
+      <option value="crime-busters">Crime Busters</option>
+    </select>
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = 'rgba(255, 183, 3, 0.8)';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+<footer>
+  <p>&copy; 2025 Westside JH Science Olympiad. All rights reserved.</p>
+</footer>
 
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 80; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
+<script>
+const canvas = document.getElementById('particles-js');
+const ctx = canvas.getContext('2d');
+let particlesArray;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.color = 'rgba(255, 183, 3, 0.8)';
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+function init() {
+  particlesArray = [];
+  for (let i = 0; i < 80; i++) particlesArray.push(new Particle());
+}
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particlesArray.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+}
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
+init(); animate();
+</script>
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(particle => {
-        particle.update();
-        particle.draw();
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnGd4encwMoRl7i7ks0Dkpxy_h_glxYUw",
+    authDomain: "westside-scioly.firebaseapp.com",
+    projectId: "westside-scioly",
+    storageBucket: "westside-scioly.appspot.com",
+    messagingSenderId: "795634851228",
+    appId: "1:795634851228:web:b297b85b9b1ad05fa5fc59",
+    measurementId: "G-0YF1862VQD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const displayName = document.getElementById('displayName').value;
+    const realName = document.getElementById('realName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const grade = document.getElementById('grade').value;
+    const events = Array.from(document.getElementById('events').selectedOptions).map(opt => opt.value);
+
+    try {
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCred.user, { displayName });
+
+      await setDoc(doc(db, "users", userCred.user.uid), {
+        displayName,
+        realName,
+        email,
+        grade,
+        events,
+        uid: userCred.user.uid,
+        createdAt: new Date(),
+        approved: false
       });
-      requestAnimationFrame(animate);
+
+      alert("🎉 Sign-up successful! Welcome to Westside SciOly 💥 You can take the questionnaire anytime from your member portal.");
+
+    } catch (err) {
+      alert(`⚠️ Error: ${err.message}`);
     }
+  });
+</script>
 
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
-
-    init();
-    animate();
-  </script>
 </body>
 </html>
