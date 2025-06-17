@@ -219,34 +219,163 @@
 </header>
 
 <main>
-    <h1>Create Your Account</h1>
-    <form id="signupForm" action="#" method="POST" autocomplete="off" novalidate>
-      <label for="realname">Real Name <span style="color:#FFB703;">*</span></label>
-      <input type="text" id="realname" name="realname" placeholder="Your full name" required />
+  <h1>Resources by Event Category</h1>
 
-      <label for="email">Email <span style="color:#FFB703;">*</span></label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+  <section class="category">
+    <h2>Physical Science & Chemistry</h2>
+    <ul class="events-list">
+      <li>
+        Air Trajectory
+        <a href="resources/air-trajectory-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Optics
+        <a href="https://www.soinc.org/optics" target="_blank" class="resource-link">Official Site</a>
+      </li>
+      <li>
+        Potions and Poisons
+        <a href="resources/potions-poisons-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Scrambler
+        <a href="resources/scrambler-past-tests.zip" target="_blank" class="resource-link">Past Tests</a>
+      </li>
+      <li>
+        Wind Power
+        <a href="https://www.windpower.com/learn" target="_blank" class="resource-link">Learn More</a>
+      </li>
+      <li>
+        Circuit Lab
+        <a href="resources/circuit-lab-practice.pdf" target="_blank" class="resource-link">Practice</a>
+      </li>
+      <li>
+        Machines
+        <a href="resources/machines-cheatsheet.pdf" target="_blank" class="resource-link">Cheatsheet</a>
+      </li>
+    </ul>
+  </section>
 
-      <label for="password">Password <span style="color:#FFB703;">*</span></label>
-      <input type="password" id="password" name="password" placeholder="Make it strong!" required />
+  <section class="category">
+    <h2>Inquiry & Nature of Science</h2>
+    <ul class="events-list">
+      <li>
+        Codebusters
+        <a href="resources/codebusters-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Crime Busters
+        <a href="resources/crime-busters-flashcards.pdf" target="_blank" class="resource-link">Flashcards</a>
+      </li>
+      <li>
+        Experimental Design
+        <a href="resources/experimental-design-tips.pdf" target="_blank" class="resource-link">Tips</a>
+      </li>
+      <li>
+        Write It Do It
+        <a href="resources/write-it-do-it-samples.pdf" target="_blank" class="resource-link">Samples</a>
+      </li>
+      <li>
+        Metric Mastery
+        <a href="resources/metric-mastery-quiz.pdf" target="_blank" class="resource-link">Quiz</a>
+      </li>
+    </ul>
+  </section>
 
-      <label for="username">Username <span class="optional">(Optional)</span></label>
-      <input type="text" id="username" name="username" placeholder="What should we call you?" />
+  <section class="category">
+    <h2>Technology & Engineering Design</h2>
+    <ul class="events-list">
+      <li>
+        Helicopter
+        <a href="resources/helicopter-building-guide.pdf" target="_blank" class="resource-link">Build Guide</a>
+      </li>
+      <li>
+        Mission Possible
+        <a href="resources/mission-possible-rules.pdf" target="_blank" class="resource-link">Rules</a>
+      </li>
+      <li>
+        Tower
+        <a href="resources/tower-strategy.pdf" target="_blank" class="resource-link">Strategy</a>
+      </li>
+    </ul>
+  </section>
 
-      <!-- Optional quiz placeholder -->
-      <label for="eventquiz">Which SciOly event interests you most? <span class="optional">(Optional)</span></label>
-      <select id="eventquiz" name="eventquiz">
-        <option value="" selected>-- Choose one --</option>
-        <option value="bridge">Bridge Building</option>
-        <option value="robotics">Robotics</option>
-        <option value="chemistry">Chemistry Lab</option>
-        <option value="astronomy">Astronomy</option>
-        <option value="others">Other / Not Sure</option>
-      </select>
+  <section class="category">
+    <h2>Earth & Space Science</h2>
+    <ul class="events-list">
+      <li>
+        Dynamic Planet (Oceanography)
+        <a href="resources/dynamic-planet-map.pdf" target="_blank" class="resource-link">Map</a>
+      </li>
+      <li>
+        Fossils
+        <a href="resources/fossils-key.pdf" target="_blank" class="resource-link">Key</a>
+      </li>
+      <li>
+        Meteorology (World Climate and Climate Change)
+        <a href="resources/meteorology-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Remote Sensing
+        <a href="resources/remote-sensing-intro.pdf" target="_blank" class="resource-link">Intro</a>
+      </li>
+      <li>
+        Rocks and Minerals
+        <a href="resources/rocks-minerals-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Solar System
+        <a href="resources/solar-system-facts.pdf" target="_blank" class="resource-link">Facts</a>
+      </li>
+      <li>
+        Reach for the Stars
+        <a href="resources/reach-for-stars-challenge.pdf" target="_blank" class="resource-link">Challenge</a>
+      </li>
+      <li>
+        Road Scholar
+        <a href="resources/road-scholar-map.pdf" target="_blank" class="resource-link">Map</a>
+      </li>
+    </ul>
+  </section>
 
-      <button type="submit">Sign Up</button>
-    </form>
-  </main>
+  <section class="category">
+    <h2>Life, Personal & Social Science</h2>
+    <ul class="events-list">
+      <li>
+        Anatomy and Physiology
+        <a href="resources/anatomy-physiology-overview.pdf" target="_blank" class="resource-link">Overview</a>
+      </li>
+      <li>
+        Disease Detectives
+        <a href="resources/disease-detectives-cases.pdf" target="_blank" class="resource-link">Cases</a>
+      </li>
+      <li>
+        Ecology
+        <a href="resources/ecology-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Entomology
+        <a href="resources/entomology-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Microbe Mission
+        <a href="resources/microbe-mission-resources.pdf" target="_blank" class="resource-link">Resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Featured Trial Events</h2>
+    <ul class="events-list">
+      <li>
+        Hovercraft
+        <a href="resources/hovercraft-build.pdf" target="_blank" class="resource-link">Build Guide</a>
+      </li>
+    </ul>
+  </section>
+  <canvas id="particles-js"></canvas>
+
+
+</main>
 
 <footer>
   &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
