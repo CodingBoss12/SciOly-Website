@@ -83,13 +83,13 @@
 
     #particles-js {
       position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0; 
-      left: 0;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
       pointer-events: none;
     }
+
 
     main {
       position: relative;
@@ -276,10 +276,10 @@
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
     let particlesArray;
-
+  
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+  
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -302,7 +302,7 @@
         ctx.fill();
       }
     }
-
+  
     function init() {
       particlesArray = [];
       const particleCount = window.innerWidth < 768 ? 30 : 80;
@@ -310,7 +310,7 @@
         particlesArray.push(new Particle());
       }
     }
-
+  
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(particle => {
@@ -319,15 +319,16 @@
       });
       requestAnimationFrame(animate);
     }
-
+  
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       init();
     });
-
+  
     init();
     animate();
   </script>
+  
 </body>
 </html>
