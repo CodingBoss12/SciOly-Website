@@ -34,6 +34,42 @@
       z-index: 0;
       pointer-events: none;
     }
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+    nav ul li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
     main {
       max-width: 400px;
       margin: 5rem auto;
@@ -102,10 +138,46 @@
       color: #bbb;
       font-size: 0.9rem;
     }
+    .signup-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .signup-link a {
+      color: var(--hover-gold);
+      font-weight: bold;
+    }
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
   <canvas id="particles-js"></canvas>
+
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <main>
     <h1>Login</h1>
     <form id="loginForm">
@@ -123,9 +195,16 @@
 
       <button type="submit">Log In</button>
     </form>
+
+    <div class="signup-link">
+      New user? <a href="signup.html">Sign up here</a>
+    </div>
   </main>
 
-  <!-- Firebase SDK -->
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
@@ -138,7 +217,7 @@
       messagingSenderId: "YOUR_MSG_ID",
       appId: "YOUR_APP_ID"
     };
-    
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
@@ -158,7 +237,6 @@
     });
   </script>
 
-  <!-- Particle Background Script -->
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
