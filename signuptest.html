@@ -1,69 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westside JH SciOly | Signup</title>
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Westside JH SciOly</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
-      --transition: 0.4s ease;
-      --progress-bg: #2a2a2a;
-      --progress-fill: var(--hover-gold);
     }
 
-    /* Reset */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
       font-family: var(--font-body);
-      background-color: var(--dark-base);
-      color: var(--light-base);
+      background: #0f0f0f;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      position: relative;
-      z-index: 0;
+      color: var(--light-base);
     }
 
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* PARTICLES canvas behind everything */
-    #particles-js {
+    canvas#particles-js {
       position: fixed;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
+      top: 0;
+      left: 0;
       z-index: 0;
       pointer-events: none;
-      background: linear-gradient(135deg, #D62828 0%, #FFB703 100%);
-      filter: brightness(0.6);
     }
 
-    /* Header */
     header {
       background-color: var(--main-red);
       padding: 1rem 2rem;
@@ -72,11 +49,11 @@
       align-items: center;
       font-family: var(--font-heading);
       font-size: 1.8rem;
-      letter-spacing: 0.1em;
       text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      letter-spacing: 0.1em;
       position: relative;
       z-index: 10;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
     .nav-list {
@@ -91,253 +68,106 @@
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 1rem;
-      text-transform: uppercase;
       letter-spacing: 0.05em;
-      transition: all 0.3s ease;
+      text-transform: uppercase;
+      transition: 0.3s;
     }
 
     .nav-list li a:hover {
       color: white;
-      text-decoration: none;
       transform: translateY(-2px);
     }
 
-    /* Main form container */
     main {
-      margin: 5rem auto 3rem;
-      background: rgba(31,31,31,0.95);
-      max-width: 450px;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(255, 183, 3, 0.9);
-      padding: 3rem 3.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 6rem auto;
+      background-color: rgba(31, 31, 31, 0.95);
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px var(--main-red);
       position: relative;
-      z-index: 5;
+      z-index: 1;
     }
 
     h1 {
       font-family: var(--font-heading);
-      font-size: 2.8rem;
+      font-size: 3rem;
       text-align: center;
-      margin-bottom: 1.75rem;
       color: var(--hover-gold);
-      text-shadow: 0 0 10px #ffb703cc;
-      letter-spacing: 0.15em;
-    }
-
-    /* Progress bar container */
-    .progressbar {
-      display: flex;
-      justify-content: space-between;
       margin-bottom: 2rem;
-      counter-reset: step;
-    }
-    .progress-step {
-      width: 30px;
-      height: 30px;
-      background-color: var(--progress-bg);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--hover-gold);
-      font-weight: 700;
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      position: relative;
-      z-index: 2;
-      user-select: none;
-      transition: background-color var(--transition);
-      cursor: default;
-    }
-    .progress-step.active {
-      background-color: var(--hover-gold);
-      color: var(--dark-base);
-      box-shadow: 0 0 15px var(--hover-gold);
-      cursor: default;
-    }
-    .progress-step::before {
-      counter-increment: step;
-      content: counter(step);
     }
 
-    /* Progress bar lines */
-    .progressbar::before {
-      content: '';
-      position: absolute;
-      top: 14px;
-      left: 15%;
-      right: 15%;
-      height: 4px;
-      background-color: var(--progress-bg);
-      border-radius: 2px;
-      z-index: 1;
-      transition: background-color var(--transition);
-    }
-    .progressbar.active-2::before {
-      background: linear-gradient(
-        to right,
-        var(--hover-gold) 0%,
-        var(--hover-gold) 50%,
-        var(--progress-bg) 50%,
-        var(--progress-bg) 100%
-      );
-    }
-    .progressbar.active-3::before {
-      background: linear-gradient(
-        to right,
-        var(--hover-gold) 0%,
-        var(--hover-gold) 100%
-      );
-    }
-
-    /* Form steps styling */
     form {
-      position: relative;
-    }
-    .form-step {
-      display: none;
-      flex-direction: column;
-      gap: 1.4rem;
-      animation: fadeIn 0.6s ease forwards;
-    }
-    .form-step-active {
       display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     label {
-      font-weight: 600;
       font-size: 1.1rem;
       color: var(--hover-gold);
-      user-select: none;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    select {
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      border: none;
-      font-size: 1.1rem;
-      background-color: #2a2a2a;
-      color: var(--light-base);
-      transition: box-shadow 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus,
-    select:focus {
-      outline: none;
-      box-shadow: 0 0 8px var(--hover-gold);
-      background-color: #3c3c3c;
+      font-weight: 600;
     }
 
-    /* Checkbox and radio styling */
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      user-select: none;
-      font-weight: 600;
+    input {
+      padding: 0.75rem 1rem;
       font-size: 1rem;
-      color: var(--hover-gold);
-    }
-    .checkbox-group input {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: var(--light-base);
     }
 
-    /* Buttons */
-    .btns-group {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-    }
     button {
-      padding: 0.85rem 1.6rem;
-      font-family: var(--font-heading);
-      font-weight: 700;
+      padding: 1rem;
       font-size: 1.1rem;
-      letter-spacing: 0.07em;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
+      font-weight: bold;
+      font-family: var(--font-heading);
       text-transform: uppercase;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 0 15px rgba(255, 183, 3, 0.9);
-      color: var(--light-base);
-      background-color: var(--main-red);
-      user-select: none;
-      flex: 1;
+      background: var(--main-red);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 183, 3, 0.4);
+      transition: 0.3s ease;
     }
-    button:disabled {
-      cursor: not-allowed;
-      background-color: #a94442;
-      box-shadow: none;
-      color: #ddd;
-    }
-    button:hover:not(:disabled) {
-      background-color: var(--hover-gold);
+
+    button:hover {
+      background: var(--hover-gold);
       color: var(--dark-base);
     }
-    button + button {
-      margin-left: 1rem;
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
     }
 
-    /* Error message */
-    .error-msg {
-      color: #ff4c4c;
-      font-weight: 700;
+    .step {
+      width: 100%;
+      height: 6px;
+      background: #444;
+      margin: 0 5px;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .step.active {
+      background: var(--hover-gold);
+    }
+
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
       text-align: center;
-      margin-top: 1rem;
-      user-select: none;
-    }
-
-    /* Success message */
-    .success-msg {
-      color: var(--hover-gold);
-      font-weight: 700;
-      text-align: center;
-      margin-top: 1rem;
-      user-select: none;
-    }
-
-    /* Terms checkbox */
-    .terms-group {
-      margin-top: 1rem;
       font-size: 0.9rem;
-      color: #ddd;
-      user-select: none;
-    }
-    .terms-group input {
-      margin-right: 0.5rem;
-      cursor: pointer;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      main {
-        margin: 3rem 1rem 2rem;
-        padding: 2.5rem 2rem;
-      }
-      .btns-group {
-        flex-direction: column;
-      }
-      button + button {
-        margin-left: 0;
-        margin-top: 1rem;
-      }
-      .progress-step {
-        width: 25px;
-        height: 25px;
-        font-size: 0.9rem;
-      }
-    }
-
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+      margin-top: auto;
     }
   </style>
 </head>
@@ -349,428 +179,61 @@
     <nav>
       <ul class="nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="resources.html">Resources</a></li>
-        <li><a href="accomplishments.html">Accomplishments</a></li>
-        <li><a href="donate.html">Donate</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="memberportal.html">Member Portal</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <h1>Sign Up</h1>
-
-    <div class="progressbar active-1" id="progressbar">
-      <div class="progress-step progress-step-active" data-step="1"></div>
-      <div class="progress-step" data-step="2"></div>
-      <div class="progress-step" data-step="3"></div>
+    <h1>Join SciOly</h1>
+    <div class="step-indicator">
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
     </div>
+    <form id="signupForm">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" required />
 
-    <form id="signupForm" novalidate autocomplete="off">
-      <!-- Step 1: Basic Info -->
-      <div class="form-step form-step-active" data-step="1">
-        <label for="realName">Full Name</label>
-        <input type="text" id="realName" name="realName" placeholder="Anahita Rai" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
 
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="queen@example.com" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
 
-        <label for="password">Create Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Make it strong, babe"
-          minlength="8"
-          required
-        />
-      </div>
-
-      <!-- Step 2: Event Interests & Availability -->
-      <div class="form-step" data-step="2">
-        <label for="eventsInterested">Events You're Interested In (pick max 2)</label>
-        <select id="eventsInterested" name="eventsInterested" multiple required size="5" aria-describedby="eventsHelp" >
-          <option value="Protein Modeling">Protein Modeling</option>
-          <option value="Anatomy & Physiology">Anatomy & Physiology</option>
-          <option value="Circuit Lab">Circuit Lab</option>
-          <option value="Experimental Design">Experimental Design</option>
-          <option value="Forensics">Forensics</option>
-          <option value="Meteorology">Meteorology</option>
-          <option value="Chemistry Lab">Chemistry Lab</option>
-          <option value="Write It Do It">Write It Do It</option>
-          <option value="Dynamic Planet">Dynamic Planet</option>
-          <option value="Elastic Launch Glider">Elastic Launch Glider</option>
-          <option value="Robot Arm">Robot Arm</option>
-        </select>
-        <small id="eventsHelp" style="color: #ccc;">Hold Ctrl (Cmd on Mac) to select multiple, max 2.</small>
-
-        <label for="availability">Your Availability (e.g. Weekdays 4-6 PM, Weekends)</label>
-        <input
-          type="text"
-          id="availability"
-          name="availability"
-          placeholder="Weekdays after school, weekends free"
-          required
-        />
-      </div>
-
-      <!-- Step 3: Mini Quiz & Terms -->
-      <div class="form-step" data-step="3">
-        <label>Want to take the mini quiz to find your best fit events?</label>
-        <div class="checkbox-group">
-          <input type="checkbox" id="takeQuiz" name="takeQuiz" />
-          <label for="takeQuiz" style="user-select:none;">Yes, hit me with that quiz!</label>
-        </div>
-
-        <div id="quizSection" style="display:none; margin-top: 1rem;">
-
-          <p style="margin-bottom:0.5rem; font-weight:700; color: var(--hover-gold);">
-            Answer honestly & find your top SciOly events! (We’ll auto-select them for you in step 2)
-          </p>
-
-          <div id="quizQuestions" style="margin-bottom:1rem; max-height: 250px; overflow-y: auto; border: 1px solid #444; padding: 1rem; border-radius: 12px; background: #222;">
-            <!-- Quiz questions injected by JS -->
-          </div>
-        </div>
-
-        <div class="terms-group">
-          <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
-          <label for="agreeTerms">I agree to the <a href="terms.html" target="_blank" rel="noopener">terms & conditions</a></label>
-        </div>
-      </div>
-
-      <div class="btns-group">
-        <button type="button" id="prevBtn" disabled>Previous</button>
-        <button type="button" id="nextBtn">Next</button>
-        <button type="submit" id="submitBtn" style="display:none;">Create Account</button>
-      </div>
-
-      <p class="error-msg" id="errorMsg"></p>
-      <p class="success-msg" id="successMsg"></p>
+      <button type="submit">Next Step</button>
     </form>
-
-    <p style="text-align:center; margin-top: 1.5rem;">
-      Already got an account? <a href="login.html">Log in here</a>
-    </p>
   </main>
 
   <footer>
-    &copy; 2025 Westside JH SciOly | Contact us at
-    <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+    &copy; 2025 Westside JH SciOly | <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      updateProfile,
-    } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
-
-    // Your Firebase config (using your provided config)
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnGd4encwMoRl7i7ks0Dkpxy_h_glxYUw",
-      authDomain: "westside-scioly.firebaseapp.com",
-      projectId: "westside-scioly",
-      storageBucket: "westside-scioly.firebasestorage.app",
-      messagingSenderId: "795634851228",
-      appId: "1:795634851228:web:b297b85b9b1ad05fa5fc59",
-      measurementId: "G-0YF1862VQD"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Quiz questions & scoring logic (super simple example)
-    const quizQuestions = [
-      {
-        question: "Do you like working with data and models?",
-        eventMatches: ["Protein Modeling", "Experimental Design", "Chemistry Lab"],
-      },
-      {
-        question: "Do you enjoy hands-on experiments?",
-        eventMatches: ["Circuit Lab", "Forensics", "Chemistry Lab"],
-      },
-      {
-        question: "Are you a team player who loves communication?",
-        eventMatches: ["Write It Do It", "Robot Arm"],
-      },
-      {
-        question: "Do you enjoy outdoor science activities?",
-        eventMatches: ["Meteorology", "Dynamic Planet", "Elastic Launch Glider"],
-      },
-      {
-        question: "Are you interested in human anatomy or physiology?",
-        eventMatches: ["Anatomy & Physiology"],
-      },
-    ];
-
-    // Store scores for events
-    let eventScores = {};
-
-    const signupForm = document.getElementById("signupForm");
-    const progressbar = document.getElementById("progressbar");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const submitBtn = document.getElementById("submitBtn");
-    const errorMsg = document.getElementById("errorMsg");
-    const successMsg = document.getElementById("successMsg");
-    const quizSection = document.getElementById("quizSection");
-    const quizQuestionsContainer = document.getElementById("quizQuestions");
-    const takeQuizCheckbox = document.getElementById("takeQuiz");
-    const eventsSelect = document.getElementById("eventsInterested");
-
-    let currentStep = 1;
-
-    // Render quiz questions dynamically
-    function renderQuiz() {
-      quizQuestionsContainer.innerHTML = "";
-      quizQuestions.forEach((q, idx) => {
-        const qDiv = document.createElement("div");
-        qDiv.style.marginBottom = "1rem";
-
-        const questionLabel = document.createElement("label");
-        questionLabel.textContent = `${idx + 1}. ${q.question}`;
-        questionLabel.style.fontWeight = "600";
-        questionLabel.style.color = "var(--hover-gold)";
-
-        // Radio buttons: Yes or No
-        const yesInput = document.createElement("input");
-        yesInput.type = "radio";
-        yesInput.name = `q${idx}`;
-        yesInput.value = "yes";
-        yesInput.required = true;
-        yesInput.style.marginRight = "0.4rem";
-        yesInput.id = `q${idx}yes`;
-
-        const yesLabel = document.createElement("label");
-        yesLabel.textContent = "Yes";
-        yesLabel.htmlFor = yesInput.id;
-        yesLabel.style.marginRight = "1.2rem";
-        yesLabel.style.cursor = "pointer";
-
-        const noInput = document.createElement("input");
-        noInput.type = "radio";
-        noInput.name = `q${idx}`;
-        noInput.value = "no";
-        noInput.required = true;
-        noInput.style.marginRight = "0.4rem";
-        noInput.id = `q${idx}no`;
-
-        const noLabel = document.createElement("label");
-        noLabel.textContent = "No";
-        noLabel.htmlFor = noInput.id;
-        noLabel.style.cursor = "pointer";
-
-        qDiv.appendChild(questionLabel);
-        qDiv.appendChild(document.createElement("br"));
-        qDiv.appendChild(yesInput);
-        qDiv.appendChild(yesLabel);
-        qDiv.appendChild(noInput);
-        qDiv.appendChild(noLabel);
-
-        quizQuestionsContainer.appendChild(qDiv);
-      });
-    }
-
-    // Show/hide quiz section on checkbox toggle
-    takeQuizCheckbox.addEventListener("change", () => {
-      quizSection.style.display = takeQuizCheckbox.checked ? "block" : "none";
-    });
-
-    // Validate multi-select max 2 items for events interested
-    eventsSelect.addEventListener("change", () => {
-      const selectedOptions = [...eventsSelect.selectedOptions];
-      if (selectedOptions.length > 2) {
-        // Deselect last selected
-        selectedOptions[selectedOptions.length - 1].selected = false;
-        alert("You can select up to 2 events max, babe!");
-      }
-    });
-
-    // Navigation buttons logic
-    prevBtn.addEventListener("click", () => {
-      if (currentStep > 1) {
-        currentStep--;
-        updateFormStep();
-      }
-    });
-    nextBtn.addEventListener("click", () => {
-      if (validateStep(currentStep)) {
-        currentStep++;
-        updateFormStep();
-      }
-    });
-
-    // Validate current step inputs
-    function validateStep(step) {
-      errorMsg.textContent = "";
-      successMsg.textContent = "";
-
-      const stepFields = signupForm.querySelectorAll(`.form-step[data-step="${step}"] input, .form-step[data-step="${step}"] select`);
-      for (const field of stepFields) {
-        if (!field.checkValidity()) {
-          errorMsg.textContent = "Please fill out all required fields properly.";
-          field.focus();
-          return false;
-        }
-      }
-
-      // Custom validation for step 2 max 2 selections handled by alert already
-
-      if (step === 3) {
-        const agreeTerms = document.getElementById("agreeTerms");
-        if (!agreeTerms.checked) {
-          errorMsg.textContent = "You must agree to the terms & conditions.";
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    // Update form step display and progress bar
-    function updateFormStep() {
-      // Show/hide form steps
-      signupForm.querySelectorAll(".form-step").forEach((stepDiv) => {
-        stepDiv.classList.remove("form-step-active");
-        if (parseInt(stepDiv.getAttribute("data-step")) === currentStep) {
-          stepDiv.classList.add("form-step-active");
-        }
-      });
-
-      // Update buttons visibility
-      prevBtn.disabled = currentStep === 1;
-      nextBtn.style.display = currentStep === 3 ? "none" : "inline-block";
-      submitBtn.style.display = currentStep === 3 ? "inline-block" : "none";
-
-      // Update progress bar active step and line
-      const progressSteps = document.querySelectorAll(".progress-step");
-      progressSteps.forEach((stepElem) => {
-        const stepNum = parseInt(stepElem.getAttribute("data-step"));
-        if (stepNum <= currentStep) {
-          stepElem.classList.add("progress-step-active");
-        } else {
-          stepElem.classList.remove("progress-step-active");
-        }
-      });
-
-      const progressbarElem = document.getElementById("progressbar");
-      progressbarElem.classList.remove("active-1", "active-2", "active-3");
-      progressbarElem.classList.add(`active-${currentStep}`);
-    }
-
-    // Auto-fill events based on quiz answers
-    function autoFillEvents() {
-      eventScores = {};
-      quizQuestions.forEach((q, idx) => {
-        const selected = signupForm.querySelector(`input[name="q${idx}"]:checked`);
-        if (selected && selected.value === "yes") {
-          q.eventMatches.forEach((eventName) => {
-            eventScores[eventName] = (eventScores[eventName] || 0) + 1;
-          });
-        }
-      });
-      // Sort events by scores descending
-      const sortedEvents = Object.entries(eventScores)
-        .sort((a,b) => b[1] - a[1])
-        .map((e) => e[0])
-        .slice(0, 2); // max 2 events
-
-      // Clear previous selections
-      for (const option of eventsSelect.options) {
-        option.selected = false;
-      }
-      // Select top recommended events
-      sortedEvents.forEach((ev) => {
-        for (const option of eventsSelect.options) {
-          if (option.value === ev) {
-            option.selected = true;
-            break;
-          }
-        }
-      });
-    }
-
-    // On quiz answers change, update events automatically
-    quizQuestionsContainer.addEventListener("change", () => {
-      autoFillEvents();
-    });
-
-    // Handle form submission with Firebase
-    signupForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      errorMsg.textContent = "";
-      successMsg.textContent = "";
-
-      // Double check last step validation
-      if (!validateStep(currentStep)) return;
-
-      const realName = document.getElementById("realName").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const eventsSelected = [...eventsSelect.selectedOptions].map(opt => opt.value);
-      const availability = document.getElementById("availability").value.trim();
-
-      if (eventsSelected.length === 0) {
-        errorMsg.textContent = "Select at least one event you’re interested in.";
-        return;
-      }
-
-      try {
-        // Create user with Firebase Auth
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        // Update profile displayName to realName
-        await updateProfile(userCredential.user, { displayName: realName });
-
-        // TODO: Save extra data like eventsSelected & availability to Firestore (optional)
-
-        successMsg.textContent = "Account created successfully! Redirecting...";
-        setTimeout(() => {
-          window.location.href = "dashboard.html";
-        }, 2300);
-      } catch (error) {
-        errorMsg.textContent = error.message;
-      }
-    });
-
-    // Initialize form state on load
-    updateFormStep();
-    renderQuiz();
-  </script>
-
   <script>
-    // PARTICLES JS with interactive hover and click (cool AF)
-    const canvas = document.getElementById("particles-js");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
     let particlesArray = [];
 
-    // Particle class
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
     class Particle {
-      constructor(x, y, size, speedX, speedY, color) {
-        this.x = x || Math.random() * canvas.width;
-        this.y = y || Math.random() * canvas.height;
-        this.size = size || Math.random() * 2 + 1;
-        this.speedX = speedX || (Math.random() - 0.5) * 0.7;
-        this.speedY = speedY || (Math.random() - 0.5) * 0.7;
-        this.color = color || "rgba(255, 183, 3, 0.85)";
-        this.baseX = this.x;
-        this.baseY = this.y;
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        // Bounce edges
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-
-        // Slowly move back to base position for subtle motion effect
-        this.x += (this.baseX - this.x) * 0.02;
-        this.y += (this.baseY - this.y) * 0.02;
       }
       draw() {
         ctx.fillStyle = this.color;
@@ -778,53 +241,30 @@
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
-      repel(mouseX, mouseY) {
-        const dx = this.x - mouseX;
-        const dy = this.y - mouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          const force = (100 - dist) / 100;
-          this.x += dx / dist * force * 5;
-          this.y += dy / dist * force * 5;
-        }
-      }
     }
 
     function initParticles() {
       particlesArray = [];
-      const count = Math.floor((canvas.width * canvas.height) / 12000);
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < 100; i++) {
         particlesArray.push(new Particle());
       }
     }
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach((p) => {
+      particlesArray.forEach(p => {
         p.update();
         p.draw();
       });
       requestAnimationFrame(animateParticles);
     }
 
-    // Interactivity: repel particles on mouse move
-    canvas.addEventListener("mousemove", (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-      particlesArray.forEach((p) => p.repel(mouseX, mouseY));
-    });
-
-    // Resize canvas and re-init particles
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
     });
 
-    // Initialize canvas size and particles
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
     initParticles();
     animateParticles();
   </script>
