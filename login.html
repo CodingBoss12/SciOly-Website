@@ -26,6 +26,13 @@
       color: var(--light-base);
       overflow-x: hidden;
     }
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
     canvas#particles-js {
       position: fixed;
       width: 100%;
@@ -45,10 +52,10 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      position: relative;
       z-index: 10;
+      position: relative;
     }
-    nav ul {
+    .nav-list {
       list-style: none;
       display: flex;
       gap: 1.5rem;
@@ -56,7 +63,7 @@
       margin: 0;
       align-items: center;
     }
-    nav ul li a {
+    .nav-list li a {
       color: var(--hover-gold);
       font-family: var(--font-body);
       font-weight: 600;
@@ -65,7 +72,7 @@
       letter-spacing: 0.05em;
       transition: all 0.3s ease;
     }
-    nav ul li a:hover {
+    .nav-list li a:hover {
       color: white;
       text-decoration: none;
       transform: translateY(-2px);
@@ -162,7 +169,7 @@
   <canvas id="particles-js"></canvas>
 
   <header>
-    <div>Westside JH SciOly</div>
+    <div>Westside JH SciOly </div>
     <nav>
       <ul class="nav-list">
         <li><a href="index.html">Home</a></li>
