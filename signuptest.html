@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up | Westside JH SciOly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westside JH SciOly - Sign Up</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
-  <link rel="icon" href="images/logo.png" type="image/png">
   <style>
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
@@ -19,199 +20,538 @@
       box-sizing: border-box;
       margin: 0; padding: 0;
     }
-    html, body {
+    body, html {
       height: 100%;
       font-family: var(--font-body);
-      background: radial-gradient(circle, #2c2c2c, #000);
+      background-color: var(--dark-base);
       color: var(--light-base);
-      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    header, footer {
-      background: var(--main-red);
+    header {
+      background-color: var(--main-red);
       padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-family: var(--font-heading);
-      text-align: center;
-      font-size: 2rem;
-      text-transform: uppercase;
+      font-size: 1.8rem;
       letter-spacing: 0.1em;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    nav ul li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      color: white;
+      transform: translateY(-2px);
     }
     footer {
-      font-size: 1rem;
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
       margin-top: auto;
     }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: rgba(0, 0, 0, 0.8);
+    main.signup-container {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 2rem auto 4rem auto;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.5);
+      background-color: #2B2B2B;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+      font-family: var(--font-body);
     }
-    h2 {
-      font-family: var(--font-heading);
-      color: var(--hover-gold);
+    form label {
+      display: block;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="radio"],
+    input[type="checkbox"] {
+      font-size: 1rem;
       margin-bottom: 1rem;
     }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      border: none;
+      font-family: var(--font-body);
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    button.next-btn,
+    button.prev-btn,
+    button.submit-btn {
+      background-color: var(--hover-gold);
+      border: none;
+      color: var(--dark-base);
+      padding: 0.6rem 1.3rem;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      margin-top: 1rem;
+      user-select: none;
+    }
+    button.next-btn:disabled {
+      background-color: #a88603;
+      cursor: not-allowed;
+    }
+    button.next-btn:hover:not(:disabled),
+    button.prev-btn:hover,
+    button.submit-btn:hover {
+      background-color: #ffc65a;
+    }
     .form-step {
+      animation: fadeInStep 0.3s ease forwards;
       display: none;
     }
     .form-step.active {
       display: block;
     }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #2a2a2a;
-      color: var(--light-base);
-    }
-    button {
-      padding: 0.9rem 2rem;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      font-weight: bold;
-      background-color: var(--hover-gold);
-      color: var(--dark-base);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: var(--font-heading);
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-    button:hover {
-      background-color: #ffd966;
-    }
-    .progress-bar {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-    }
-    .progress-step {
-      flex: 1;
-      height: 6px;
-      margin: 0 4px;
+    #progress-bar-container {
+      margin-bottom: 1.5rem;
       background: #555;
-      border-radius: 4px;
+      border-radius: 3px;
+      height: 6px;
+      overflow: hidden;
     }
-    .progress-step.active {
+    #progress-bar {
+      height: 100%;
       background: var(--hover-gold);
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+    #events-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    #events-error {
+      color: var(--hover-gold);
+      font-weight: 700;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .quiz-step {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    @keyframes fadeInStep {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 600px) {
+      main.signup-container {
+        margin: 1rem;
+        padding: 1rem;
+      }
     }
   </style>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
 </head>
 <body>
-  <header>Westside JH SciOly Sign-Up</header>
-  <main class="container">
-    <div class="progress-bar">
-      <div class="progress-step active"></div>
-      <div class="progress-step"></div>
-      <div class="progress-step"></div>
-      <div class="progress-step"></div>
-    </div>
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <form id="signupForm">
-      <div class="form-step active" id="step-1">
-        <h2>Account Info</h2>
-        <label for="realName">Full Name</label>
-        <input type="text" id="realName" required />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" required />
-
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
-
-        <label for="availability">Availability</label>
-        <textarea id="availability" placeholder="When are you usually free for SciOly stuff?"></textarea>
-
-        <button type="button" onclick="nextStep()">Next</button>
+  <main class="signup-container">
+    <form id="signup-form" novalidate>
+      <div id="progress-bar-container" aria-label="Signup progress">
+        <div id="progress-bar"></div>
       </div>
 
-      <div class="form-step" id="step-2">
-        <h2>Interest + Comfort Assessment</h2>
-        <label>Rate your interest in study events (1-5)</label>
-        <input type="range" min="1" max="5" id="interestStudy" />
+      <!-- Step 1: Basic Info -->
+      <section class="form-step active" data-step="1" aria-live="polite">
+        <h3>Basic Information</h3>
+        <label for="realName">Full Name <span style="color:#FFB703;">*</span></label>
+        <input type="text" id="realName" name="realName" placeholder="Your full real name" required autocomplete="name" />
 
-        <label>Rate your comfort with lab events (1-5)</label>
-        <input type="range" min="1" max="5" id="comfortLab" />
+        <label for="email">Email <span style="color:#FFB703;">*</span></label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required autocomplete="email" />
 
-        <label>Rate your love for building things (1-5)</label>
-        <input type="range" min="1" max="5" id="buildLove" />
+        <label for="password">Password <span style="color:#FFB703;">*</span></label>
+        <input type="password" id="password" name="password" placeholder="Make it strong, hun" required minlength="8" autocomplete="new-password" />
 
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+        <label for="username">Username (optional)</label>
+        <input type="text" id="username" name="username" placeholder="Your SciOly nickname or handle" autocomplete="username" />
 
-      <div class="form-step" id="step-3">
-        <h2>Buzzfeed-Style Event Quiz</h2>
-        <label>Can you identify diseases from data?</label>
-        <select id="diseaseDetective">
-          <option value="3">YES</option>
-          <option value="2">Maybe</option>
-          <option value="1">No</option>
-        </select>
+        <button type="button" class="next-btn" id="next-btn-1">Next →</button>
+      </section>
 
-        <label>Could you design a Rube Goldberg machine?</label>
-        <select id="missionPossible">
-          <option value="3">YES</option>
-          <option value="2">Maybe</option>
-          <option value="1">No</option>
-        </select>
+      <!-- Step 2: Quiz toggle -->
+      <section class="form-step" data-step="2" aria-live="polite">
+        <h3>Take the Science Olympiad Quiz?</h3>
+        <p>This quiz helps recommend events you'll crush based on your interests and skills.</p>
 
-        <label>Can you teach complex science clearly?</label>
-        <select id="writeItDoIt">
-          <option value="3">YES</option>
-          <option value="2">Somewhat</option>
-          <option value="1">Nope</option>
-        </select>
+        <label><input type="radio" name="takeQuiz" value="yes" required /> Heck yes, I wanna take it!</label>
+        <label><input type="radio" name="takeQuiz" value="no" required /> Nah, just lemme pick events myself.</label>
 
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+        <button type="button" class="prev-btn" id="prev-btn-2">← Back</button>
+        <button type="button" class="next-btn" id="next-btn-2" disabled>Next →</button>
+      </section>
 
-      <div class="form-step" id="step-4">
-        <h2>You're SciOly Perfect For...</h2>
-        <p id="recommendations">Loading...</p>
-        <button type="submit">Sign Me Up!</button>
-      </div>
+      <!-- Step 3: Quiz -->
+      <section class="form-step quiz-step" data-step="3" aria-live="polite">
+        <h3>Science Olympiad Quiz</h3>
+        <p>Answer honestly! You can change these later too.</p>
+
+        <fieldset>
+          <legend>1. Anatomy and Physiology</legend>
+          <label><input type="radio" name="q1" value="A" required /> I’d ace it like a future med student.</label>
+          <label><input type="radio" name="q1" value="B" /> I’d take a wild guess and hope for the best.</label>
+          <label><input type="radio" name="q1" value="C" /> I’d panic and flee the country.</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Disease Detectives</legend>
+          <label><input type="radio" name="q2" value="A" required /> Absolutely—give me a clipboard and a lab coat.</label>
+          <label><input type="radio" name="q2" value="B" /> It sounds interesting, but I’m unsure if I’d fully commit.</label>
+          <label><input type="radio" name="q2" value="C" /> Graphs? Case studies? No thanks.</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Heredity</legend>
+          <label><input type="radio" name="q3" value="A" required /> I love them—the perfect blend of logic and biology.</label>
+          <label><input type="radio" name="q3" value="B" /> They’re okay; I tolerate them.</label>
+          <label><input type="radio" name="q3" value="C" /> They make me want to scream.</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Dynamic Planet (Glaciology)</legend>
+          <label><input type="radio" name="q4" value="A" required /> Absolutely—I could give an entire TED Talk.</label>
+          <label><input type="radio" name="q4" value="B" /> Somewhat interested, but not deeply invested.</label>
+          <label><input type="radio" name="q4" value="C" /> Ice is just ice, right?</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Meteorology</legend>
+          <label><input type="radio" name="q5" value="A" required /> Yes! Cumulonimbus is queen.</label>
+          <label><input type="radio" name="q5" value="B" /> I’m only interested in dramatic weather.</label>
+          <label><input type="radio" name="q5" value="C" /> I only care if it means a snow day.</label>
+        </fieldset>
+
+        <!-- add more quiz questions here -->
+
+        <button type="button" class="prev-btn" id="prev-btn-3">← Back</button>
+        <button type="button" class="next-btn" id="next-btn-3">Next →</button>
+      </section>
+
+      <!-- Step 4: Event Selection -->
+      <section class="form-step" data-step="4" aria-live="polite">
+        <h3>Pick Your Events (Up to 6)</h3>
+        <p>You can pick as many events as you want, but no more than six!</p>
+        <div id="events-list">
+          <label><input type="checkbox" name="events" value="Anatomy and Physiology" /> Anatomy and Physiology</label>
+          <label><input type="checkbox" name="events" value="Disease Detectives" /> Disease Detectives</label>
+          <label><input type="checkbox" name="events" value="Boomilever" /> Boomilever</label>
+          <label><input type="checkbox" name="events" value="Helicopter" /> Helicopter</label>
+          <label><input type="checkbox" name="events" value="Scrambler" /> Scrambler</label>
+          <label><input type="checkbox" name="events" value="Write It Do It" /> Write It Do It</label>
+          <label><input type="checkbox" name="events" value="Circuit Lab" /> Circuit Lab</label>
+          <label><input type="checkbox" name="events" value="Experimental Design" /> Experimental Design</label>
+          <label><input type="checkbox" name="events" value="Codebusters" /> Codebusters</label>
+          <label><input type="checkbox" name="events" value="Meteorology" /> Meteorology</label>
+          <!-- Add all other events here -->
+        </div>
+        <p id="events-error">You can select up to 6 events only.</p>
+        <button type="button" class="prev-btn" id="prev-btn-4">← Back</button>
+        <button type="button" class="next-btn" id="next-btn-4" disabled>Next →</button>
+      </section>
+
+      <!-- Step 5: Review & Submit -->
+      <section class="form-step" data-step="5" aria-live="polite">
+        <h3>Review &
+      <!-- Step 5: Review & Submit -->
+      <section class="form-step" data-step="5" aria-live="polite">
+        <h3>Review & Submit</h3>
+        <p>Make sure everything looks good before sending it off to the SciOly gods.</p>
+
+        <div id="review-info" style="margin-bottom: 1rem;">
+          <!-- We'll dynamically insert user info and selected events here -->
+        </div>
+
+        <button type="button" class="prev-btn" id="prev-btn-5">← Back</button>
+        <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
+      </section>
     </form>
   </main>
+
   <footer>
-    &copy; 2025 Westside JH SciOly | All rights reserved
+    Westside JH Science Olympiad © 2025 — Powered by Brainrot & Code Magic
   </footer>
 
   <script>
-    let currentStep = 1;
-    function nextStep() {
-      document.querySelector(`#step-${currentStep}`).classList.remove('active');
-      document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('active');
-      currentStep++;
-      document.querySelector(`#step-${currentStep}`).classList.add('active');
-      document.querySelectorAll('.progress-step')[currentStep - 1].classList.add('active');
+    // Firebase config placeholder - replace with your actual config from Firebase console
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-      if (currentStep === 4) {
-        generateRecommendations();
+    // DOM Elements
+    const form = document.getElementById('signup-form');
+    const steps = [...document.querySelectorAll('.form-step')];
+    const progressBar = document.getElementById('progress-bar');
+    let currentStep = 0;
+
+    // Navigation buttons per step
+    const nextBtns = document.querySelectorAll('.next-btn');
+    const prevBtns = document.querySelectorAll('.prev-btn');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Quiz toggle radios & event checkboxes
+    const takeQuizRadios = document.getElementsByName('takeQuiz');
+    const nextBtn2 = document.getElementById('next-btn-2');
+    const eventsList = document.getElementById('events-list');
+    const eventsCheckboxes = eventsList.querySelectorAll('input[type="checkbox"]');
+    const nextBtn4 = document.getElementById('next-btn-4');
+    const eventsError = document.getElementById('events-error');
+    const reviewInfo = document.getElementById('review-info');
+
+    // Utility: Update progress bar (0 to 100%)
+    function updateProgressBar() {
+      const progress = ((currentStep + 1) / steps.length) * 100;
+      progressBar.style.width = progress + '%';
+    }
+
+    // Show step by index
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+      currentStep = index;
+      updateProgressBar();
+
+      // Special logic for enabling buttons, pre-fill review etc
+      if (index === 1) {
+        // Step 2: Enable next only if quiz toggle selected
+        nextBtn2.disabled = ![...takeQuizRadios].some(r => r.checked);
+      }
+
+      if (index === 3) {
+        validateEvents();
+      }
+
+      if (index === 4) {
+        fillReview();
       }
     }
 
-    function generateRecommendations() {
-      const disease = +document.getElementById('diseaseDetective').value;
-      const mission = +document.getElementById('missionPossible').value;
-      const write = +document.getElementById('writeItDoIt').value;
+    // Quiz toggle listener to enable Next on step 2
+    [...takeQuizRadios].forEach(radio => {
+      radio.addEventListener('change', () => {
+        nextBtn2.disabled = false;
+      });
+    });
 
-      let recommendations = [];
-      if (disease >= 2) recommendations.push("Disease Detectives");
-      if (mission >= 2) recommendations.push("Mission Possible");
-      if (write >= 2) recommendations.push("Write It Do It");
-
-      document.getElementById('recommendations').innerText = `You'd be great at: ${recommendations.join(', ')}`;
+    // Validate max 6 events
+    function validateEvents() {
+      const checkedCount = [...eventsCheckboxes].filter(cb => cb.checked).length;
+      if (checkedCount > 6) {
+        eventsError.style.display = 'block';
+        nextBtn4.disabled = true;
+      } else if (checkedCount === 0) {
+        eventsError.textContent = "Please select at least one event.";
+        eventsError.style.display = 'block';
+        nextBtn4.disabled = true;
+      } else {
+        eventsError.style.display = 'none';
+        nextBtn4.disabled = false;
+      }
     }
+
+    eventsList.addEventListener('change', validateEvents);
+
+    // Auto-fill events from quiz answers (basic scoring example)
+    function getQuizRecommendations() {
+      // Super simplified scoring logic (you can expand this)
+      let recommended = [];
+      const quizAnswers = {};
+      for (let i = 1; i <= 5; i++) {
+        const answer = form['q' + i]?.value;
+        quizAnswers['q' + i] = answer;
+      }
+
+      // Example logic: if answer 'A' => recommend that event, 'B' maybe, 'C' no
+      if (quizAnswers.q1 === 'A') recommended.push("Anatomy and Physiology");
+      if (quizAnswers.q2 === 'A') recommended.push("Disease Detectives");
+      if (quizAnswers.q3 === 'A') recommended.push("Heredity");
+      if (quizAnswers.q4 === 'A') recommended.push("Dynamic Planet");
+      if (quizAnswers.q5 === 'A') recommended.push("Meteorology");
+
+      // Fill checkboxes accordingly, max 6 events
+      [...eventsCheckboxes].forEach(cb => {
+        cb.checked = recommended.includes(cb.value);
+      });
+    }
+
+    // Fill review step with info
+    function fillReview() {
+      const realName = form.realName.value.trim();
+      const email = form.email.value.trim();
+      const username = form.username.value.trim() || "(none)";
+      const eventsSelected = [...eventsCheckboxes]
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+
+      reviewInfo.innerHTML = `
+        <p><strong>Full Name:</strong> ${realName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Username:</strong> ${username}</p>
+        <p><strong>Events Selected:</strong> ${eventsSelected.length > 0 ? eventsSelected.join(', ') : "None"}</p>
+      `;
+    }
+
+    // Handle next buttons
+    nextBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (currentStep === 1) {
+          // If quiz chosen yes, go to quiz step; else skip to event selection
+          const takeQuiz = [...takeQuizRadios].find(r => r.checked)?.value;
+          if (takeQuiz === 'yes') {
+            showStep(2);
+          } else {
+            showStep(3);
+            // auto-skip quiz: mark recommended events none, just show blank for manual
+          }
+        } else if (currentStep === 2) {
+          // Validate quiz answers before moving on
+          const answeredAll = [...form.querySelectorAll('.form-step[data-step="3"] input[type="radio"]')]
+            .every(input => {
+              const name = input.name;
+              return form[name].value;
+            });
+
+          if (!answeredAll) {
+            alert("Please answer all quiz questions.");
+            return;
+          }
+          // Fill recommended events from quiz
+          getQuizRecommendations();
+          showStep(3);
+        } else if (currentStep === 3) {
+          showStep(4);
+        } else if (currentStep === 4) {
+          if (nextBtn4.disabled) {
+            alert("Please select up to 6 events.");
+            return;
+          }
+          showStep(5);
+        }
+      });
+    });
+
+    // Handle prev buttons
+    prevBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (currentStep > 0) showStep(currentStep - 1);
+      });
+    });
+
+    // Form submit handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
+      // Basic validation just in case
+      if (!form.realName.value.trim() || !form.email.value.trim() || !form.password.value) {
+        alert("Please fill all required fields.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit";
+        return;
+      }
+      const selectedEvents = [...eventsCheckboxes]
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      if (selectedEvents.length === 0 || selectedEvents.length > 6) {
+        alert("Please select 1 to 6 events.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit";
+        return;
+      }
+
+      try {
+        // Create user in Firebase Auth
+        const userCredential = await auth.createUserWithEmailAndPassword(form.email.value.trim(), form.password.value);
+        const user = userCredential.user;
+
+        // Save profile to Firestore
+        await db.collection('users').doc(user.uid).set({
+          realName: form.realName.value.trim(),
+          email: form.email.value.trim(),
+          username: form.username.value.trim() || null,
+          events: selectedEvents,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        alert("Welcome to Westside JH SciOly! Your account has been created.");
+        window.location.href = "memberdashboard.html"; // Redirect to member dashboard page
+      } catch (error) {
+        alert("Error: " + error.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit";
+      }
+    });
+
+    // Init
+    showStep(0);
   </script>
 </body>
 </html>
