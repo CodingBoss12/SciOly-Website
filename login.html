@@ -23,7 +23,7 @@
       height: 100%;
     }
     body {
-      min-height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       font-family: var(--font-body);
@@ -83,10 +83,11 @@
       transform: translateY(-2px);
     }
     main {
-      max-width: 400px;
+      max-width: 480px;
+      width: 90%;
       margin: 5rem auto;
-      padding: 3rem;
-      background: rgba(31,31,31,0.9);
+      padding: 2.5rem 3rem;
+      background: rgba(31,31,31,0.95);
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(214,40,40,0.7);
       position: relative;
@@ -94,10 +95,11 @@
     }
     h1 {
       font-family: var(--font-heading);
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--hover-gold);
       text-align: center;
       margin-bottom: 2rem;
+      text-shadow: 0 0 5px rgba(255, 183, 3, 0.8);
     }
     form {
       display: flex;
@@ -209,7 +211,7 @@
     </form>
 
     <div class="signup-link">
-      New user? <a href="sign-up.html">Sign up here</a>
+      New user? <a href="signup.html">Sign up here</a>
     </div>
   </main>
 
