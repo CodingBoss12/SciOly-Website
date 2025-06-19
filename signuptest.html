@@ -4,269 +4,214 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up | Westside JH SciOly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <link rel="icon" href="images/logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
-      --secondary-blue: #0077B6;
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
-
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
+      margin: 0; padding: 0;
     }
-
     html, body {
       height: 100%;
       font-family: var(--font-body);
-      background: #0f0f0f;
-      overflow-x: hidden;
+      background: radial-gradient(circle, #2c2c2c, #000);
       color: var(--light-base);
+      overflow-x: hidden;
     }
-
-    canvas#particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    header {
-      background-color: var(--main-red);
+    header, footer {
+      background: var(--main-red);
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       font-family: var(--font-heading);
-      font-size: 1.8rem;
+      text-align: center;
+      font-size: 2rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
+    footer {
       font-size: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: 0.3s;
+      margin-top: auto;
     }
-
-    .nav-list li a:hover {
-      color: white;
-      transform: translateY(-2px);
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 183, 3, 0.5);
     }
-
-    main {
-      width: 100%;
-      max-width: 500px;
-      margin: 6rem auto;
-      background-color: rgba(31, 31, 31, 0.95);
-      padding: 3rem 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 20px var(--main-red);
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
+    h2 {
       font-family: var(--font-heading);
-      font-size: 3rem;
-      text-align: center;
       color: var(--hover-gold);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .form-step {
+      display: none;
     }
-
+    .form-step.active {
+      display: block;
+    }
     label {
-      font-size: 1.1rem;
-      color: var(--hover-gold);
-      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
     }
-
-    input {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
       border: none;
-      border-radius: 8px;
-      background: #2a2a2a;
+      border-radius: 6px;
+      background-color: #2a2a2a;
       color: var(--light-base);
     }
-
     button {
-      padding: 1rem;
+      padding: 0.9rem 2rem;
+      margin-top: 1rem;
       font-size: 1.1rem;
       font-weight: bold;
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      background: var(--main-red);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(255, 183, 3, 0.4);
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background: var(--hover-gold);
+      background-color: var(--hover-gold);
       color: var(--dark-base);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
     }
-
-    .step-indicator {
+    button:hover {
+      background-color: #ffd966;
+    }
+    .progress-bar {
       display: flex;
       justify-content: space-between;
       margin-bottom: 2rem;
     }
-
-    .step {
-      width: 100%;
+    .progress-step {
+      flex: 1;
       height: 6px;
-      background: #444;
-      margin: 0 5px;
-      border-radius: 5px;
-      position: relative;
+      margin: 0 4px;
+      background: #555;
+      border-radius: 4px;
     }
-
-    .step.active {
+    .progress-step.active {
       background: var(--hover-gold);
-    }
-
-    footer {
-      background-color: var(--main-red);
-      color: var(--light-base);
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      position: relative;
-      z-index: 10;
-      margin-top: auto;
     }
   </style>
 </head>
 <body>
-  <canvas id="particles-js"></canvas>
-
-  <header>
-    <div>Westside JH SciOly</div>
-    <nav>
-      <ul class="nav-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h1>Join SciOly</h1>
-    <div class="step-indicator">
-      <div class="step active"></div>
-      <div class="step"></div>
-      <div class="step"></div>
+  <header>Westside JH SciOly Sign-Up</header>
+  <main class="container">
+    <div class="progress-bar">
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
     </div>
+
     <form id="signupForm">
-      <label for="fullname">Full Name</label>
-      <input type="text" id="fullname" required />
+      <div class="form-step active" id="step-1">
+        <h2>Account Info</h2>
+        <label for="realName">Full Name</label>
+        <input type="text" id="realName" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
 
-      <button type="submit">Next Step</button>
+        <label for="availability">Availability</label>
+        <textarea id="availability" placeholder="When are you usually free for SciOly stuff?"></textarea>
+
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <div class="form-step" id="step-2">
+        <h2>Interest + Comfort Assessment</h2>
+        <label>Rate your interest in study events (1-5)</label>
+        <input type="range" min="1" max="5" id="interestStudy" />
+
+        <label>Rate your comfort with lab events (1-5)</label>
+        <input type="range" min="1" max="5" id="comfortLab" />
+
+        <label>Rate your love for building things (1-5)</label>
+        <input type="range" min="1" max="5" id="buildLove" />
+
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <div class="form-step" id="step-3">
+        <h2>Buzzfeed-Style Event Quiz</h2>
+        <label>Can you identify diseases from data?</label>
+        <select id="diseaseDetective">
+          <option value="3">YES</option>
+          <option value="2">Maybe</option>
+          <option value="1">No</option>
+        </select>
+
+        <label>Could you design a Rube Goldberg machine?</label>
+        <select id="missionPossible">
+          <option value="3">YES</option>
+          <option value="2">Maybe</option>
+          <option value="1">No</option>
+        </select>
+
+        <label>Can you teach complex science clearly?</label>
+        <select id="writeItDoIt">
+          <option value="3">YES</option>
+          <option value="2">Somewhat</option>
+          <option value="1">Nope</option>
+        </select>
+
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <div class="form-step" id="step-4">
+        <h2>You're SciOly Perfect For...</h2>
+        <p id="recommendations">Loading...</p>
+        <button type="submit">Sign Me Up!</button>
+      </div>
     </form>
   </main>
-
   <footer>
-    &copy; 2025 Westside JH SciOly | <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+    &copy; 2025 Westside JH SciOly | All rights reserved
   </footer>
 
   <script>
-    const canvas = document.getElementById('particles-js');
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
+    let currentStep = 1;
+    function nextStep() {
+      document.querySelector(`#step-${currentStep}`).classList.remove('active');
+      document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('active');
+      currentStep++;
+      document.querySelector(`#step-${currentStep}`).classList.add('active');
+      document.querySelectorAll('.progress-step')[currentStep - 1].classList.add('active');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = 'rgba(255, 183, 3, 0.8)';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+      if (currentStep === 4) {
+        generateRecommendations();
       }
     }
 
-    function initParticles() {
-      particlesArray = [];
-      for (let i = 0; i < 100; i++) {
-        particlesArray.push(new Particle());
-      }
+    function generateRecommendations() {
+      const disease = +document.getElementById('diseaseDetective').value;
+      const mission = +document.getElementById('missionPossible').value;
+      const write = +document.getElementById('writeItDoIt').value;
+
+      let recommendations = [];
+      if (disease >= 2) recommendations.push("Disease Detectives");
+      if (mission >= 2) recommendations.push("Mission Possible");
+      if (write >= 2) recommendations.push("Write It Do It");
+
+      document.getElementById('recommendations').innerText = `You'd be great at: ${recommendations.join(', ')}`;
     }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
-    }
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    });
-
-    initParticles();
-    animateParticles();
   </script>
 </body>
 </html>
