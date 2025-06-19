@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Westside JH SciOly</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+    }
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: var(--hover-gold);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: white;
+    }
+    .container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: rgba(31,31,31,0.95);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+      position: relative;
+      z-index: 1;
+    }
+    .progress-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .step {
+      flex: 1;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+      border-bottom: 4px solid gray;
+      transition: all 0.3s ease;
+    }
+    .step.active {
+      color: var(--hover-gold);
+      border-color: var(--hover-gold);
+    }
+    .form-step {
+      display: none;
+    }
+    .form-step.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: var(--hover-gold);
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #2a2a2a;
+      color: white;
+      font-size: 1rem;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: var(--main-red);
+      color: var(--light-base);
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    }
+    button:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+    }
+    footer {
+      margin-top: auto;
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="progress-bar">
+      <div class="step active">1. Info</div>
+      <div class="step">2. Quiz</div>
+      <div class="step">3. Events</div>
+      <div class="step">4. Schedule</div>
+      <div class="step">5. Confirm</div>
+    </div>
+
+    <form id="signupForm">
+      <!-- Step 1 -->
+      <div class="form-step active">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <div class="button-group">
+          <span></span>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step">
+        <p>Optional interest quiz coming soon...</p>
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step">
+        <label for="events">Interested Events</label>
+        <select id="events" multiple>
+          <option>Codebusters</option>
+          <option>Flight</option>
+          <option>Experimental Design</option>
+          <option>Rocks & Minerals</option>
+          <option>Forestry</option>
+        </select>
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step">
+        <label>Availability</label>
+        <input type="text" placeholder="e.g. Mon/Wed/Fri 3-5 PM" />
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="form-step">
+        <label for="role">Preferred Role</label>
+        <select id="role">
+          <option value="primary">Primary (lead)</option>
+          <option value="secondary">Secondary (assistant)</option>
+        </select>
+
+        <label><input type="checkbox" required /> I agree to the Terms & Conditions</label>
+
+        <div class="button-group">
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="submit">Finish Signup</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at info@westsidescioly.com
+  </footer>
+
+  <script>
+    const steps = document.querySelectorAll('.form-step');
+    const progress = document.querySelectorAll('.step');
+    let stepIndex = 0;
+
+    function updateStepDisplay() {
+      steps.forEach((step, i) => step.classList.toggle('active', i === stepIndex));
+      progress.forEach((bar, i) => bar.classList.toggle('active', i <= stepIndex));
+    }
+
+    function nextStep() {
+      if (stepIndex < steps.length - 1) stepIndex++;
+      updateStepDisplay();
+    }
+
+    function prevStep() {
+      if (stepIndex > 0) stepIndex--;
+      updateStepDisplay();
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Signup complete! Firebase integration coming soon.');
+    });
+  </script>
+</body>
+</html>
