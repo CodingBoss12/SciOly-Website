@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westside JH SciOly - Sign Up</title>
+  <title>Westside JH SciOly</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
-
   <style>
+    /* ===== COLORS & FONTS ===== */
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
@@ -21,25 +18,31 @@
       --font-body: 'Poppins', sans-serif;
     }
 
+    /* ===== GLOBAL STYLES ===== */
     * {
       box-sizing: border-box;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    html, body {
+    body, html {
       height: 100%;
       font-family: var(--font-body);
       background-color: var(--dark-base);
       color: var(--light-base);
       overflow-x: hidden;
-
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      position: relative;
     }
 
-    /* Header */
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HEADER ===== */
     header {
       background-color: var(--main-red);
       padding: 1rem 2rem;
@@ -55,263 +58,126 @@
       position: relative;
     }
 
-    nav .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
-
-    nav .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-
-    nav .nav-list li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
-
-    /* Page wrapper */
-    #page-wrapper {
-      flex: 1;
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 80vh;
       display: flex;
       flex-direction: column;
-      max-width: 900px;
-      margin: 2rem auto 1rem;
-      padding: 0 1rem;
-      width: 100%;
-      z-index: 2;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+    }
+    .countdown {
+        text-align: center;
+        padding: 2rem;
+        font-family: var(--font-heading);
+        background-color: var(--dark-base);
+        color: var(--hover-gold);
     }
 
-    /* Signup container */
-    main.signup-container {
-      background: linear-gradient(135deg, rgba(214,40,40,0.85), rgba(255,183,3,0.85));
+    #timer {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    /* Dark overlay on background image */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('images/team.jpg') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: -2;
+    }
+
+    /* Gradient overlay for subtle ombre feel */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--light-base);
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+    /* Logo styling */
+    .logo {
+      width: 150px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 4px var(--hover-gold));
+    }
+
+    /* ===== ANNOUNCEMENTS & WINS ===== */
+    .announcements {
+      background-color: var(--dark-base);
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
       border-radius: 15px;
-      padding: 2rem 2.5rem;
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.8);
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
       color: var(--light-base);
       font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      overflow-y: auto;
     }
 
-    main.signup-container h2 {
+    .announcements h2 {
       font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
       text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.8rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      user-select: none;
     }
 
-    /* Progress bar container */
-    .progressbar {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      counter-reset: step;
-      user-select: none;
-    }
-    .progressbar li {
-      list-style-type: none;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      color: #fedc97aa;
+    .announcement-item {
+      background-color: var(--main-red);
+      padding: 1rem 1.5rem;
+      margin: 0.8rem 0;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      cursor: default;
-      text-transform: uppercase;
-    }
-    .progressbar li:before {
-      content: counter(step);
-      counter-increment: step;
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      border: 2px solid #fedc97aa;
-      display: block;
-      text-align: center;
-      margin: 0 auto 10px;
-      border-radius: 50%;
-      background: transparent;
-      transition: all 0.3s ease;
-      font-weight: 700;
-      font-family: var(--font-heading);
-      font-size: 1.1rem;
-      color: var(--hover-gold);
-    }
-    .progressbar li.active {
+      box-shadow: 0 4px 6px rgba(255, 183, 3, 0.5);
       color: var(--light-base);
+      transition: background-color 0.3s ease;
     }
-    .progressbar li.active:before {
-      border-color: var(--hover-gold);
-      background: var(--hover-gold);
+
+    .announcement-item:hover {
+      background-color: var(--hover-gold);
       color: var(--dark-base);
-      box-shadow: 0 0 8px var(--hover-gold);
+      cursor: pointer;
     }
-    .progressbar li:not(:last-child):after {
-      content: '';
-      position: absolute;
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
       width: 100%;
-      height: 3px;
-      background: #fedc9755;
-      top: 16px;
-      left: 50%;
-      z-index: -1;
-      transform: translateX(50%);
-      border-radius: 3px;
-    }
-    .progressbar li.active:not(:last-child):after {
-      background: var(--hover-gold);
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
     }
 
-    /* Step panels */
-    .step {
-      display: none;
-      animation: fadeIn 0.6s ease forwards;
-    }
-    .step.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: var(--dark-base);
-      text-shadow: 1px 1px 2px #fff8;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.6rem 1rem;
-      border-radius: 12px;
-      border: none;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: var(--font-body);
-      transition: box-shadow 0.3s ease;
-      box-shadow: 0 0 6px #00000055 inset;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      box-shadow: 0 0 12px var(--hover-gold);
-      background: #fffbeaee;
-    }
-
-    /* Quiz question sample */
-    .quiz-question {
-      margin-bottom: 2rem;
-    }
-    .quiz-question h3 {
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: var(--dark-base);
-      text-shadow: 1px 1px 2px #fff9;
-    }
-    .options label {
-      display: block;
-      background: #fffde7;
-      padding: 0.7rem 1rem;
-      border-radius: 12px;
-      margin-bottom: 0.8rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.3s ease;
-      color: var(--dark-base);
-      font-weight: 600;
-    }
-    .options input[type="radio"] {
-      display: none;
-    }
-    .options input[type="radio"]:checked + label {
-      background: var(--hover-gold);
-      color: var(--dark-base);
-      font-weight: 800;
-      box-shadow: 0 0 14px var(--hover-gold);
-    }
-
-    /* Buttons */
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-      user-select: none;
-    }
-    button {
-      background: var(--hover-gold);
-      border: none;
-      padding: 0.9rem 2.5rem;
-      border-radius: 35px;
-      color: var(--dark-base);
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 10px var(--hover-gold);
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    button:hover:not(:disabled) {
-      background: #fbcf40;
-      box-shadow: 0 5px 14px #fbcf40cc;
-    }
-    button:disabled {
-      background: #d7c48b;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    /* Terms */
-    .terms {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      color: var(--dark-base);
-      font-weight: 700;
-      user-select: none;
-    }
-    .terms input {
-      margin-right: 0.6rem;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-    }
-    .terms a {
-      color: var(--dark-base);
-      text-decoration: underline;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* Footer sticky at bottom */
+    /* ===== FOOTER ===== */
     footer {
       background-color: var(--main-red);
       color: var(--light-base);
@@ -321,30 +187,31 @@
       font-weight: 600;
       position: relative;
       z-index: 10;
-      user-select: none;
     }
 
-    /* Responsive */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 600px) {
       header {
         flex-direction: column;
         gap: 1rem;
       }
-      main.signup-container {
-        padding: 1.5rem 1.5rem;
+      .hero h1 {
+        font-size: 2.8rem;
       }
-      button {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .announcements {
+        padding: 2rem 1rem;
       }
     }
   </style>
+  <!-- Fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
-
-  <!-- Header -->
   <header>
-    <div>Westside JH SciOly</div>
+    <div>Westside JH SciOly </div>
     <nav>
       <ul class="nav-list">
         <li><a href="index.html">Home</a></li>
@@ -357,118 +224,156 @@
         <li><a href="memberportal.html">Member Portal</a></li>
       </ul>
     </nav>
+    
+    <style>
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+      }
+    
+      .nav-list li a {
+        color: var(--hover-gold);
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+      }
+    
+      .nav-list li a:hover {
+        color: white;
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+    </style>
+
+    
+    
+    
+    
+        
   </header>
 
-  <!-- Page Wrapper -->
-  <div id="page-wrapper">
-    <main class="signup-container">
-      <h2>Sign Up for Westside SciOly</h2>
+  <section class="hero">
+    <img src= "images/logo.png" alt="Westside SciOly Logo" class="logo" />
+    <h1>Welcome to Westside Jh SciOly</h1>
+    <!-- Placeholder for dynamic login message -->
+    <!-- If logged in, replace with "Hey, Anahita! Ready to crush it?" -->
+    <p>yeah idk what to put here</p>
+  </section>
 
-      <ul class="progressbar">
-        <li class="active">Your Info</li>
-        <li>Event Quiz</li>
-        <li>Event Preferences</li>
-        <li>Terms & Submit</li>
-      </ul>
+  <section class="announcements">
+    <h2>Recent Announcements & Wins</h2>
+    <div class="announcement-item">We're still surprisingly locked in</div>
+    <div class="announcement-item">Next meet: June 8st, 2-4pm ?????</div>
+    <div class="announcement-item">bro idk what to put here</div>
+  </section>
 
-      <form id="signup-form" novalidate>
-        <!-- STEP 1: User Info -->
-        <section class="step active" data-step="1">
-          <label for="realName">Full Real Name <span style="color:#D62828">*</span></label>
-          <input type="text" id="realName" name="realName" placeholder="E.g. Anahita Rai" required />
+  <section class="countdown">
+    <h2>Next Meeting Countdown</h2>
+    <div id="timer">
+      <span id="days">00</span>d :
+      <span id="hours">00</span>h :
+      <span id="minutes">00</span>m :
+      <span id="seconds">00</span>s
+    </div>
+  </section>
+  <div id="countdown" style="text-align: center; font-weight: bold; padding: 1rem; color: var(--hover-gold);"></div>
 
-          <label for="email">Email Address <span style="color:#D62828">*</span></label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-          <label for="username">Preferred Username <small>(optional)</small></label>
-          <input type="text" id="username" name="username" placeholder="SciOlyStar123" />
+  <canvas id="particles-js"></canvas>
 
-          <label for="password">Password <span style="color:#D62828">*</span></label>
-          <input type="password" id="password" name="password" placeholder="Make it strong!" required minlength="8" />
-
-          <button type="button" id="googleSignInBtn" style="background:#0077B6; margin-bottom: 1.5rem; width: 100%; font-weight: 700; letter-spacing: 0.08em; font-family: var(--font-heading);">
-            Sign Up with Google
-          </button>
-        </section>
-
-        <!-- STEP 2: Sample Quiz Question -->
-        <section class="step" data-step="2">
-          <div class="quiz-question">
-            <h3>1. What type of science event do you enjoy most?</h3>
-            <div class="options">
-              <input type="radio" id="quiz-q1a1" name="quiz-q1" value="Life Science" required />
-              <label for="quiz-q1a1">Life Science</label>
-
-              <input type="radio" id="quiz-q1a2" name="quiz-q1" value="Earth & Space" />
-              <label for="quiz-q1a2">Earth & Space</label>
-
-              <input type="radio" id="quiz-q1a3" name="quiz-q1" value="Chemistry" />
-              <label for="quiz-q1a3">Chemistry</label>
-
-              <input type="radio" id="quiz-q1a4" name="quiz-q1" value="Technology & Engineering" />
-              <label for="quiz-q1a4">Technology & Engineering</label>
-            </div>
-          </div>
-          <!-- Clone above div.quiz-question for more questions -->
-        </section>
-
-        <!-- STEP 3: Event Preferences -->
-        <section class="step" data-step="3">
-          <label for="eventSelect">Select the SciOly events you are interested in (choose up to 3):</label>
-          <select id="eventSelect" name="events" multiple size="6" required>
-            <option value="Anatomy">Anatomy & Physiology</option>
-            <option value="Astronomy">Astronomy</option>
-            <option value="Chem Lab">Chemistry Lab</option>
-            <option value="Circuit Lab">Circuit Lab</option>
-            <option value="Disease Detectives">Disease Detectives</option>
-            <option value="Dynamic Planet">Dynamic Planet</option>
-            <option value="Fossils">Fossils</option>
-            <option value="Forensics">Forensics</option>
-            <option value="Wright Stuff">Wright Stuff</option>
-            <option value="Write It Do It">Write It Do It</option>
-          </select>
-          <small style="color:#3b1a00;">Hold Ctrl (Cmd on Mac) to select multiple events</small>
-        </section>
-
-        <!-- STEP 4: Terms and Submit -->
-        <section class="step" data-step="4">
-          <div class="terms">
-            <input type="checkbox" id="terms" name="terms" required />
-            <label for="terms">I agree to the <a href="#" target="_blank">Terms & Conditions</a></label>
-          </div>
-          <button type="submit" id="submitBtn">Sign Up & Submit</button>
-        </section>
-
-        <!-- Navigation Buttons -->
-        <div class="buttons">
-          <button type="button" id="prevBtn" disabled>Previous</button>
-          <button type="button" id="nextBtn">Next</button>
-        </div>
-      </form>
-    </main>
-  </div>
-
-  <!-- Footer -->
   <footer>
     &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 
-  <!-- Particles background -->
-  <canvas id="particles-js" style="position: fixed; top: 0; left: 0; z-index: 1; pointer-events: none;"></canvas>
+  <!-- Simple particle animation script -->
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
 
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    // Your Firebase config (replace with your real config!)
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "westside-scioly.firebaseapp.com",
-      projectId: "westside-scioly",
-      storageBucket: "westside-scioly.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
 
-    const app = initializeApp(firebase
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+
+  // Set the date and time for next Sunday at 2 PM
+  const nextMeeting = new Date();
+  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay() + 0) % 7 || 7)); // Sunday
+  nextMeeting.setHours(14, 0, 0, 0); // 2:00 PM
+
+  const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = nextMeeting.getTime() - now;
+
+    if (distance <= 0) {
+      clearInterval(countdown);
+      document.getElementById("timer").innerHTML = "It's meeting time! 🎉";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = String(days).padStart(2, '0');
+    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+  }, 1000);
+  </script>
+</body>
+</html>
