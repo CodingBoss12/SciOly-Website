@@ -1,528 +1,381 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westside JH SciOly - Sign Up</title>
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <title>Westside SciOly Signup</title>
   <style>
-    :root {
-      --main-red: #D62828;
-      --dark-base: #1F1F1F;
-      --light-base: #F5F5F5;
-      --hover-gold: #FFB703;
-      --secondary-blue: #0077B6;
-      --font-heading: 'Bebas Neue', cursive;
-      --font-body: 'Poppins', sans-serif;
-    }
+    /* Reset & base */
     * {
       box-sizing: border-box;
-      margin: 0; padding: 0;
     }
-    body, html {
-      height: 100%;
-      font-family: var(--font-body);
-      background-color: var(--dark-base);
-      color: var(--light-base);
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4a148c, #7b1fa2);
+      color: #eee;
+      margin: 0; padding: 0;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
     }
-    header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
+    main {
+      background: #1e1e2fdd;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      padding: 2rem;
+      box-shadow: 0 0 15px #7b1fa2aa;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e1bee7;
+    }
+    form {
+      width: 100%;
+    }
+
+    /* Progress bar container */
+    .progressbar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
+      margin-bottom: 2rem;
+      counter-reset: step;
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    nav ul li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    nav ul li a:hover {
-      color: white;
-      transform: translateY(-2px);
-    }
-    footer {
-      background-color: var(--main-red);
-      color: var(--light-base);
-      padding: 1rem 2rem;
+    .progressbar li {
+      list-style-type: none;
+      width: 100%;
       text-align: center;
-      font-size: 0.9rem;
+      position: relative;
+      color: #bbb;
       font-weight: 600;
-      margin-top: auto;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      cursor: default;
     }
-    main.signup-container {
-      flex-grow: 1;
-      max-width: 600px;
-      margin: 2rem auto 4rem auto;
-      padding: 2rem;
-      background-color: #2B2B2B;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(214,40,40,0.7);
-      font-family: var(--font-body);
-    }
-    form label {
+    .progressbar li:before {
+      content: counter(step);
+      counter-increment: step;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 2px solid #bbb;
       display: block;
-      margin-bottom: 0.4rem;
-      cursor: pointer;
+      text-align: center;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .progressbar li.active {
+      color: #d1c4e9;
+    }
+    .progressbar li.active:before {
+      border-color: #7b1fa2;
+      background: #7b1fa2;
+      color: white;
+    }
+    .progressbar li:not(:last-child):after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #bbb;
+      top: 15px;
+      left: 50%;
+      z-index: -1;
+      transform: translateX(50%);
+    }
+    .progressbar li.active:not(:last-child):after {
+      background: #7b1fa2;
+    }
+
+    /* Step panels */
+    .step {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
     input[type="text"],
     input[type="email"],
     input[type="password"],
-    input[type="radio"],
-    input[type="checkbox"] {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
+    select,
+    textarea {
       width: 100%;
-      padding: 0.6rem 0.8rem;
+      padding: 0.5rem;
       border-radius: 6px;
       border: none;
-      font-family: var(--font-body);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      transition: box-shadow 0.3s ease;
     }
-    input[type="radio"],
-    input[type="checkbox"] {
-      margin-right: 0.5rem;
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 5px #7b1fa2;
+      background: #2a2a40;
     }
-    button.next-btn,
-    button.prev-btn,
-    button.submit-btn {
-      background-color: var(--hover-gold);
-      border: none;
-      color: var(--dark-base);
-      padding: 0.6rem 1.3rem;
-      border-radius: 6px;
+
+    /* Quiz question sample styling */
+    .quiz-question {
+      margin-bottom: 2rem;
+    }
+    .quiz-question h3 {
+      margin-bottom: 1rem;
       font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.25s ease;
-      margin-top: 1rem;
-      user-select: none;
     }
-    button.next-btn:disabled {
-      background-color: #a88603;
+    .options label {
+      display: block;
+      background: #312f4a;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .options input[type="radio"] {
+      display: none;
+    }
+    .options input[type="radio"]:checked + label {
+      background: #7b1fa2;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 0 10px #7b1fa2;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+    button {
+      background: #7b1fa2;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover:not(:disabled) {
+      background: #9c27b0;
+    }
+    button:disabled {
+      background: #4a148c;
       cursor: not-allowed;
     }
-    button.next-btn:hover:not(:disabled),
-    button.prev-btn:hover,
-    button.submit-btn:hover {
-      background-color: #ffc65a;
-    }
-    .form-step {
-      animation: fadeInStep 0.3s ease forwards;
-      display: none;
-    }
-    .form-step.active {
-      display: block;
-    }
-    #progress-bar-container {
-      margin-bottom: 1.5rem;
-      background: #555;
-      border-radius: 3px;
-      height: 6px;
-      overflow: hidden;
-    }
-    #progress-bar {
-      height: 100%;
-      background: var(--hover-gold);
-      width: 0%;
-      transition: width 0.3s ease-in-out;
-    }
-    #events-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    #events-error {
-      color: var(--hover-gold);
-      font-weight: 700;
-      margin-top: 0.5rem;
-      display: none;
-    }
-    .quiz-step {
-      max-height: 60vh;
-      overflow-y: auto;
-    }
-    .terms-container {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      user-select: none;
+
+    /* Terms */
+    .terms {
       display: flex;
       align-items: center;
+      margin-bottom: 1rem;
+      color: #ccc;
+      font-size: 0.9rem;
     }
-    .terms-container input[type="checkbox"] {
+    .terms input {
       margin-right: 0.6rem;
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
     }
-    .terms-container label a {
-      color: var(--hover-gold);
+    .terms a {
+      color: #d1c4e9;
       text-decoration: underline;
       cursor: pointer;
     }
-    .error-message {
-      color: #ff6b6b;
-      font-weight: 600;
-      margin-top: -0.5rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-    @keyframes fadeInStep {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    @media (max-width: 600px) {
-      main.signup-container {
-        margin: 1rem;
-        padding: 1rem;
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      main {
+        padding: 1rem 1.5rem;
+      }
+      button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
       }
     }
   </style>
+</head>
+<body>
+  <main>
+    <h1>Westside SciOly Signup</h1>
+    <ul class="progressbar">
+      <li class="active">Your Info</li>
+      <li>Event Quiz</li>
+      <li>Event Preferences</li>
+      <li>Terms & Submit</li>
+    </ul>
 
-  <!-- Firebase SDKs -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
+    <form id="signup-form" novalidate>
+      <!-- STEP 1: User Info -->
+      <section class="step active" data-step="1">
+        <label for="realName">Full Real Name <span style="color:#e57373">*</span></label>
+        <input type="text" id="realName" name="realName" placeholder="E.g. Anahita Rai" required />
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnGd4encwMoRl7i7ks0Dkpxy_h_glxYUw",
-      authDomain: "westside-scioly.firebaseapp.com",
-      projectId: "westside-scioly",
-      storageBucket: "westside-scioly.firebasestorage.app",
-      messagingSenderId: "795634851228",
-      appId: "1:795634851228:web:b297b85b9b1ad05fa5fc59",
-      measurementId: "G-0YF1862VQD"
-    };
+        <label for="email">Email Address <span style="color:#e57373">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const db = getFirestore();
+        <label for="username">Preferred Username <small>(optional)</small></label>
+        <input type="text" id="username" name="username" placeholder="SciOlyStar123" />
 
+        <label for="password">Password <span style="color:#e57373">*</span></label>
+        <input type="password" id="password" name="password" placeholder="Make it strong!" required minlength="8" />
+      </section>
+
+      <!-- STEP 2: Sample Quiz Question -->
+      <section class="step" data-step="2">
+        <div class="quiz-question">
+          <h3>1. What type of science event do you enjoy most?</h3>
+          <div class="options">
+            <input type="radio" id="quiz-q1a1" name="quiz-q1" value="Life Science" required />
+            <label for="quiz-q1a1">Life Science</label>
+
+            <input type="radio" id="quiz-q1a2" name="quiz-q1" value="Earth & Space" />
+            <label for="quiz-q1a2">Earth & Space</label>
+
+            <input type="radio" id="quiz-q1a3" name="quiz-q1" value="Chemistry" />
+            <label for="quiz-q1a3">Chemistry</label>
+
+            <input type="radio" id="quiz-q1a4" name="quiz-q1" value="Technology & Engineering" />
+            <label for="quiz-q1a4">Technology & Engineering</label>
+          </div>
+        </div>
+        <!-- Add more questions by copying the above block -->
+      </section>
+
+      <!-- STEP 3: Event Preferences -->
+      <section class="step" data-step="3">
+        <label for="eventSelect">Select the SciOly events you are interested in (choose up to 3):</label>
+        <select id="eventSelect" name="events" multiple size="5" required>
+          <option value="Anatomy">Anatomy & Physiology</option>
+          <option value="Astronomy">Astronomy</option>
+          <option value="Chem Lab">Chemistry Lab</option>
+          <option value="Circuit Lab">Circuit Lab</option>
+          <option value="Disease Detectives">Disease Detectives</option>
+          <option value="Dynamic Planet">Dynamic Planet</option>
+          <option value="Fossils">Fossils</option>
+          <option value="Forensics">Forensics</option>
+          <option value="Wright Stuff">Wright Stuff</option>
+          <option value="Write It Do It">Write It Do It</option>
+        </select>
+        <small style="color:#bbb;">Hold Ctrl (Cmd on Mac) to select multiple events</small>
+      </section>
+
+      <!-- STEP 4: Terms and Submit -->
+      <section class="step" data-step="4">
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">I agree to the <a href="#" target="_blank">Terms & Conditions</a></label>
+        </div>
+        <button type="submit" id="submitBtn">Sign Up & Submit</button>
+      </section>
+
+      <!-- Navigation Buttons -->
+      <div class="buttons">
+        <button type="button" id="prevBtn" disabled>Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Progress & multi-step form logic
     const form = document.getElementById('signup-form');
-    const steps = [...document.querySelectorAll('.form-step')];
-    const progressBar = document.getElementById('progress-bar');
+    const steps = [...document.querySelectorAll('.step')];
+    const progressItems = [...document.querySelectorAll('.progressbar li')];
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
     let currentStep = 0;
 
-    // Navigation buttons
-    const nextBtns = document.querySelectorAll('.next-btn');
-    const prevBtns = document.querySelectorAll('.prev-btn');
-    const submitBtn = document.getElementById('submit-btn');
+    function showStep(step) {
+      steps.forEach((s, i) => {
+        s.classList.toggle('active', i === step);
+        progressItems[i].classList.toggle('active', i <= step);
+      });
 
-    // Quiz toggle radios & event checkboxes
-    const takeQuizRadios = document.getElementsByName('takeQuiz');
-    const nextBtn2 = document.getElementById('next-btn-2');
-    const eventsList = document.getElementById('events-list');
-    const eventsCheckboxes = eventsList.querySelectorAll('input[type="checkbox"]');
-    const nextBtn4 = document.getElementById('next-btn-4');
-    const eventsError = document.getElementById('events-error');
-    const reviewInfo = document.getElementById('review-info');
-
-    // Terms checkbox
-    let termsCheckbox;
-    function createTermsCheckbox() {{
-      const container = document.createElement('div');
-      container.className = 'terms-container';
-      container.innerHTML = `
-        <input type="checkbox" id="terms" />
-        <label for="terms">I accept the <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a></label>
-      `;
-      return container;
-    }}
-
-    // Add terms checkbox to last step submit section
-    function addTermsToSubmit() {{
-      const submitSection = steps.find(s => s.dataset.step === "5");
-      if (!submitSection.querySelector('.terms-container')) {{
-        const termsElem = createTermsCheckbox();
-        submitSection.insertBefore(termsElem, submitBtn);
-        termsCheckbox = termsElem.querySelector('#terms');
-      }}
-    }}
-
-    // Update progress bar
-    function updateProgressBar() {{
-      const progress = ((currentStep + 1) / steps.length) * 100;
-      progressBar.style.width = progress + '%';
-    }}
-
-    // Show step by index
-    function showStep(index) {{
-      steps.forEach((step, i) => {{
-        step.classList.toggle('active', i === index);
-      }});
-      currentStep = index;
-      updateProgressBar();
-
-      // Enable buttons based on step logic
-      if (index === 1) {{
-        nextBtn2.disabled = ![...takeQuizRadios].some(r => r.checked);
-      }}
-      if (index === 3) {{
-        validateEvents();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-      if (index === 4) {{
-        fillReview();
-      }}
-    }}
-
-    // Quiz toggle enable next
-    [...takeQuizRadios].forEach(radio => {{
-      radio.addEventListener('change', () => {{
-        nextBtn2.disabled = false;
-      }});
-    }});
-
-    // Validate max 6 events
-    function validateEvents() {
-      const checkedCount = [...eventsCheckboxes].filter(cb => cb.checked).length;
-      if (checkedCount > 6) {{
-        eventsError.style.display = 'block';
-        nextBtn4.disabled = true;
-      }} else if (checkedCount === 0) {{
-        eventsError.textContent = "Please select at least one event.";
-        eventsError.style.display = 'block';
-        nextBtn4.disabled = true;
-      }} else {{
-        eventsError.style.display = 'none';
-        nextBtn4.disabled = false;
-      }}
-    }
-    eventsList.addEventListener('change', validateEvents);
-
-    // Auto-fill events from quiz answers (basic scoring)
-    function getQuizRecommendations() {
-      let recommended = [];
-      const quizAnswers = {};
-      for (let i = 1; i <= 5; i++) {{
-        const answer = form['q' + i]?.value;
-        quizAnswers['q' + i] = answer;
-      }}
-      if (quizAnswers.q1 === 'A') recommended.push("Anatomy and Physiology");
-      if (quizAnswers.q2 === 'A') recommended.push("Disease Detectives");
-      if (quizAnswers.q3 === 'A') recommended.push("Heredity");
-      if (quizAnswers.q4 === 'A') recommended.push("Dynamic Planet");
-      if (quizAnswers.q5 === 'A') recommended.push("Meteorology");
-      [...eventsCheckboxes].forEach(cb => {{
-        cb.checked = recommended.includes(cb.value);
-      }});
+      prevBtn.disabled = step === 0;
+      nextBtn.style.display = step === steps.length - 1 ? 'none' : 'inline-block';
+      submitBtn.style.display = step === steps.length - 1 ? 'inline-block' : 'none';
     }
 
-    // Fill review step
-    function fillReview() {{
-      const realName = form.realName.value.trim();
-      const email = form.email.value.trim();
-      const username = form.username.value.trim() || "(none)";
-      const eventsSelected = [...eventsCheckboxes]
-        .filter(cb => cb.checked)
-        .map(cb => cb.value);
-      reviewInfo.innerHTML = `
-        <p><strong>Full Name:</strong> ${realName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Username:</strong> ${username}</p>
-        <p><strong>Events Selected:</strong> ${eventsSelected.length > 0 ? eventsSelected.join(', ') : "None"}</p>
-      `;
-    }}
+    function validateStep(step) {
+      const inputs = steps[step].querySelectorAll('input, select, textarea');
+      for (const input of inputs) {
+        if (input.hasAttribute('required') && !input.checkValidity()) {
+          input.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    }
 
-    // Navigation button handlers
-    nextBtns.forEach(btn => {{
-      btn.addEventListener('click', () => {{
-        if (currentStep === 1) {{
-          const takeQuiz = [...takeQuizRadios].find(r => r.checked)?.value;
-          if (takeQuiz === 'yes') {{
-            showStep(2);
-          }} else {{
-            showStep(3);
-          }}
-        }} else if (currentStep === 2) {{
-          const answeredAll = [...form.querySelectorAll('.form-step[data-step="3"] input[type="radio"]')]
-            .every(input => {{
-              const name = input.name;
-              return form[name].value;
-            }});
-          if (!answeredAll) {{
-            alert("Please answer all quiz questions.");
-            return;
-          }}
-          getQuizRecommendations();
-          showStep(3);
-        }} else if (currentStep === 3) {{
-          showStep(4);
-        }} else if (currentStep === 4) {{
-          if (nextBtn4.disabled) {{
-            alert("Please select up to 6 events.");
-            return;
-          }}
-          showStep(5);
-          addTermsToSubmit();
-        }}
-      }});
-    }});
+    nextBtn.addEventListener('click', () => {
+      if (!validateStep(currentStep)) return;
+      currentStep++;
+      showStep(currentStep);
+    });
 
-    prevBtns.forEach(btn => {{
-      btn.addEventListener('click', () => {{
-        if (currentStep > 0) showStep(currentStep - 1);
-      }});
-    }});
+    prevBtn.addEventListener('click', () => {
+      currentStep--;
+      showStep(currentStep);
+    });
 
-    // Form submission
-    form.addEventListener('submit', async (e) => {{
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting...";
+      if (!validateStep(currentStep)) return;
 
-      if (!form.realName.value.trim() || !form.email.value.trim() || !form.password.value) {{
-        alert("Please fill all required fields.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-        return;
-      }}
-      const selectedEvents = [...eventsCheckboxes]
-        .filter(cb => cb.checked)
-        .map(cb => cb.value);
-      if (selectedEvents.length === 0 || selectedEvents.length > 6) {{
-        alert("Please select 1 to 6 events.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-        return;
-      }}
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((val, key) => {
+        // For multiple select, handle arrays
+        if (data[key]) {
+          if (Array.isArray(data[key])) {
+            data[key].push(val);
+          } else {
+            data[key] = [data[key], val];
+          }
+        } else {
+          data[key] = val;
+        }
+      });
 
-      if (!termsCheckbox?.checked) {{
-        alert("Please accept the terms and conditions before submitting.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-        return;
-      }}
+      console.log('Form submission data:', data);
+      alert('Thanks for signing up! Check console for data.');
 
-      try {{
-        const userCredential = await createUserWithEmailAndPassword(auth, form.email.value.trim(), form.password.value);
-        const user = userCredential.user;
+      // TODO: Implement Firebase signup/auth + store user data
 
-        await setDoc(doc(db, 'users', user.uid), {
-          realName: form.realName.value.trim(),
-          email: form.email.value.trim(),
-          username: form.username.value.trim() || null,
-          events: selectedEvents,
-          createdAt: serverTimestamp()
-        });
+      form.reset();
+      currentStep = 0;
+      showStep(currentStep);
+    });
 
-        alert("Welcome to Westside JH SciOly! Your account has been created.");
-        window.location.href = "memberdashboard.html";
-      }} catch (error) {{
-        alert("Error: " + error.message);
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-      }}
-    }});
-
-    // Initialize first step
-    showStep(0);
+    // Initialize
+    showStep(currentStep);
   </script>
 </body>
 </html>
