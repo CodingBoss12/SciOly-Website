@@ -50,7 +50,7 @@
       position: relative;
     }
 
-    nav .nav-list {
+    .nav-list {
       list-style: none;
       display: flex;
       gap: 1.5rem;
@@ -59,7 +59,7 @@
       align-items: center;
     }
 
-    nav .nav-list li a {
+    .nav-list li a {
       color: var(--hover-gold);
       font-family: var(--font-body);
       font-weight: 600;
@@ -67,9 +67,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       transition: all 0.3s ease;
+      text-decoration: none; /* 👈 THIS LINE FIXES IT */
     }
 
-    nav .nav-list li a:hover {
+
+    .nav-list li a:hover {
       color: white;
       text-decoration: none;
       transform: translateY(-2px);
