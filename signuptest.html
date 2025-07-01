@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="signup.js"></script>
-  <link rel="stylesheet" href="style.css" />
   <style>
     :root {
       --main-red: #D62828;
@@ -31,34 +30,58 @@
       color: var(--light-base);
       overflow-x: hidden;
     }
-    header, footer {
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
       background-color: var(--main-red);
-      color: var(--light-base);
       padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-family: var(--font-heading);
-      text-transform: uppercase;
+      font-size: 1.8rem;
       letter-spacing: 0.1em;
+      text-transform: uppercase;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       z-index: 10;
       position: relative;
     }
-    header nav ul {
-      display: flex;
+    .nav-list {
       list-style: none;
+      display: flex;
       gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
     }
-    header nav ul li a {
+    .nav-list li a {
       color: var(--hover-gold);
+      font-family: var(--font-body);
       font-weight: 600;
-      text-decoration: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
     }
-    header nav ul li a:hover {
+    .nav-list li a:hover {
       color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
     }
     footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
       text-align: center;
       font-size: 0.9rem;
       font-weight: 600;
+      position: relative;
+      z-index: 10;
     }
     .container {
       max-width: 700px;
@@ -143,19 +166,21 @@
 <body>
   <canvas id="particles-js"></canvas>
   <header>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <div>Westside JH SciOly</div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div>Westside JH SciOly </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
   </header>
+
   <div class="container">
     <h2>Join Westside SciOly</h2>
     <div id="progressBar">
@@ -198,9 +223,11 @@
       </button>
     </form>
   </div>
+
   <footer>
-    &copy; 2025 Westside JH SciOly | Email: info@westsidescioly.com
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
+
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
