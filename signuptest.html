@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Westside SciOly - Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westside JH SciOly - Sign Up</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="signup.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <style>
     :root {
       --main-red: #D62828;
@@ -15,28 +13,28 @@
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
       --secondary-blue: #0077B6;
+
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
+
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
-    html, body {
+
+    body, html {
       height: 100%;
       font-family: var(--font-body);
       background-color: var(--dark-base);
       color: var(--light-base);
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+
+    /* HEADER */
     header {
       background-color: var(--main-red);
       padding: 1rem 2rem;
@@ -51,6 +49,7 @@
       z-index: 10;
       position: relative;
     }
+
     .nav-list {
       list-style: none;
       display: flex;
@@ -59,6 +58,7 @@
       margin: 0;
       align-items: center;
     }
+
     .nav-list li a {
       color: var(--hover-gold);
       font-family: var(--font-body);
@@ -67,12 +67,218 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       transition: all 0.3s ease;
+      text-decoration: none; /* 👈 no underline */
     }
+
     .nav-list li a:hover {
       color: white;
       text-decoration: none;
       transform: translateY(-2px);
     }
+
+    /* FORM CONTAINER */
+    main.signup-container {
+      flex-grow: 1;
+      background: linear-gradient(135deg, rgba(214,40,40,0.85), rgba(255,183,3,0.85));
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 25px rgba(255, 183, 3, 0.9);
+      color: var(--light-base);
+      font-family: var(--font-body);
+      max-width: 900px;
+      margin: 2rem auto 3rem auto;
+      overflow-y: auto;
+    }
+
+    main.signup-container h2 {
+      font-family: var(--font-heading);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255,183,3,0.9);
+    }
+
+    /* FORM STEPS */
+    form {
+      width: 100%;
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--hover-gold);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus {
+      box-shadow: 0 0 10px var(--hover-gold);
+      background-color: #fffbea;
+      color: var(--dark-base);
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Multi-select event picker */
+    select[multiple] {
+      height: 120px;
+      font-size: 1rem;
+    }
+
+    /* BUTTONS */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    button {
+      padding: 0.75rem 1.8rem;
+      background-color: var(--main-red);
+      color: var(--light-base);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover:not(:disabled) {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* PROGRESSBAR */
+    .progressbar {
+      counter-reset: step;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .progressbar li {
+      list-style-type: none;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--light-base);
+      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      cursor: default;
+    }
+    .progressbar li::before {
+      content: counter(step);
+      counter-increment: step;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      display: block;
+      font-size: 1.1rem;
+      color: var(--main-red);
+      background: var(--light-base);
+      border-radius: 50%;
+      margin: 0 auto 10px auto;
+      box-shadow: 0 0 8px rgba(255, 183, 3, 0.9);
+    }
+    .progressbar li.active {
+      color: var(--hover-gold);
+    }
+    .progressbar li.active::before {
+      background: var(--hover-gold);
+      color: var(--dark-base);
+      box-shadow: 0 0 10px var(--hover-gold);
+    }
+
+    /* TERMS & CONDITIONS SCROLLBOX */
+    .terms-text {
+      background: #fffbeaee;
+      border-radius: 12px;
+      color: var(--dark-base);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 1rem;
+      max-height: 160px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px var(--hover-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    /* GOOGLE SIGN-IN BUTTON */
+    #googleSignInBtn {
+      background-color: var(--secondary-blue);
+      margin: 1rem auto 2rem auto;
+      display: block;
+      padding: 0.75rem 1.8rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 12px;
+      color: var(--light-base);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      max-width: 300px;
+    }
+    #googleSignInBtn:hover {
+      background-color: #005f8f;
+    }
+
+    /* FOOTER */
     footer {
       background-color: var(--main-red);
       color: var(--light-base);
@@ -83,88 +289,76 @@
       position: relative;
       z-index: 10;
     }
-    .container {
-      max-width: 700px;
-      margin: 2rem auto;
-      background: linear-gradient(135deg, rgba(214,40,40,0.85), rgba(255,183,3,0.85));
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 183, 3, 0.6);
-      position: relative;
-      z-index: 1;
-    }
-    h2 {
-      font-family: var(--font-heading);
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
+    footer a {
       color: var(--hover-gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
     }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
-      border: none;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #0077B6;
+    footer a:hover {
       color: white;
-      font-weight: bold;
-      padding: 0.75rem;
-      margin-top: 1.5rem;
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      transition: background 0.3s;
+      text-decoration: underline; /* optional */
     }
-    button:hover {
-      background-color: #005f8c;
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      main.signup-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      .progressbar {
+        max-width: 100%;
+      }
     }
-    .google-btn {
-      background-color: white;
-      color: #1F1F1F;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .terms {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-    }
-    #progressBar {
-      width: 100%;
-      height: 6px;
-      background-color: #333;
-      margin-top: 1.5rem;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    #progressBarFill {
-      height: 100%;
-      width: 0%;
-      background-color: var(--hover-gold);
-      transition: width 0.3s ease-in-out;
-    }
-    #particles-js {
+
+    /* MODAL */
+    .modal {
+      display: none;
       position: fixed;
+      z-index: 9999;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      pointer-events: none;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal-content {
+      background-color: var(--light-base);
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 0 20px var(--hover-gold);
+      color: var(--dark-base);
+      font-family: var(--font-body);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .close-button {
+      color: var(--main-red);
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal-content h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
     }
   </style>
 </head>
 <body>
-  <canvas id="particles-js"></canvas>
   <header>
     <div>Westside JH SciOly </div>
     <nav>
@@ -181,102 +375,321 @@
     </nav>
   </header>
 
-  <div class="container">
-    <h2>Join Westside SciOly</h2>
-    <div id="progressBar">
-      <div id="progressBarFill"></div>
-    </div>
-    <form id="signup-form">
-      <label for="realName">Full Name</label>
-      <input type="text" id="realName" required>
+  <main class="signup-container">
+    <h2>Sign Up for Westside SciOly</h2>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" required>
+    <button id="googleSignInBtn" type="button">Sign in with Google</button>
 
-      <label for="username">Preferred Username</label>
-      <input type="text" id="username">
+    <ul class="progressbar">
+      <li class="active">Account Info</li>
+      <li>Quiz</li>
+      <li>Events</li>
+      <li>Terms</li>
+    </ul>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required>
+    <form id="signup-form" novalidate>
+      <!-- STEP 1: Account Info -->
+      <section class="step active" data-step="0">
+        <label for="realName">Full Name</label>
+        <input type="text" id="realName" name="realName" placeholder="Your real name" required />
 
-      <label for="availability">Weekly Availability (days/times)</label>
-      <input type="text" id="availability" required>
+        <label for="username">Preferred Username (optional)</label>
+        <input type="text" id="username" name="username" placeholder="Username" />
 
-      <label for="interestedEvents">Interested Events (comma-separated)</label>
-      <input type="text" id="interestedEvents">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-      <label for="takeQuiz">Take Compatibility Quiz Now?</label>
-      <select id="takeQuiz">
-        <option value="yes">Yes</option>
-        <option value="no">No, later</option>
-      </select>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Choose a strong password" required minlength="6" />
+      </section>
 
-      <label class="terms">
-        <input type="checkbox" required>
-        I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a>
-      </label>
+      <!-- STEP 2: Quiz Sample -->
+      <section class="step" data-step="1">
+        <label for="quiz-q1">Which event sounds the most fun?</label>
+        <select id="quiz-q1" name="quiz-q1" required>
+          <option value="" disabled selected>Choose an option</option>
+          <option value="life-science">Life Science</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="build">Build</option>
+          <option value="earth-space">Earth & Space</option>
+        </select>
+        <small style="color:#fffacd; font-weight:600;">(You can add more quiz questions here, just copy this block!)</small>
+      </section>
 
-      <button type="submit">Sign Up</button>
-      <p style="text-align: center; margin-top: 1rem;">or</p>
-      <button type="button" class="google-btn" id="googleSignIn">
-        <img src="images/google-icon.png" alt="Google Icon" width="20"> Sign up with Google
-      </button>
+      <!-- STEP 3: Events Selection -->
+      <section class="step" data-step="2">
+        <label for="eventSelect">Select your preferred events (up to 3)</label>
+        <select id="eventSelect" name="events" multiple size="6" required>
+          <option value="life-science">Life Science</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="build">Build</option>
+          <option value="earth-space">Earth & Space</option>
+          <option value="inquiry-tech">Inquiry & Technology</option>
+          <option value="math-tech">Math & Technology</option>
+        </select>
+        <small style="color:#fffacd; font-weight:600;">(Ctrl/Cmd + click to select multiple)</small>
+      </section>
+
+      <!-- STEP 4: Terms & Conditions -->
+      <section class="step" data-step="3">
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">
+            I agree to the 
+            <a href="#" id="openTermsModal">Terms & Conditions</a>
+          </label>
+        </div>
+
+        <div class="terms-text" tabindex="0" role="region" aria-label="Terms and Conditions Text">
+          <p><strong>Sample Terms & Conditions:</strong></p>
+          <p>By signing up for Westside SciOly, you agree to abide by all team rules and conduct policies. Your information will be securely stored and used solely for team communication and event registration. You confirm that you are authorized to participate and understand the commitment involved.</p>
+          <p>Please review our full policies on our website before proceeding.</p>
+        </div>
+
+        <button type="submit" id="submitBtn">Sign Up & Submit</button>
+      </section>
+
+      <div class="btn-row" style="margin-top: 1.5rem;">
+        <button type="button" id="prevBtn" disabled>Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+      </div>
     </form>
-  </div>
+  </main>
 
   <footer>
-    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+    &copy; 2025 Westside JH SciOly | Contact us at 
+    <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 
+  <canvas id="particles-js"></canvas>
+
+  <!-- Simple particle animation script -->
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let particlesArray;
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = 'rgba(255, 183, 3, 0.8)';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    let particlesArray = [];
+
     function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
       particlesArray = [];
       for (let i = 0; i < 80; i++) {
-        particlesArray.push(new Particle());
+        particlesArray.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 1.5,
+          speedY: (Math.random() - 0.5) * 1.5,
+          color: 'rgba(255, 183, 3, 0.8)'
+        });
       }
     }
+
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(p => {
-        p.update();
-        p.draw();
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x > canvas.width) p.x = 0;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.y > canvas.height) p.y = 0;
+        if (p.y < 0) p.y = canvas.height;
       });
       requestAnimationFrame(animateParticles);
     }
+
     window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
       initParticles();
     });
+
     initParticles();
     animateParticles();
+  </script>
+
+  <!-- TERMS & CONDITIONS MODAL -->
+  <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" aria-describedby="termsDesc">
+    <div class="modal-content">
+      <span class="close-button" id="closeTermsModal" aria-label="Close Terms & Conditions">&times;</span>
+      <h3 id="termsTitle">Terms & Conditions</h3>
+      <div id="termsDesc" style="max-height: 350px; overflow-y: auto; font-size: 0.9rem; line-height: 1.4; color: var(--dark-base);">
+        <p><strong>SCIENCE OLYMPIAD 2026</strong></p>
+        <p>The official 2026 Science Olympiad rules will be released in July 2025. Early access is given to 2025 Virtual Bootcamp coaches only.</p>
+        <p><strong>Study Advice:</strong> Prepare now by reviewing past events and builds. Commitment is key.</p>
+        <ul>
+          <li>Respect team documents and fellow members.</li>
+          <li>Attend meetings or notify in advance.</li>
+          <li>Fake or incomplete notes may lead to removal.</li>
+          <li>Ask for help freely; no penalties for effort.</li>
+        </ul>
+        <p><strong>Google Sheets Use:</strong></p>
+        <ul>
+          <li>No unauthorized edits or deletions.</li>
+          <li>Maintain shared materials integrity.</li>
+        </ul>
+        <p><strong>Legal:</strong></p>
+        <p>By signing up, you confirm the info provided is accurate and agree to participate under school policies. Users under 13 require parental consent. Data is stored securely per COPPA and FERPA.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js"></script>
+
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY_HERE",
+      authDomain: "westside-scioly.firebaseapp.com",
+      projectId: "westside-scioly",
+      storageBucket: "westside-scioly.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Multi-step form logic
+    const form = document.getElementById('signup-form');
+    const steps = form.querySelectorAll('.step');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const progressbarItems = document.querySelectorAll('.progressbar li');
+    let currentStep = 0;
+
+    function showStep(n) {
+      steps.forEach((step, idx) => {
+        step.classList.toggle('active', idx === n);
+        progressbarItems[idx].classList.toggle('active', idx <= n);
+      });
+      prevBtn.disabled = n === 0;
+      nextBtn.style.display = n === steps.length -1 ? 'none' : 'inline-block';
+      document.getElementById('submitBtn').style.display = n === steps.length -1 ? 'inline-block' : 'none';
+      currentStep = n;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      // Simple validation for required inputs before moving next
+      let valid = true;
+      const inputs = steps[currentStep].querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          valid = false;
+        }
+      });
+      if (valid) {
+        if (currentStep < steps.length - 1) {
+          showStep(currentStep + 1);
+        }
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 0) {
+        showStep(currentStep - 1);
+      }
+    });
+
+    // Initial display
+    showStep(0);
+
+    // Terms modal logic
+    const termsModal = document.getElementById("termsModal");
+    const openTermsModal = document.getElementById("openTermsModal");
+    const closeTermsModal = document.getElementById("closeTermsModal");
+
+    openTermsModal.addEventListener("click", function(e) {
+      e.preventDefault();
+      termsModal.style.display = "block";
+    });
+
+    closeTermsModal.addEventListener("click", function() {
+      termsModal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(e) {
+      if (e.target === termsModal) {
+        termsModal.style.display = "none";
+      }
+    });
+
+    // Submit handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate final step terms checkbox
+      const termsCheckbox = document.getElementById('terms');
+      if (!termsCheckbox.checked) {
+        alert('You must agree to the Terms & Conditions before submitting.');
+        return;
+      }
+
+      // Collect data
+      const realName = document.getElementById('realName').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      // TODO: Add quiz & events data gathering if needed
+
+      try {
+        // Create user with Firebase Auth
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Save additional info in Firestore
+        await db.collection('users').doc(user.uid).set({
+          realName,
+          username,
+          email,
+          createdAt: new Date().toISOString(),
+          // TODO: add quiz answers & events selection
+        });
+
+        alert('Signup successful! You can now log in.');
+        form.reset();
+        showStep(0);
+      } catch (error) {
+        alert('Signup failed: ' + error.message);
+      }
+    });
+
+    // Google sign-in button
+    document.getElementById('googleSignInBtn').addEventListener('click', async () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      try {
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+
+        // Check if user data exists
+        const doc = await db.collection('users').doc(user.uid).get();
+        if (!doc.exists) {
+          // New user - save data
+          await db.collection('users').doc(user.uid).set({
+            realName: user.displayName || '',
+            username: '',
+            email: user.email,
+            createdAt: new Date().toISOString(),
+            // TODO: you might want to ask for extra info later
+          });
+        }
+        alert(`Welcome back, ${user.displayName || 'User'}!`);
+        // Redirect or update UI after login
+        window.location.href = 'memberdashboard.html';
+      } catch (err) {
+        alert('Google sign-in failed: ' + err.message);
+      }
+    });
   </script>
 </body>
 </html>
