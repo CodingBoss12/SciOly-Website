@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="signup.js"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root {
       --main-red: #D62828;
@@ -38,6 +39,8 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
     }
     header nav ul {
       display: flex;
@@ -153,7 +156,6 @@
       </nav>
     </div>
   </header>
-
   <div class="container">
     <h2>Join Westside SciOly</h2>
     <div id="progressBar">
@@ -196,11 +198,9 @@
       </button>
     </form>
   </div>
-
   <footer>
     &copy; 2025 Westside JH SciOly | Email: info@westsidescioly.com
   </footer>
-
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
