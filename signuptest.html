@@ -67,7 +67,7 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       transition: all 0.3s ease;
-      text-decoration: none; /* 👈 no underline */
+      text-decoration: none;
     }
 
     .nav-list li a:hover {
@@ -278,7 +278,7 @@
       background-color: #005f8f;
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     footer {
       background-color: var(--main-red);
       color: var(--light-base);
@@ -295,9 +295,10 @@
       font-weight: 700;
       transition: color 0.3s ease;
     }
+
     footer a:hover {
       color: white;
-      text-decoration: underline; /* optional */
+      text-decoration: underline;
     }
 
     /* Responsive */
@@ -315,7 +316,7 @@
       }
     }
 
-    /* MODAL */
+    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -327,6 +328,10 @@
       height: 100%;
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .modal.show {
+      display: block;
     }
     .modal-content {
       background-color: var(--light-base);
@@ -339,7 +344,9 @@
       color: var(--dark-base);
       font-family: var(--font-body);
       position: relative;
-      animation: fadeIn 0.3s ease;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: slideDown 0.3s ease forwards;
     }
     .close-button {
       color: var(--main-red);
@@ -349,13 +356,24 @@
       font-size: 2rem;
       font-weight: bold;
       cursor: pointer;
+      user-select: none;
+      transition: color 0.2s ease;
     }
-    .modal-content h3 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--main-red);
+    .close-button:hover {
+      color: var(--hover-gold);
     }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -436,7 +454,7 @@
           <input type="checkbox" id="terms" name="terms" required />
           <label for="terms">
             I agree to the 
-            <a href="#" id="openTermsModal">Terms & Conditions</a>
+            <a href="#" id="openTermsModal" aria-haspopup="dialog" aria-controls="termsModal">Terms & Conditions</a>
           </label>
         </div>
 
@@ -467,227 +485,265 @@
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
-    let particlesArray = [];
+    let particlesArray;
 
-    function initParticles() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-      particlesArray = [];
-      for (let i = 0; i < 80; i++) {
-        particlesArray.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 3 + 1,
-          speedX: (Math.random() - 0.5) * 1.5,
-          speedY: (Math.random() - 0.5) * 1.5,
-          color: 'rgba(255, 183, 3, 0.8)'
-        });
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    function animateParticles() {
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        ctx.beginPath();
-        ctx.fillStyle = p.color;
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x > canvas.width) p.x = 0;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.y > canvas.height) p.y = 0;
-        if (p.y < 0) p.y = canvas.height;
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
       });
-      requestAnimationFrame(animateParticles);
+      requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', () => {
-      initParticles();
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
     });
 
-    initParticles();
-    animateParticles();
+    init();
+    animate();
   </script>
 
-  <!-- TERMS & CONDITIONS MODAL -->
-  <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" aria-describedby="termsDesc">
-    <div class="modal-content">
-      <span class="close-button" id="closeTermsModal" aria-label="Close Terms & Conditions">&times;</span>
-      <h3 id="termsTitle">Terms & Conditions</h3>
-      <div id="termsDesc" style="max-height: 350px; overflow-y: auto; font-size: 0.9rem; line-height: 1.4; color: var(--dark-base);">
-        <p><strong>SCIENCE OLYMPIAD 2026</strong></p>
-        <p>The official 2026 Science Olympiad rules will be released in July 2025. Early access is given to 2025 Virtual Bootcamp coaches only.</p>
-        <p><strong>Study Advice:</strong> Prepare now by reviewing past events and builds. Commitment is key.</p>
-        <ul>
-          <li>Respect team documents and fellow members.</li>
-          <li>Attend meetings or notify in advance.</li>
-          <li>Fake or incomplete notes may lead to removal.</li>
-          <li>Ask for help freely; no penalties for effort.</li>
-        </ul>
-        <p><strong>Google Sheets Use:</strong></p>
-        <ul>
-          <li>No unauthorized edits or deletions.</li>
-          <li>Maintain shared materials integrity.</li>
-        </ul>
-        <p><strong>Legal:</strong></p>
-        <p>By signing up, you confirm the info provided is accurate and agree to participate under school policies. Users under 13 require parental consent. Data is stored securely per COPPA and FERPA.</p>
-      </div>
-    </div>
-  </div>
+  <!-- FIREBASE + FORM LOGIC -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
 
-  <!-- FIREBASE SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js"></script>
-
-  <script>
-    // Initialize Firebase
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY_HERE",
+      apiKey: "YOUR_API_KEY",
       authDomain: "westside-scioly.firebaseapp.com",
       projectId: "westside-scioly",
       storageBucket: "westside-scioly.appspot.com",
       messagingSenderId: "YOUR_SENDER_ID",
       appId: "YOUR_APP_ID"
     };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
 
-    // Multi-step form logic
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Form navigation and validation
     const form = document.getElementById('signup-form');
-    const steps = form.querySelectorAll('.step');
+    const steps = document.querySelectorAll('.step');
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
-    const progressbarItems = document.querySelectorAll('.progressbar li');
+    const progressbar = document.querySelectorAll('.progressbar li');
     let currentStep = 0;
 
     function showStep(n) {
-      steps.forEach((step, idx) => {
-        step.classList.toggle('active', idx === n);
-        progressbarItems[idx].classList.toggle('active', idx <= n);
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === n);
+        progressbar[i].classList.toggle('active', i <= n);
       });
       prevBtn.disabled = n === 0;
-      nextBtn.style.display = n === steps.length -1 ? 'none' : 'inline-block';
-      document.getElementById('submitBtn').style.display = n === steps.length -1 ? 'inline-block' : 'none';
-      currentStep = n;
+      nextBtn.style.display = (n === steps.length - 1) ? 'none' : 'inline-block';
+      form.querySelector('#submitBtn').style.display = (n === steps.length - 1) ? 'inline-block' : 'none';
+      // Focus first input on the step for keyboard users
+      const firstInput = steps[n].querySelector('input, select, textarea, button');
+      if (firstInput) firstInput.focus();
+    }
+
+    function validateStep(stepIndex) {
+      const step = steps[stepIndex];
+      const inputs = step.querySelectorAll('input, select, textarea');
+      for (const input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return false;
+        }
+      }
+      // Extra validation for multi-select max 3 events
+      if (stepIndex === 2) {
+        const selected = step.querySelector('#eventSelect').selectedOptions;
+        if (selected.length === 0 || selected.length > 3) {
+          alert("Please select between 1 and 3 events.");
+          return false;
+        }
+      }
+      // Extra validation on terms checkbox at step 3 (final step)
+      if (stepIndex === 3) {
+        const termsCheckbox = step.querySelector('#terms');
+        if (!termsCheckbox.checked) {
+          alert("You must agree to the Terms & Conditions to sign up.");
+          return false;
+        }
+      }
+      return true;
     }
 
     nextBtn.addEventListener('click', () => {
-      // Simple validation for required inputs before moving next
-      let valid = true;
-      const inputs = steps[currentStep].querySelectorAll('input, select, textarea');
-      inputs.forEach(input => {
-        if (!input.checkValidity()) {
-          input.reportValidity();
-          valid = false;
-        }
-      });
-      if (valid) {
-        if (currentStep < steps.length - 1) {
-          showStep(currentStep + 1);
-        }
-      }
+      if (!validateStep(currentStep)) return;
+      currentStep++;
+      showStep(currentStep);
     });
 
     prevBtn.addEventListener('click', () => {
-      if (currentStep > 0) {
-        showStep(currentStep - 1);
-      }
+      currentStep--;
+      showStep(currentStep);
     });
 
-    // Initial display
-    showStep(0);
-
-    // Terms modal logic
-    const termsModal = document.getElementById("termsModal");
-    const openTermsModal = document.getElementById("openTermsModal");
-    const closeTermsModal = document.getElementById("closeTermsModal");
-
-    openTermsModal.addEventListener("click", function(e) {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      termsModal.style.display = "block";
-    });
+      if (!validateStep(currentStep)) return;
 
-    closeTermsModal.addEventListener("click", function() {
-      termsModal.style.display = "none";
-    });
+      // Gather form data
+      const realName = form.realName.value.trim();
+      const username = form.username.value.trim() || null;
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const events = Array.from(form['events'].selectedOptions).map(o => o.value);
+      const termsAccepted = form.terms.checked;
 
-    window.addEventListener("click", function(e) {
-      if (e.target === termsModal) {
-        termsModal.style.display = "none";
-      }
-    });
-
-    // Submit handler
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Validate final step terms checkbox
-      const termsCheckbox = document.getElementById('terms');
-      if (!termsCheckbox.checked) {
-        alert('You must agree to the Terms & Conditions before submitting.');
+      if (!termsAccepted) {
+        alert("You must agree to the Terms & Conditions to sign up.");
         return;
       }
 
-      // Collect data
-      const realName = document.getElementById('realName').value.trim();
-      const username = document.getElementById('username').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-
-      // TODO: Add quiz & events data gathering if needed
-
       try {
-        // Create user with Firebase Auth
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        // Create user with email/password
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save additional info in Firestore
-        await db.collection('users').doc(user.uid).set({
-          realName,
-          username,
-          email,
-          createdAt: new Date().toISOString(),
-          // TODO: add quiz answers & events selection
-        });
+        // TODO: Save additional user info (realName, username, events) to Firestore or Realtime DB here
 
-        alert('Signup successful! You can now log in.');
+        alert(`Welcome, ${realName}! Your signup was successful.`);
         form.reset();
-        showStep(0);
+        currentStep = 0;
+        showStep(currentStep);
+        // Redirect to member dashboard or show success message
+        // window.location.href = "memberdashboard.html";
       } catch (error) {
-        alert('Signup failed: ' + error.message);
+        alert("Error during sign up: " + error.message);
       }
     });
 
-    // Google sign-in button
-    document.getElementById('googleSignInBtn').addEventListener('click', async () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
+    // Google Sign-In button
+    const googleSignInBtn = document.getElementById('googleSignInBtn');
+    googleSignInBtn.addEventListener('click', async () => {
       try {
-        const result = await auth.signInWithPopup(provider);
+        const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Check if user data exists
-        const doc = await db.collection('users').doc(user.uid).get();
-        if (!doc.exists) {
-          // New user - save data
-          await db.collection('users').doc(user.uid).set({
-            realName: user.displayName || '',
-            username: '',
-            email: user.email,
-            createdAt: new Date().toISOString(),
-            // TODO: you might want to ask for extra info later
-          });
+        // TODO: Save user info and handle new/existing users
+
+        alert(`Welcome, ${user.displayName}! You signed in with Google.`);
+        // Redirect or show dashboard
+        // window.location.href = "memberdashboard.html";
+      } catch (error) {
+        alert("Google sign-in failed: " + error.message);
+      }
+    });
+
+    // Initialize first step
+    showStep(currentStep);
+
+    // ======= MODAL LOGIC FOR TERMS & CONDITIONS =======
+    const openTermsBtn = document.getElementById('openTermsModal');
+    const modalHTML = `
+      <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+        <div class="modal-content" tabindex="0">
+          <span class="close-button" role="button" aria-label="Close Terms and Conditions">&times;</span>
+          <h2 id="termsTitle" style="color: var(--main-red); font-family: var(--font-heading); letter-spacing: 0.1em; margin-bottom: 1rem;">Terms & Conditions</h2>
+          <div style="max-height: 60vh; overflow-y: auto; color: var(--dark-base); font-weight: 600; line-height: 1.4; font-size: 0.95rem;">
+            <p>By signing up for Westside SciOly, you agree to abide by all team rules and conduct policies. Your information will be securely stored and used solely for team communication and event registration. You confirm that you are authorized to participate and understand the commitment involved.</p>
+            <p>Participation requires respect for teammates and adherence to safety guidelines. Sharing of login credentials or falsification of information will result in disqualification.</p>
+            <p>We reserve the right to contact guardians for participants under 18 years old. Your privacy is important; data will not be shared outside of authorized team members.</p>
+            <p>Please review our full policies on the official website. By continuing, you acknowledge these terms.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    // Append modal to body (hidden initially)
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const termsModal = document.getElementById('termsModal');
+    const closeBtn = termsModal.querySelector('.close-button');
+    const modalContent = termsModal.querySelector('.modal-content');
+
+    function openModal() {
+      termsModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // disable background scroll
+      modalContent.focus();
+    }
+    function closeModal() {
+      termsModal.classList.remove('show');
+      document.body.style.overflow = ''; // restore scroll
+      openTermsBtn.focus();
+    }
+
+    openTermsBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openModal();
+    });
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal on clicking outside content
+    termsModal.addEventListener('click', e => {
+      if (e.target === termsModal) closeModal();
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape" && termsModal.classList.contains('show')) {
+        closeModal();
+      }
+    });
+
+    // Trap focus inside modal (accessibility)
+    modalContent.addEventListener('keydown', e => {
+      const focusableElements = modalContent.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+      const firstEl = focusableElements[0];
+      const lastEl = focusableElements[focusableElements.length -1];
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstEl) {
+            e.preventDefault();
+            lastEl.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastEl) {
+            e.preventDefault();
+            firstEl.focus();
+          }
         }
-        alert(`Welcome back, ${user.displayName || 'User'}!`);
-        // Redirect or update UI after login
-        window.location.href = 'memberdashboard.html';
-      } catch (err) {
-        alert('Google sign-in failed: ' + err.message);
       }
     });
   </script>
