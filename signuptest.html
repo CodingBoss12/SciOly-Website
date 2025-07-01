@@ -4,30 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Westside SciOly - Sign Up</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="signup.js"></script>
   <style>
-    body {
-      background-color: #1F1F1F;
-      color: #F5F5F5;
-      font-family: 'Poppins', sans-serif;
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
+    header, footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    header nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    header nav ul li a {
+      color: var(--hover-gold);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    header nav ul li a:hover {
+      color: white;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
     .container {
-      max-width: 600px;
-      margin: 5rem auto;
+      max-width: 700px;
+      margin: 2rem auto;
       background: linear-gradient(135deg, rgba(214,40,40,0.85), rgba(255,183,3,0.85));
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255, 183, 3, 0.6);
+      position: relative;
+      z-index: 1;
     }
     h2 {
-      font-family: 'Bebas Neue', cursive;
+      font-family: var(--font-heading);
       text-align: center;
       font-size: 3rem;
       margin-bottom: 1.5rem;
-      color: #FFB703;
+      color: var(--hover-gold);
     }
     label {
       display: block;
@@ -51,7 +96,6 @@
       border: none;
       border-radius: 10px;
       transition: background 0.3s;
-      font-family: 'Poppins';
     }
     button:hover {
       background-color: #005f8c;
@@ -68,11 +112,53 @@
       margin-top: 1rem;
       font-size: 0.85rem;
     }
+    #progressBar {
+      width: 100%;
+      height: 6px;
+      background-color: #333;
+      margin-top: 1.5rem;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    #progressBarFill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--hover-gold);
+      transition: width 0.3s ease-in-out;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+  <canvas id="particles-js"></canvas>
+  <header>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>Westside JH SciOly</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <div class="container">
     <h2>Join Westside SciOly</h2>
+    <div id="progressBar">
+      <div id="progressBarFill"></div>
+    </div>
     <form id="signup-form">
       <label for="realName">Full Name</label>
       <input type="text" id="realName" required>
@@ -86,16 +172,16 @@
       <label for="password">Password</label>
       <input type="password" id="password" required>
 
-      <label for="availability">Weekly Availability (describe days/times)</label>
+      <label for="availability">Weekly Availability (days/times)</label>
       <input type="text" id="availability" required>
 
-      <label for="interestedEvents">Interested Events (comma separated)</label>
+      <label for="interestedEvents">Interested Events (comma-separated)</label>
       <input type="text" id="interestedEvents">
 
-      <label for="takeQuiz">Take the Event Quiz Now?</label>
+      <label for="takeQuiz">Take Compatibility Quiz Now?</label>
       <select id="takeQuiz">
         <option value="yes">Yes</option>
-        <option value="no">No, I'll take it later</option>
+        <option value="no">No, later</option>
       </select>
 
       <label class="terms">
@@ -106,9 +192,64 @@
       <button type="submit">Sign Up</button>
       <p style="text-align: center; margin-top: 1rem;">or</p>
       <button type="button" class="google-btn" id="googleSignIn">
-        <img src="images/google-icon.png" alt="Google Icon" width="20" height="20"> Sign up with Google
+        <img src="images/google-icon.png" alt="Google Icon" width="20"> Sign up with Google
       </button>
     </form>
   </div>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Email: info@westsidescioly.com
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particlesArray;
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    });
+    initParticles();
+    animateParticles();
+  </script>
 </body>
 </html>
