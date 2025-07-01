@@ -316,6 +316,50 @@
         max-width: 100%;
       }
     }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: var(--light-base);
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 0 20px var(--hover-gold);
+      color: var(--dark-base);
+      font-family: var(--font-body);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .close-button {
+      color: var(--main-red);
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
+    }
+
   </style>
 </head>
 <body>
@@ -421,7 +465,10 @@
       <section class="step" data-step="3">
         <div class="terms">
           <input type="checkbox" id="terms" name="terms" required />
-          <label for="terms">I agree to the <a href="#" target="_blank" style="color: var(--hover-gold); font-weight: 800; text-decoration: underline;">Terms & Conditions</a></label>
+          <label for="terms">
+            I agree to the 
+            <a href="#" id="openTermsModal">Terms & Conditions</a>
+          </label>
         </div>
 
         <div class="terms-text" tabindex="0" role="region" aria-label="Terms and Conditions Text">
@@ -543,6 +590,8 @@
       form.querySelector('#submitBtn').style.display = (n === steps.length - 1) ? 'inline-block' : 'none';
     }
 
+
+
     function validateStep(stepIndex) {
       const step = steps[stepIndex];
       const inputs = step.querySelectorAll('input, select, textarea');
@@ -618,9 +667,40 @@
       } catch (error) {
         alert("Google sign-in failed: " + error.message);
       }
+
+      const termsModal = document.getElementById("termsModal");
+      const openTermsModal = document.getElementById("openTermsModal");
+      const closeTermsModal = document.getElementById("closeTermsModal");
+
+      openTermsModal.addEventListener("click", function(e) {
+        e.preventDefault();
+        termsModal.style.display = "block";
+      });
+
+      closeTermsModal.addEventListener("click", function() {
+        termsModal.style.display = "none";
+      });
+
+      window.addEventListener("click", function(e) {
+        if (e.target === termsModal) {
+          termsModal.style.display = "none";
+        }
+      });
+
+
+
+
     });
 
     showStep(currentStep);
   </script>
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="closeTermsModal">&times;</span>
+      <h3>Terms & Conditions</h3>
+      <p>By signing up for Westside SciOly, you agree to abide by all team rules and conduct policies. Your information will be securely stored and used solely for team communication and event registration. You confirm that you are authorized to participate and understand the commitment involved.</p>
+      <p>Please review our full policies on our website before proceeding.</p>
+    </div>
+  </div>  
 </body>
 </html>
