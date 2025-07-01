@@ -395,20 +395,14 @@
 
   <canvas id="particles-js"></canvas>
 
-  <!-- PARTICLES SCRIPT -->
+  <!-- Simple particle animation script -->
   <script>
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      initParticles();
-    });
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     class Particle {
       constructor() {
@@ -433,26 +427,31 @@
       }
     }
 
-    function initParticles() {
+    function init() {
       particlesArray = [];
       for (let i = 0; i < 80; i++) {
         particlesArray.push(new Particle());
       }
     }
 
-    function animateParticles() {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        p.update();
-        p.draw();
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
       });
-      requestAnimationFrame(animateParticles);
+      requestAnimationFrame(animate);
     }
 
-    resizeCanvas();
-    initParticles();
-    animateParticles();
-  </script>
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+    </script>
 
   <!-- FIREBASE + FORM LOGIC -->
   <script type="module">
