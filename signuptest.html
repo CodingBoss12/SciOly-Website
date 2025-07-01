@@ -3,209 +3,359 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Westside SciOly Signup</title>
+  <title>Westside JH SciOly - Sign Up</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
   <style>
-    /* === BASE VARIABLES & RESET === */
     :root {
-      --main-red: #d32f2f;
-      --hover-gold: #ffb700;
-      --dark-base: #222;
-      --light-base: #fafafa;
-      --font-heading: 'Poppins', sans-serif;
-      --font-body: 'Open Sans', sans-serif;
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
     }
+
     * {
       box-sizing: border-box;
       margin: 0; padding: 0;
     }
-    body {
-      background: linear-gradient(135deg, #3a0ca3, #720026);
-      color: var(--light-base);
+
+    body, html {
+      height: 100%;
       font-family: var(--font-body);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-    }
-    header {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--hover-gold);
-      text-shadow: 0 0 10px #ffb700aa;
-    }
-    main.signup-container {
-      background: rgba(0,0,0,0.8);
-      border-radius: 15px;
-      padding: 2rem 3rem;
-      max-width: 650px;
-      width: 100%;
-      box-shadow: 0 0 20px var(--hover-gold);
-      position: relative;
-      z-index: 10;
-    }
-    h2 {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-align: center;
-      letter-spacing: 0.1em;
-      color: var(--hover-gold);
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    .progressbar {
-      display: flex;
-      list-style: none;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      user-select: none;
-      font-weight: 700;
-      font-family: var(--font-heading);
+      background-color: var(--dark-base);
       color: var(--light-base);
-    }
-    .progressbar li {
-      flex: 1;
-      text-align: center;
-      padding-bottom: 0.3rem;
-      border-bottom: 3px solid rgba(255, 255, 255, 0.3);
-      transition: border-color 0.3s ease;
-      font-size: 0.9rem;
-    }
-    .progressbar li.active {
-      border-color: var(--hover-gold);
-      color: var(--hover-gold);
-    }
-    /* Steps */
-    .step {
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .step.active {
+      overflow-x: hidden;
       display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    label {
+
+    /* HEADER */
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
       font-weight: 600;
       font-size: 1rem;
-      color: var(--hover-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      text-decoration: none;
     }
+
+    .nav-list li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    /* FORM CONTAINER */
+    main.signup-container {
+      flex-grow: 1;
+      background: linear-gradient(135deg, rgba(214,40,40,0.85), rgba(255,183,3,0.85));
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 25px rgba(255, 183, 3, 0.9);
+      color: var(--light-base);
+      font-family: var(--font-body);
+      max-width: 900px;
+      margin: 2rem auto 3rem auto;
+      overflow-y: auto;
+    }
+
+    main.signup-container h2 {
+      font-family: var(--font-heading);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255,183,3,0.9);
+    }
+
+    /* FORM STEPS */
+    form {
+      width: 100%;
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--hover-gold);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
     input[type="text"],
     input[type="email"],
     input[type="password"],
     select,
     textarea {
-      padding: 0.6rem 0.8rem;
-      border-radius: 8px;
+      width: 100%;
+      padding: 0.65rem 1rem;
+      margin-bottom: 1.2rem;
       border: none;
+      border-radius: 8px;
       font-size: 1rem;
       font-family: var(--font-body);
-      outline-offset: 2px;
-      outline-color: var(--hover-gold);
+      outline: none;
+      transition: box-shadow 0.3s ease;
     }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus {
+      box-shadow: 0 0 10px var(--hover-gold);
+      background-color: #fffbea;
+      color: var(--dark-base);
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Multi-select event picker */
     select[multiple] {
-      height: 10rem;
+      height: 120px;
+      font-size: 1rem;
     }
-    small {
-      font-weight: 600;
-      color: #fffacd;
-      font-size: 0.8rem;
-    }
+
+    /* BUTTONS */
     .btn-row {
       display: flex;
       justify-content: space-between;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     button {
-      cursor: pointer;
-      padding: 0.7rem 1.5rem;
-      font-weight: 700;
-      font-family: var(--font-heading);
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      transition: background-color 0.25s ease;
-    }
-    #nextBtn {
+      padding: 0.75rem 1.8rem;
       background-color: var(--main-red);
       color: var(--light-base);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
     }
-    #nextBtn:hover {
-      background-color: #a72424;
-    }
-    #prevBtn {
-      background-color: #555;
-      color: var(--light-base);
-    }
-    #prevBtn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-    #submitBtn {
+    button:hover:not(:disabled) {
       background-color: var(--hover-gold);
       color: var(--dark-base);
-      border-radius: 15px;
-      font-size: 1.15rem;
-      padding: 0.9rem 2rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      margin-top: 1rem;
-      display: none;
     }
-    #submitBtn:hover {
-      background-color: #e6a400;
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
-    /* Terms & Conditions */
-    .terms {
-      font-size: 0.9rem;
+
+    /* PROGRESSBAR */
+    .progressbar {
+      counter-reset: step;
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .progressbar li {
+      list-style-type: none;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--light-base);
+      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      cursor: default;
+    }
+    .progressbar li::before {
+      content: counter(step);
+      counter-increment: step;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      display: block;
+      font-size: 1.1rem;
+      color: var(--main-red);
+      background: var(--light-base);
+      border-radius: 50%;
+      margin: 0 auto 10px auto;
+      box-shadow: 0 0 8px rgba(255, 183, 3, 0.9);
+    }
+    .progressbar li.active {
       color: var(--hover-gold);
     }
-    .terms a {
-      color: var(--hover-gold);
-      text-decoration: underline;
+    .progressbar li.active::before {
+      background: var(--hover-gold);
+      color: var(--dark-base);
+      box-shadow: 0 0 10px var(--hover-gold);
+    }
+
+    /* TERMS & CONDITIONS SCROLLBOX */
+    .terms-text {
+      background: #fffbeaee;
+      border-radius: 12px;
+      color: var(--dark-base);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 1rem;
+      max-height: 160px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px var(--hover-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    /* GOOGLE SIGN-IN BUTTON */
+    #googleSignInBtn {
+      background-color: var(--secondary-blue);
+      margin: 1rem auto 2rem auto;
+      display: block;
+      padding: 0.75rem 1.8rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 12px;
+      color: var(--light-base);
       cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      max-width: 300px;
     }
-    /* Modal Styles */
+    #googleSignInBtn:hover {
+      background-color: #005f8f;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+    footer a {
+      color: var(--hover-gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      main.signup-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      .progressbar {
+        max-width: 100%;
+      }
+    }
+
+    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.75);
-      overflow-y: auto;
       z-index: 9999;
-      padding: 2rem 1rem;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s ease forwards;
     }
     .modal.show {
       display: block;
     }
     .modal-content {
+      background-color: var(--light-base);
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 80%;
       max-width: 600px;
-      margin: 3rem auto;
-      background: var(--light-base);
-      border-radius: 15px;
-      padding: 2rem 2.5rem;
+      box-shadow: 0 0 20px var(--hover-gold);
       color: var(--dark-base);
       font-family: var(--font-body);
-      box-shadow: 0 0 20px var(--hover-gold);
       position: relative;
       max-height: 80vh;
       overflow-y: auto;
+      animation: slideDown 0.3s ease forwards;
     }
     .close-button {
+      color: var(--main-red);
       position: absolute;
-      top: 10px;
+      top: 12px;
       right: 20px;
       font-size: 2rem;
-      font-weight: 900;
+      font-weight: bold;
       cursor: pointer;
-      color: var(--main-red);
       user-select: none;
       transition: color 0.2s ease;
     }
@@ -213,111 +363,93 @@
       color: var(--hover-gold);
     }
 
-    /* Quiz answer styles */
-    .quiz-question {
-      background: #222;
-      padding: 1rem;
-      border-radius: 12px;
-    }
-    .quiz-question h3 {
-      margin-bottom: 0.5rem;
-      font-weight: 800;
-      color: var(--hover-gold);
-    }
-    .quiz-options {
-      list-style: none;
-      padding-left: 0;
-    }
-    .quiz-options li {
-      margin-bottom: 0.4rem;
-    }
-    .quiz-options label {
-      cursor: pointer;
-      user-select: none;
-      color: var(--light-base);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    input[type="radio"] {
-      margin-right: 0.5rem;
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* Particles canvas */
-    #particles-js {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 720px) {
-      main.signup-container {
-        padding: 1rem 1.5rem;
-      }
-      .progressbar li {
-        font-size: 0.7rem;
-      }
-      #submitBtn, #nextBtn, #prevBtn {
-        width: 48%;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>Westside JH SciOly Signup</header>
+  <header>
+    <div>Westside JH SciOly </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="memberportal.html">Member Portal</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <main class="signup-container">
     <h2>Sign Up for Westside SciOly</h2>
 
-    <button id="googleSignInBtn" type="button" aria-label="Sign in with Google">Sign in with Google</button>
+    <button id="googleSignInBtn" type="button">Sign in with Google</button>
 
-    <ul class="progressbar" aria-label="Signup progress steps">
-      <li class="active" aria-current="step">Account Info</li>
-      <li>Event Compatibility Quiz</li>
-      <li>Recommended Events</li>
-      <li>Terms & Submit</li>
+    <ul class="progressbar">
+      <li class="active">Account Info</li>
+      <li>Quiz</li>
+      <li>Events</li>
+      <li>Terms</li>
     </ul>
 
     <form id="signup-form" novalidate>
-
-      <!-- STEP 1: ACCOUNT INFO -->
-      <section class="step active" data-step="0" aria-label="Account Information">
-        <label for="realName">Full Name *</label>
-        <input id="realName" name="realName" type="text" required autocomplete="name" placeholder="Your full real name" />
+      <!-- STEP 1: Account Info -->
+      <section class="step active" data-step="0">
+        <label for="realName">Full Name</label>
+        <input type="text" id="realName" name="realName" placeholder="Your real name" required />
 
         <label for="username">Preferred Username (optional)</label>
-        <input id="username" name="username" type="text" placeholder="Cool nickname or username" autocomplete="username" />
+        <input type="text" id="username" name="username" placeholder="Username" />
 
-        <label for="email">Email Address *</label>
-        <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-        <label for="password">Password * (min 6 characters)</label>
-        <input id="password" name="password" type="password" required minlength="6" placeholder="Strong password" autocomplete="new-password" />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Choose a strong password" required minlength="6" />
       </section>
 
-      <!-- STEP 2: QUIZ -->
-      <section class="step" data-step="1" aria-label="Event Compatibility Quiz">
-        <div id="quiz-container">
-          <!-- Quiz questions inserted by JS -->
-        </div>
-        <small>Answer honestly for best event recommendations!</small>
+      <!-- STEP 2: Quiz Sample -->
+      <section class="step" data-step="1">
+        <label for="quiz-q1">Which event sounds the most fun?</label>
+        <select id="quiz-q1" name="quiz-q1" required>
+          <option value="" disabled selected>Choose an option</option>
+          <option value="life-science">Life Science</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="build">Build</option>
+          <option value="earth-space">Earth & Space</option>
+        </select>
+        <small style="color:#fffacd; font-weight:600;">(You can add more quiz questions here, just copy this block!)</small>
       </section>
 
-      <!-- STEP 3: RECOMMENDED EVENTS -->
-      <section class="step" data-step="2" aria-label="Recommended Events Selection">
-        <p style="font-weight: 600; color: var(--hover-gold); margin-bottom: 0.5rem;">
-          Based on your quiz answers, here are your top event category matches. You can select up to <strong>6</strong> events.
-        </p>
-        <label for="recommendedEvents">Choose your events:</label>
-        <select id="recommendedEvents" name="events" multiple size="8" aria-describedby="selectHelp" required></select>
-        <small id="selectHelp">(Ctrl/Cmd + click to select multiple, max 6)</small>
+      <!-- STEP 3: Events Selection -->
+      <section class="step" data-step="2">
+        <label for="eventSelect">Select your preferred events (up to 3)</label>
+        <select id="eventSelect" name="events" multiple size="6" required>
+          <option value="life-science">Life Science</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="build">Build</option>
+          <option value="earth-space">Earth & Space</option>
+          <option value="inquiry-tech">Inquiry & Technology</option>
+          <option value="math-tech">Math & Technology</option>
+        </select>
+        <small style="color:#fffacd; font-weight:600;">(Ctrl/Cmd + click to select multiple)</small>
       </section>
 
-      <!-- STEP 4: TERMS & CONDITIONS -->
-      <section class="step" data-step="3" aria-label="Terms and Conditions Agreement">
+      <!-- STEP 4: Terms & Conditions -->
+      <section class="step" data-step="3">
         <div class="terms">
           <input type="checkbox" id="terms" name="terms" required />
           <label for="terms">
@@ -325,47 +457,46 @@
             <a href="#" id="openTermsModal" aria-haspopup="dialog" aria-controls="termsModal">Terms & Conditions</a>
           </label>
         </div>
-        <button type="submit" id="submitBtn" aria-label="Submit Signup Form">Sign Up & Submit</button>
+
+        <div class="terms-text" tabindex="0" role="region" aria-label="Terms and Conditions Text">
+          <p><strong>Sample Terms & Conditions:</strong></p>
+          <p>By signing up for Westside SciOly, you agree to abide by all team rules and conduct policies. Your information will be securely stored and used solely for team communication and event registration. You confirm that you are authorized to participate and understand the commitment involved.</p>
+          <p>Please review our full policies on our website before proceeding.</p>
+        </div>
+
+        <button type="submit" id="submitBtn">Sign Up & Submit</button>
       </section>
 
-      <!-- NAVIGATION -->
-      <div class="btn-row">
-        <button type="button" id="prevBtn" disabled aria-label="Previous step">Previous</button>
-        <button type="button" id="nextBtn" aria-label="Next step">Next</button>
+      <div class="btn-row" style="margin-top: 1.5rem;">
+        <button type="button" id="prevBtn" disabled>Previous</button>
+        <button type="button" id="nextBtn">Next</button>
       </div>
     </form>
   </main>
 
-  <footer style="margin-top: 2rem; font-size: 0.9rem; color: #aaa;">
+  <footer>
     &copy; 2025 Westside JH SciOly | Contact us at 
-    <a href="mailto:info@westsidescioly.com" style="color:#fff;">info@westsidescioly.com</a>
+    <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 
-  <canvas id="particles-js" aria-hidden="true"></canvas>
+  <canvas id="particles-js"></canvas>
 
+  <!-- Simple particle animation script -->
   <script>
-    // PARTICLES BACKGROUND (subtle golden sparkle)
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      initParticles();
-    });
-    resizeCanvas();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
         this.color = 'rgba(255, 183, 3, 0.8)';
       }
       update() {
@@ -381,358 +512,239 @@
         ctx.fill();
       }
     }
-    function initParticles() {
+
+    function init() {
       particlesArray = [];
-      for (let i = 0; i < 70; i++) {
+      for (let i = 0; i < 80; i++) {
         particlesArray.push(new Particle());
       }
     }
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        p.update();
-        p.draw();
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
       });
       requestAnimationFrame(animate);
     }
-    initParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
     animate();
   </script>
 
+  <!-- FIREBASE + FORM LOGIC -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
 
-    // ==== FIREBASE CONFIG ====
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "westside-scioly.firebaseapp.com",
       projectId: "westside-scioly",
       storageBucket: "westside-scioly.appspot.com",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      messagingSenderId: "YOUR_SENDER_ID",
       appId: "YOUR_APP_ID"
     };
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-    // GOOGLE SIGN-IN BUTTON
-    const googleSignInBtn = document.getElementById('googleSignInBtn');
-    googleSignInBtn.addEventListener('click', async () => {
-      const provider = new GoogleAuthProvider();
-      try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        alert(`Welcome, ${user.displayName}! You are signed in with Google.`);
-        // You can auto-fill or redirect from here
-      } catch (error) {
-        alert('Google sign-in failed: ' + error.message);
-      }
-    });
-
-    // ==== QUIZ QUESTIONS ====
-    const quizQuestions = [
-      {
-        id: "1",
-        category: "life-science",
-        question: "Do you enjoy learning about human body systems or genetics?",
-        options: [
-          { text: "Yes, I find it fascinating!", score: 2 },
-          { text: "Somewhat, it's okay.", score: 1 },
-          { text: "No, not really.", score: 0 }
-        ]
-      },
-      {
-        id: "2",
-        category: "earth-space",
-        question: "Are you interested in weather patterns and space phenomena?",
-        options: [
-          { text: "Absolutely, I love meteorology and space!", score: 2 },
-          { text: "Sometimes, if it's cool.", score: 1 },
-          { text: "Not at all.", score: 0 }
-        ]
-      },
-      {
-        id: "3",
-        category: "chemistry",
-        question: "Do you like conducting chemical experiments or learning about substances?",
-        options: [
-          { text: "Yes, chemistry rocks!", score: 2 },
-          { text: "A little bit.", score: 1 },
-          { text: "No, I prefer other sciences.", score: 0 }
-        ]
-      },
-      {
-        id: "4",
-        category: "inquiry-tech",
-        question: "Are you good at designing experiments and analyzing data?",
-        options: [
-          { text: "Yes, I'm detail-oriented and curious.", score: 2 },
-          { text: "Sometimes, depending on the experiment.", score: 1 },
-          { text: "No, that's not my thing.", score: 0 }
-        ]
-      },
-      {
-        id: "5",
-        category: "build",
-        question: "Do you enjoy building or engineering physical devices?",
-        options: [
-          { text: "Love it! I’m a builder.", score: 2 },
-          { text: "It's okay, I can try.", score: 1 },
-          { text: "No, I prefer theoretical stuff.", score: 0 }
-        ]
-      },
-      {
-        id: "6",
-        category: "tech-math",
-        question: "Are you skilled at math and coding challenges?",
-        options: [
-          { text: "Absolutely, I thrive on them!", score: 2 },
-          { text: "I’m decent, could improve.", score: 1 },
-          { text: "Not really, math is hard.", score: 0 }
-        ]
-      }
-    ];
-
-    // ==== DOM REFERENCES ====
-    const quizContainer = document.getElementById('quiz-container');
-    const recommendedSelect = document.getElementById('recommendedEvents');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
+    // Form navigation and validation
     const form = document.getElementById('signup-form');
-    const steps = [...document.querySelectorAll('.step')];
-    const progressItems = [...document.querySelectorAll('.progressbar li')];
-    const maxEvents = 6;
+    const steps = document.querySelectorAll('.step');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const progressbar = document.querySelectorAll('.progressbar li');
     let currentStep = 0;
-    const quizAnswers = {};
 
-    // 1. Render Quiz Questions
-    function renderQuiz() {
-      quizContainer.innerHTML = '';
-      quizQuestions.forEach((q, i) => {
-        const div = document.createElement('div');
-        div.classList.add('quiz-question');
-        div.setAttribute('role', 'radiogroup');
-        div.setAttribute('aria-labelledby', `q${q.id}-label`);
-        const optionsHTML = q.options.map((opt, idx) => `
-          <li>
-            <label>
-              <input type="radio" name="q${q.id}" value="${idx}" required />
-              ${opt.text}
-            </label>
-          </li>
-        `).join('');
-        div.innerHTML = `
-          <h3 id="q${q.id}-label">${i+1}. ${q.question}</h3>
-          <ul class="quiz-options">${optionsHTML}</ul>
-        `;
-        quizContainer.appendChild(div);
+    function showStep(n) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === n);
+        progressbar[i].classList.toggle('active', i <= n);
       });
+      prevBtn.disabled = n === 0;
+      nextBtn.style.display = (n === steps.length - 1) ? 'none' : 'inline-block';
+      form.querySelector('#submitBtn').style.display = (n === steps.length - 1) ? 'inline-block' : 'none';
+      // Focus first input on the step for keyboard users
+      const firstInput = steps[n].querySelector('input, select, textarea, button');
+      if (firstInput) firstInput.focus();
     }
-    renderQuiz();
 
-    // Listen for quiz answers
-    quizContainer.addEventListener('change', e => {
-      if (e.target.matches('input[type="radio"]')) {
-        const qId = e.target.name.replace('q', '');
-        quizAnswers[qId] = parseInt(e.target.value);
-      }
-    });
-
-    // 2. Calculate category scores
-    function calculateScores() {
-      const scores = {
-        'life-science': 0,
-        'earth-space': 0,
-        'chemistry': 0,
-        'inquiry-tech': 0,
-        'build': 0,
-        'tech-math': 0,
-      };
-      quizQuestions.forEach(q => {
-        const ansIdx = quizAnswers[q.id];
-        if (ansIdx !== undefined) {
-          scores[q.category] += q.options[ansIdx].score;
+    function validateStep(stepIndex) {
+      const step = steps[stepIndex];
+      const inputs = step.querySelectorAll('input, select, textarea');
+      for (const input of inputs) {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return false;
         }
-      });
-      return scores;
+      }
+      // Extra validation for multi-select max 3 events
+      if (stepIndex === 2) {
+        const selected = step.querySelector('#eventSelect').selectedOptions;
+        if (selected.length === 0 || selected.length > 3) {
+          alert("Please select between 1 and 3 events.");
+          return false;
+        }
+      }
+      // Extra validation on terms checkbox at step 3 (final step)
+      if (stepIndex === 3) {
+        const termsCheckbox = step.querySelector('#terms');
+        if (!termsCheckbox.checked) {
+          alert("You must agree to the Terms & Conditions to sign up.");
+          return false;
+        }
+      }
+      return true;
     }
 
-    // 3. Get top 3 categories sorted by score
-    function getTopCategories(scores) {
-      return Object.entries(scores)
-        .sort((a,b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([cat]) => cat);
-    }
-
-    // Events mapped to categories
-    const eventsByCategory = {
-      'life-science': [
-        "Anatomy and Physiology",
-        "Disease Detectives",
-        "Heredity",
-        "Write It Do It (Bio version)",
-        "Protein Modeling"
-      ],
-      'earth-space': [
-        "Dynamic Planet",
-        "Meteorology",
-        "Remote Sensing",
-        "Rocks and Minerals",
-        "Solar System",
-        "Water Quality"
-      ],
-      'chemistry': [
-        "Crime Busters",
-        "Potions and Poisons",
-        "Food Science"
-      ],
-      'inquiry-tech': [
-        "Experimental Design",
-        "Metric Mastery"
-      ],
-      'build': [
-        "Boomilever",
-        "Helicopter",
-        "Hovercraft",
-        "Mission Possible",
-        "Scrambler",
-        "Machines"
-      ],
-      'tech-math': [
-        "Circuit Lab",
-        "Codebusters"
-      ]
-    };
-
-    // 4. Update recommended events select options
-    function updateRecommendedEvents() {
-      const scores = calculateScores();
-      const topCats = getTopCategories(scores);
-
-      let events = [];
-      topCats.forEach(cat => {
-        events = events.concat(eventsByCategory[cat]);
-      });
-      events = [...new Set(events)]; // unique
-
-      recommendedSelect.innerHTML = '';
-      events.forEach(ev => {
-        const option = document.createElement('option');
-        option.value = ev;
-        option.textContent = ev;
-        recommendedSelect.appendChild(option);
-      });
-    }
-
-    // 5. Show step
-    function showStep(step) {
-      steps.forEach((s, i) => s.classList.toggle('active', i === step));
-      progressItems.forEach((item, i) => item.classList.toggle('active', i <= step));
-      prevBtn.disabled = step === 0;
-      nextBtn.style.display = step === steps.length - 1 ? 'none' : 'inline-block';
-      submitBtn.style.display = step === steps.length - 1 ? 'inline-block' : 'none';
-
-      if (step === 2) updateRecommendedEvents();
-    }
-    showStep(currentStep);
+    nextBtn.addEventListener('click', () => {
+      if (!validateStep(currentStep)) return;
+      currentStep++;
+      showStep(currentStep);
+    });
 
     prevBtn.addEventListener('click', () => {
-      if (currentStep > 0) {
-        currentStep--;
-        showStep(currentStep);
-      }
-    });
-    nextBtn.addEventListener('click', () => {
-      // Validation on quiz step
-      if (currentStep === 1) {
-        const allAnswered = quizQuestions.every(q => quizAnswers[q.id] !== undefined);
-        if (!allAnswered) {
-          alert('Please answer all quiz questions to continue.');
-          return;
-        }
-      }
-      if (currentStep === 2) {
-        if (recommendedSelect.selectedOptions.length === 0) {
-          alert('Please select at least one event.');
-          return;
-        }
-        if (recommendedSelect.selectedOptions.length > maxEvents) {
-          alert(`You can select a maximum of ${maxEvents} events.`);
-          return;
-        }
-      }
-      if (currentStep < steps.length - 1) {
-        currentStep++;
-        showStep(currentStep);
-      }
+      currentStep--;
+      showStep(currentStep);
     });
 
-    // Submit form & create user with Firebase Auth
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
+      if (!validateStep(currentStep)) return;
 
-      if (!form.terms.checked) {
-        alert('You must agree to the Terms & Conditions before submitting.');
-        return;
-      }
-      if (recommendedSelect.selectedOptions.length === 0) {
-        alert('Please select at least one event.');
-        currentStep = 2;
-        showStep(currentStep);
-        return;
-      }
-      if (recommendedSelect.selectedOptions.length > maxEvents) {
-        alert(`You can select a maximum of ${maxEvents} events.`);
-        currentStep = 2;
-        showStep(currentStep);
-        return;
-      }
-
+      // Gather form data
       const realName = form.realName.value.trim();
-      const username = form.username.value.trim();
+      const username = form.username.value.trim() || null;
       const email = form.email.value.trim();
       const password = form.password.value;
-      const selectedEvents = Array.from(recommendedSelect.selectedOptions).map(opt => opt.value);
+      const events = Array.from(form['events'].selectedOptions).map(o => o.value);
+      const termsAccepted = form.terms.checked;
+
+      if (!termsAccepted) {
+        alert("You must agree to the Terms & Conditions to sign up.");
+        return;
+      }
 
       try {
+        // Create user with email/password
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        alert(`Welcome, ${realName}! Your signup is complete with events: ${selectedEvents.join(', ')}`);
+
+        // TODO: Save additional user info (realName, username, events) to Firestore or Realtime DB here
+
+        alert(`Welcome, ${realName}! Your signup was successful.`);
         form.reset();
         currentStep = 0;
         showStep(currentStep);
+        // Redirect to member dashboard or show success message
+        // window.location.href = "memberdashboard.html";
       } catch (error) {
-        alert('Signup failed: ' + error.message);
+        alert("Error during sign up: " + error.message);
       }
     });
 
-    // TERMS MODAL
-    const termsLink = document.getElementById('openTermsModal');
+    // Google Sign-In button
+    const googleSignInBtn = document.getElementById('googleSignInBtn');
+    googleSignInBtn.addEventListener('click', async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // TODO: Save user info and handle new/existing users
+
+        alert(`Welcome, ${user.displayName}! You signed in with Google.`);
+        // Redirect or show dashboard
+        // window.location.href = "memberdashboard.html";
+      } catch (error) {
+        alert("Google sign-in failed: " + error.message);
+      }
+    });
+
+    // Initialize first step
+    showStep(currentStep);
+
+    // ======= MODAL LOGIC FOR TERMS & CONDITIONS =======
+    const openTermsBtn = document.getElementById('openTermsModal');
     const modalHTML = `
-      <div class="modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" tabindex="-1">
-        <div class="modal-content">
-          <button class="close-button" aria-label="Close Terms & Conditions">&times;</button>
-          <h2 id="termsTitle">Terms & Conditions</h2>
-          <p>Put your full terms & conditions text here. This is the official legal stuff users agree to.</p>
-          <p>Please read carefully before submitting your signup.</p>
+      <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+        <div class="modal-content" tabindex="0">
+          <span class="close-button" role="button" aria-label="Close Terms and Conditions">&times;</span>
+          <h2 id="termsTitle" style="color: var(--main-red); font-family: var(--font-heading); letter-spacing: 0.1em; margin-bottom: 1rem;">Terms & Conditions</h2>
+          <div style="max-height: 60vh; overflow-y: auto; color: var(--dark-base); font-weight: 600; line-height: 1.4; font-size: 0.95rem;">
+            <p>By signing up for Westside SciOly, you agree to abide by all team rules and conduct policies. Your information will be securely stored and used solely for team communication and event registration. You confirm that you are authorized to participate and understand the commitment involved.</p>
+            <p>Participation requires respect for teammates and adherence to safety guidelines. Sharing of login credentials or falsification of information will result in disqualification.</p>
+            <p>We reserve the right to contact guardians for participants under 18 years old. Your privacy is important; data will not be shared outside of authorized team members.</p>
+            <p>Please review our full policies on the official website. By continuing, you acknowledge these terms.</p>
+          </div>
         </div>
       </div>
     `;
+    // Append modal to body (hidden initially)
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-    const modal = document.getElementById('termsModal');
-    const closeBtn = modal.querySelector('.close-button');
+    const termsModal = document.getElementById('termsModal');
+    const closeBtn = termsModal.querySelector('.close-button');
+    const modalContent = termsModal.querySelector('.modal-content');
 
-    termsLink.addEventListener('click', e => {
+    function openModal() {
+      termsModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // disable background scroll
+      modalContent.focus();
+    }
+    function closeModal() {
+      termsModal.classList.remove('show');
+      document.body.style.overflow = ''; // restore scroll
+      openTermsBtn.focus();
+    }
+
+    openTermsBtn.addEventListener('click', e => {
       e.preventDefault();
-      modal.classList.add('show');
-      modal.focus();
+      openModal();
     });
-    closeBtn.addEventListener('click', () => modal.classList.remove('show'));
-    modal.addEventListener('click', e => {
-      if (e.target === modal) modal.classList.remove('show');
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal on clicking outside content
+    termsModal.addEventListener('click', e => {
+      if (e.target === termsModal) closeModal();
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape" && termsModal.classList.contains('show')) {
+        closeModal();
+      }
+    });
+
+    // Trap focus inside modal (accessibility)
+    modalContent.addEventListener('keydown', e => {
+      const focusableElements = modalContent.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+      const firstEl = focusableElements[0];
+      const lastEl = focusableElements[focusableElements.length -1];
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstEl) {
+            e.preventDefault();
+            lastEl.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastEl) {
+            e.preventDefault();
+            firstEl.focus();
+          }
+        }
+      }
     });
   </script>
 </body>
