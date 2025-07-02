@@ -205,12 +205,12 @@
   <section class="contact-container">
     <h1>Contact Us</h1>
     <p>Have questions, ideas, or just want to say hi? Slide into our inbox 😎</p>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="5" placeholder="Your Message" required></textarea>
+    <form id="contact-form">
+      <input type="text" name="user_name" placeholder="Your Name" required />
+      <input type="email" name="user_email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
-    </form>
+    </form>    
     <div class="contact-info">
       <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
       <a href="https://maps.app.goo.gl/abcdef" target="_blank">West Lafayette Jr/Sr High School</a>
@@ -279,5 +279,28 @@
     init();
     animate();
   </script>
+
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  <script>
+    emailjs.init("QbrH1Enj1u9RUAfcL"); // Replace YOUR_USER_ID from EmailJS dashboard
+  </script>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      emailjs.sendForm('service_g4m7nof', 'template_682p24o', this)
+        .then(function() {
+          alert('Message sent! Thank you 😊');
+          document.getElementById('contact-form').reset();
+        }, function(error) {
+          alert('Oops, something went wrong. Try again later.');
+          console.error('FAILED...', error);
+        });
+    });
+  </script>
+
+
+
 </body>
 </html>
