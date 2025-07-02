@@ -211,6 +211,7 @@
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>    
+    <div id="form-status" style="text-align: center; margin-top: 1rem; font-weight: bold;"></div>
     <div class="contact-info">
       <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
       <a href="https://maps.app.goo.gl/abcdef" target="_blank">West Lafayette Jr/Sr High School</a>
@@ -280,25 +281,42 @@
     animate();
   </script>
 
-  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
-  <script>
-    emailjs.init("QbrH1Enj1u9RUAfcL"); // Replace YOUR_USER_ID from EmailJS dashboard
-  </script>
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+  // Init EmailJS
+  (function () {
+    emailjs.init("QbrH1Enj1u9RUAfcL");
+  })();
 
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const statusDiv = document.getElementById("form-status");
+    const button = form.querySelector("button");
+
+    form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      emailjs.sendForm('service_g4m7nof', 'template_682p24o', this)
-        .then(function() {
-          alert('Message sent! Thank you 😊');
-          document.getElementById('contact-form').reset();
-        }, function(error) {
-          alert('Oops, something went wrong. Try again later.');
-          console.error('FAILED...', error);
+      // Disable the button while sending
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      emailjs.sendForm("service_g4m7nof", "template_682p24o", form)
+        .then(function () {
+          statusDiv.innerHTML = "✅ Message sent successfully!";
+          statusDiv.style.color = "#00ff88";
+          form.reset();
+        }, function (error) {
+          statusDiv.innerHTML = "❌ Something went wrong. Please try again.";
+          statusDiv.style.color = "#ff4444";
+          console.error("FAILED...", error);
+        })
+        .finally(() => {
+          button.disabled = false;
+          button.textContent = "Send Message";
         });
     });
-  </script>
+  });
+</script>
 
 
 
