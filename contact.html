@@ -281,11 +281,13 @@
     animate();
   </script>
 
+<!-- Load EmailJS library first -->
 <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+
+<!-- Then init and send -->
 <script>
-  // Init EmailJS
   (function () {
-    emailjs.init("QbrH1Enj1u9RUAfcL"); // YOUR USER ID
+    emailjs.init("QbrH1Enj1u9RUAfcL"); // YOUR user ID
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -296,21 +298,18 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // Disable the button while sending
       button.disabled = true;
       button.textContent = "Sending...";
 
-      emailjs.sendForm("service_g4m7nof", "vdbt44h", form)
-        .then(function (response) {
-          console.log("✅ EMAILJS SUCCESS:", response.status, response.text);
+      emailjs.sendForm("service_g4m7nof", "template_682p24o", form)
+        .then(function () {
           statusDiv.innerHTML = "✅ Message sent successfully!";
           statusDiv.style.color = "#00ff88";
           form.reset();
-        })
-        .catch(function (error) {
-          console.error("❌ EMAILJS ERROR:", error);
+        }, function (error) {
           statusDiv.innerHTML = "❌ Something went wrong. Please try again.";
           statusDiv.style.color = "#ff4444";
+          console.error("FAILED...", error);
         })
         .finally(() => {
           button.disabled = false;
