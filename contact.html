@@ -281,14 +281,12 @@
     animate();
   </script>
 
-<!-- Load EmailJS library first -->
-<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<!-- EMAILJS SDK FIRST!!! -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-<!-- Then init and send -->
+<!-- THEN init + form submission logic -->
 <script>
-  (function () {
-    emailjs.init("QbrH1Enj1u9RUAfcL"); // YOUR user ID
-  })();
+  emailjs.init("QbrH1Enj1u9RUAfcL");
 
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contact-form");
@@ -318,6 +316,7 @@
     });
   });
 </script>
+
 
 
 
