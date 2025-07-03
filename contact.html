@@ -285,7 +285,7 @@
 <script>
   // Init EmailJS
   (function () {
-    emailjs.init("QbrH1Enj1u9RUAfcL");
+    emailjs.init("QbrH1Enj1u9RUAfcL"); // YOUR USER ID
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -300,15 +300,17 @@
       button.disabled = true;
       button.textContent = "Sending...";
 
-      emailjs.sendForm("service_g4m7nof", "template_682p24o", form)
-        .then(function () {
+      emailjs.sendForm("service_g4m7nof", "vdbt44h", form)
+        .then(function (response) {
+          console.log("✅ EMAILJS SUCCESS:", response.status, response.text);
           statusDiv.innerHTML = "✅ Message sent successfully!";
           statusDiv.style.color = "#00ff88";
           form.reset();
-        }, function (error) {
+        })
+        .catch(function (error) {
+          console.error("❌ EMAILJS ERROR:", error);
           statusDiv.innerHTML = "❌ Something went wrong. Please try again.";
           statusDiv.style.color = "#ff4444";
-          console.error("FAILED...", error);
         })
         .finally(() => {
           button.disabled = false;
