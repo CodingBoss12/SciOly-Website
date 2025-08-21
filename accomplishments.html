@@ -24,21 +24,32 @@
     a { color: var(--hover-gold); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* HEADER & NAV */
+    /* ===== HEADER ===== */
     header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
+    background-color: var(--main-red);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-heading); /* THIS IS THE IMPORTANT LINE */
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    z-index: 10;
+    position: relative;
     }
+
+    .nav-list li a {
+    color: var(--hover-gold);
+    font-family: var(--font-body); /* keep links looking consistent */
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    }
+
     .nav-list { list-style: none; display: flex; gap: 1.5rem; }
     .nav-list li a {
       color: var(--hover-gold); font-weight: 600;
