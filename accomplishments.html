@@ -6,288 +6,249 @@
   <title>Accomplishments | Westside JH SciOly</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
   <style>
-    /* ===== COLORS & FONTS ===== */
+    /* ==== COLORS & FONTS ==== */
     :root {
       --main-red: #D62828;
       --dark-base: #1F1F1F;
       --light-base: #F5F5F5;
       --hover-gold: #FFB703;
-      --secondary-blue: #0077B6;
-
       --font-heading: 'Bebas Neue', cursive;
       --font-body: 'Poppins', sans-serif;
     }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body, html {
-      height: 100%;
-      font-family: var(--font-body);
-      background-color: var(--dark-base);
-      color: var(--light-base);
+      height: 100%; background-color: var(--dark-base);
+      color: var(--light-base); font-family: var(--font-body);
       overflow-x: hidden;
     }
+    a { color: var(--hover-gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    a {
-      color: var(--hover-gold);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
+    /* HEADER & NAV */
     header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      z-index: 10;
-      position: relative;
+      background-color: var(--main-red); padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-heading); font-size: 1.8rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 10;
     }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
+    .nav-list { list-style: none; display: flex; gap: 1.5rem; }
     .nav-list li a {
-      color: var(--hover-gold);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
+      color: var(--hover-gold); font-weight: 600;
+      font-size: 1rem; letter-spacing: .05em; transition: .3s;
     }
-    .nav-list li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
+    .nav-list li a:hover { color: white; transform: translateY(-2px); }
 
-    /* ===== HERO SECTION ===== */
+    /* HERO */
     .hero {
-      position: relative;
-      height: 50vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-family: var(--font-heading);
-      color: var(--hover-gold);
-      padding: 0 2rem;
-      z-index: 1;
+      position: relative; height: 40vh; display: flex;
+      flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; font-family: var(--font-heading);
+      color: var(--light-base); padding: 0 2rem; overflow: hidden;
     }
     .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('images/team.jpg') center/cover no-repeat;
-      filter: brightness(0.35);
-      z-index: -2;
+      content: ""; position: absolute; inset: 0;
+      background: url('images/accomplishment-hero.jpg') center/cover no-repeat;
+      filter: brightness(0.3); z-index: -2;
     }
     .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      content: ""; position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
-      mix-blend-mode: multiply;
-      z-index: -1;
+      mix-blend-mode: multiply; z-index: -1;
     }
     .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 0.5rem;
-      color: var(--hover-gold);
-      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+      font-size: 4rem; color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255,183,3,0.7);
+      animation: fadeInDown 1s ease-out both;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== ACCOMPLISHMENTS SECTION ===== */
-    .accomplishments {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 2rem;
-      border-radius: 15px;
-      background-color: rgba(255,255,255,0.05);
-      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+    /* ACHIEVEMENTS SUMMARY CARDS */
+    .summary-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1rem; max-width: 1000px; margin: 2rem auto;
     }
-    .accomplishments h2 {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--main-red);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .summary-card {
+      background: var(--main-red); padding: 1.5rem;
+      border-radius: 10px; text-align: center; font-weight: 600;
+      color: var(--light-base); box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transition: transform .3s, box-shadow .3s;
     }
-
-    .year-block {
-      margin-bottom: 2rem;
-    }
-    .year-title {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      color: var(--hover-gold);
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--main-red);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-
-    .medal-list {
-      list-style: none;
-      padding: 0;
-    }
-    .medal-list li {
-      background-color: var(--main-red);
-      margin: 0.5rem 0;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 6px rgba(255, 183, 3, 0.5);
-      transition: all 0.3s ease;
-    }
-    .medal-list li:hover {
-      background-color: var(--hover-gold);
-      color: var(--dark-base);
+    .summary-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(255,183,3,0.6);
       cursor: pointer;
     }
+    .summary-card span { display: block; font-size: 2.5rem; margin-bottom: .5rem; }
 
+    /* TIMELINE & MEDAL GRID */
+    .timeline {
+      position: relative; max-width: 900px; margin: 3rem auto;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: ""; position: absolute; left: 10px; top: 0; bottom: 0;
+      width: 4px; background: var(--hover-gold);
+    }
+    .year-block {
+      position: relative; margin-bottom: 3rem; padding-left: 2rem;
+      opacity: 0; transform: translateX(-30px);
+      animation: slideRight 0.6s ease-out forwards;
+    }
+    .year-block:nth-child(odd) { animation-delay: 0.2s; }
+    .year-block:nth-child(even) { animation-delay: 0.4s; }
+    @keyframes slideRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .year-block::before {
+      content: ""; position: absolute; left: -22px; top: 5px;
+      width: 14px; height: 14px; background: var(--light-base);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--hover-gold);
+    }
+    .year-title {
+      font-family: var(--font-heading); font-size: 2rem;
+      color: var(--hover-gold); margin-bottom: 1rem;
+    }
+    .medal-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+      gap: 1rem;
+    }
+    .medal-card {
+      background: var(--main-red); padding: 1rem 1.2rem;
+      border-radius: 10px; text-align: center; font-weight: 600;
+      color: var(--light-base); box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .medal-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 16px rgba(255,183,3,0.6);
+      cursor: pointer;
+    }
+    .medal-card .icon { font-size: 2rem; margin-bottom: .4rem; }
+
+    .gold { background: linear-gradient(135deg, #FFD700, #FFC300); color: var(--dark-base); }
+    .silver { background: linear-gradient(135deg, #C0C0C0, #E0E0E0); color: var(--dark-base); }
+    .bronze { background: linear-gradient(135deg, #CD7F32, #E6A57E); color: var(--dark-base); }
+
+    /* PARTICLES (same as homepage) */
+    #particles-js { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* FOOTER */
     footer {
-      background-color: var(--main-red);
-      color: var(--light-base);
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      position: relative;
+      background-color: var(--main-red); color: var(--light-base);
+      padding: 1rem 2rem; text-align: center;
+      font-size: .9rem; font-weight: 600; position: relative;
       z-index: 10;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      .accomplishments {
-        padding: 1rem;
-      }
-    }
+    @media (max-width: 600px) { .hero h1 { font-size: 2.8rem; } }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div>Westside JH SciOly</div>
-    <nav>
-      <ul class="nav-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="accomplishments.html">Accomplishments</a></li>
-        <li><a href="donate.html">Donate</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="memberportal.html">Member Portal</a></li>
-      </ul>
-    </nav>
+    <nav><ul class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="accomplishments.html">Accomplishments</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="memberportal.html">Member Portal</a></li>
+    </ul></nav>
   </header>
 
   <section class="hero">
-    <h1>Our Accomplishments</h1>
+    <h1>Our Achievements</h1>
   </section>
 
-  <section class="accomplishments">
-    <h2>Team Highlights</h2>
+  <section class="summary-cards">
+    <div class="summary-card">
+      <span> 🏆 12 Medals</span> 2025 Competitions
+    </div>
+    <div class="summary-card">
+      <span> 🥇 1st Place</span> Regional Overall
+    </div>
+    <div class="summary-card">
+      <span> 🌟 4th Place</span> Nationals Achievement
+    </div>
+    <!-- Add more stats as needed -->
+  </section>
 
-    <!-- Example Year Block -->
+  <div class="timeline">
+    <!-- Year Block -->
     <div class="year-block">
       <div class="year-title">2025 Season</div>
-      <ul class="medal-list">
-        <li>🥇 1st Place – Regional Overall</li>
-        <li>🥈 2nd Place – State Fossils</li>
-        <li>🥉 3rd Place – State Codebusters</li>
-      </ul>
+      <div class="medal-grid">
+        <div class="medal-card gold">
+          <div class="icon">🥇</div>
+          1st Place – Regional Overall
+        </div>
+        <div class="medal-card silver"><div class="icon">🥈</div>2nd Place – State Fossils</div>
+        <div class="medal-card bronze"><div class="icon">🥉</div>3rd Place – State Codebusters</div>
+      </div>
     </div>
-
+    <!-- Another Year Block -->
     <div class="year-block">
       <div class="year-title">2024 Season</div>
-      <ul class="medal-list">
-        <li>🥇 1st Place – Invitational Circuit Lab</li>
-        <li>🥈 2nd Place – Regionals Flight</li>
-        <li>🏅 5th Place – State Overall</li>
-      </ul>
+      <div class="medal-grid">
+        <div class="medal-card gold"><div class="icon">🥇</div>1st Place – Invitational Circuit Lab</div>
+        <div class="medal-card silver"><div class="icon">🥈</div>2nd Place – Regionals Flight</div>
+      </div>
     </div>
-
-    <!-- Add more year-blocks here -->
-  </section>
+    <!-- Add more years -->
+  </div>
 
   <canvas id="particles-js"></canvas>
 
   <footer>
-    &copy; 2025 Westside JH SciOly | Contact us at 
+    &copy; 2025 Westside JH SciOly | Contact us at
     <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
   </footer>
 
-  <!-- Particle animation script (same as homepage) -->
   <script>
+    /* Particle script same as homepage */
     const canvas = document.getElementById('particles-js');
     const ctx = canvas.getContext('2d');
     let particlesArray;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = 'rgba(255, 183, 3, 0.8)';
+      constructor(){
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+        this.size = Math.random()*2+1;
+        this.speedX = (Math.random()-0.5)*0.5;
+        this.speedY = (Math.random()-0.5)*0.5;
+        this.color = 'rgba(255,183,3,0.8)';
       }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      update(){
+        this.x+=this.speedX; this.y+=this.speedY;
+        if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+        if(this.y<0||this.y>canvas.height) this.speedY*=-1;
       }
-      draw() {
-        ctx.fillStyle = this.color;
+      draw(){
+        ctx.fillStyle=this.color;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
         ctx.fill();
       }
     }
-
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 80; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
+    function init(){ particlesArray=[]; for(let i=0;i<80;i++) particlesArray.push(new Particle()); }
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particlesArray.forEach(p=>{p.update();p.draw();});
       requestAnimationFrame(animate);
     }
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
+    window.addEventListener('resize',()=>{
+      canvas.width=window.innerWidth; canvas.height=window.innerHeight; init();
     });
-    init();
-    animate();
+    init(); animate();
   </script>
 </body>
 </html>
