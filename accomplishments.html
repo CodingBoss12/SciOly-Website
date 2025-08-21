@@ -179,6 +179,39 @@
         padding: 1rem;
       }
     }
+    /* Medal Grid */
+    .medal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    }
+
+    .medal-card {
+    background-color: var(--main-red);
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .medal-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(255,183,3,0.6);
+    cursor: pointer;
+    }
+    .medal-card .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    }
+
+    /* Medal Type Colors */
+    .gold { background: linear-gradient(135deg, #FFD700, #FFC300); color: #1F1F1F; }
+    .silver { background: linear-gradient(135deg, #C0C0C0, #E0E0E0); color: #1F1F1F; }
+    .bronze { background: linear-gradient(135deg, #CD7F32, #E6A57E); color: #1F1F1F; }
+
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
 </head>
@@ -204,29 +237,46 @@
   </section>
 
   <section class="accomplishments">
-    <h2>Team Highlights</h2>
+  <h2>Team Highlights</h2>
 
-    <!-- Example Year Block -->
-    <div class="year-block">
-      <div class="year-title">2025 Season</div>
-      <ul class="medal-list">
-        <li>🥇 1st Place – Regional Overall</li>
-        <li>🥈 2nd Place – State Fossils</li>
-        <li>🥉 3rd Place – State Codebusters</li>
-      </ul>
+  <!-- Example Year Block -->
+  <div class="year-block">
+    <div class="year-title">2025 Season</div>
+    <div class="medal-grid">
+      <div class="medal-card gold">
+        <span class="icon">🥇</span>
+        <p>1st Place – Regional Overall</p>
+      </div>
+      <div class="medal-card silver">
+        <span class="icon">🥈</span>
+        <p>2nd Place – State Fossils</p>
+      </div>
+      <div class="medal-card bronze">
+        <span class="icon">🥉</span>
+        <p>3rd Place – State Codebusters</p>
+      </div>
     </div>
+  </div>
 
-    <div class="year-block">
-      <div class="year-title">2024 Season</div>
-      <ul class="medal-list">
-        <li>🥇 1st Place – Invitational Circuit Lab</li>
-        <li>🥈 2nd Place – Regionals Flight</li>
-        <li>🏅 5th Place – State Overall</li>
-      </ul>
+  <div class="year-block">
+    <div class="year-title">2024 Season</div>
+    <div class="medal-grid">
+      <div class="medal-card gold">
+        <span class="icon">🥇</span>
+        <p>1st Place – Invitational Circuit Lab</p>
+      </div>
+      <div class="medal-card silver">
+        <span class="icon">🥈</span>
+        <p>2nd Place – Regionals Flight</p>
+      </div>
+      <div class="medal-card">
+        <span class="icon">🏅</span>
+        <p>5th Place – State Overall</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Add more year-blocks here -->
-  </section>
 
   <canvas id="particles-js"></canvas>
 
