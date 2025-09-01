@@ -289,18 +289,7 @@
     </ul>
   </section>
 
-  <section class="countdown">
-    <h2>Next Meeting Countdown</h2>
-    <div id="timer">
-      <span id="days">00</span>d :
-      <span id="hours">00</span>h :
-      <span id="minutes">00</span>m :
-      <span id="seconds">00</span>s
-    </div>
-  </section>
-  <div id="countdown" style="text-align: center; font-weight: bold; padding: 1rem; color: var(--hover-gold);"></div>
-
-
+  
   <canvas id="particles-js"></canvas>
 
   <footer>
@@ -364,31 +353,8 @@
     init();
     animate();
 
-  // Set the date and time for next Sunday at 2 PM
-  const nextMeeting = new Date();
-  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay() + 0) % 7 || 7)); // Sunday
-  nextMeeting.setHours(14, 0, 0, 0); // 2:00 PM
 
-  const countdown = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = nextMeeting.getTime() - now;
-
-    if (distance <= 0) {
-      clearInterval(countdown);
-      document.getElementById("timer").innerHTML = "It's meeting time! 🎉";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = String(days).padStart(2, '0');
-    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-  }, 1000);
+  
   </script>
 </body>
 </html>
