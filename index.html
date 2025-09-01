@@ -189,6 +189,39 @@
       z-index: 10;
     }
 
+    .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--hover-gold);
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .nav-list {
+      display: none;          /* hide links initially */
+      flex-direction: column;
+      gap: 1rem;
+      background-color: var(--main-red);
+      padding: 1rem;
+      border-radius: 8px;
+      position: absolute;
+      top: 70px;   /* under header */
+      right: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .nav-list.active {
+      display: flex;          /* show when toggled */
+    }
+
+    .menu-toggle {
+      display: block;         /* show burger on mobile */
+    }
+  }
+
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 600px) {
       header {
@@ -211,6 +244,7 @@
 </head>
 <body>
   <header>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <div>Westside JH SciOly </div>
     <nav>
       <ul class="nav-list">
@@ -351,8 +385,21 @@
 
   // Set the date and time for next Sunday at 2 PM
   const nextMeeting = new Date();
-  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay() + 0) % 7 || 7)); // Sunday
-  nextMeeting.setHours(14, 0, 0, 0); // 2:00 PM
+  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay()) % 7));
+  nextMeeting.setHours(14, 0, 0, 0);
+  if (nextMeeting < new Date()) {
+    nextMeeting.setDate(nextMeeting.getDate() + 7); // bump a week ahead if already passed
+  }
+
+
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const navList = document.querySelector('.nav-list');
+
+  toggleBtn.addEventListener('click', () => {
+    navList.classList.toggle('active');
+  });
+
+
 
   const countdown = setInterval(() => {
     const now = new Date().getTime();
