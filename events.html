@@ -1035,5 +1035,36 @@
       });
     });
   </script>
+  <script>
+    // Category expand/collapse
+    document.querySelectorAll(".category-header").forEach(header => {
+      header.addEventListener("click", () => {
+        header.classList.toggle("active");
+        let eventsList = header.nextElementSibling;
+
+        if (eventsList.style.maxHeight) {
+          eventsList.style.maxHeight = null;
+        } else {
+          eventsList.style.maxHeight = eventsList.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Event description expand/collapse
+    document.querySelectorAll(".event-title").forEach(title => {
+      title.addEventListener("click", () => {
+        title.classList.toggle("active");
+        let description = title.nextElementSibling.nextElementSibling; 
+        // ^^ careful: meta div comes before description
+
+        if (description.style.maxHeight) {
+          description.style.maxHeight = null;
+        } else {
+          description.style.maxHeight = description.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
