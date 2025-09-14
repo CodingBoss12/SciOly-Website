@@ -234,26 +234,119 @@
       }
     }
 
+    /* ===== FAIL-SAFE: Responsive header (place at BOTTOM of your <style>) ===== */
+    header.site-header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 9999; /* make sure it's on top */
+    }
 
-  </style>
+    /* Title / logo */
+    header.site-header .site-title {
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Nav list always flex, but will wrap / stack on small screens */
+    header.site-header .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      flex-wrap: wrap; /* allows nicer wrapping on mid-size screens */
+    }
+
+    /* links */
+    header.site-header .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.22s ease;
+      display: inline-block;
+      padding: 0.25rem 0.25rem;
+    }
+
+    header.site-header .nav-list li a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Small screens: stack nav under title, full-width-ish links */
+    @media (max-width: 768px) {
+      header.site-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+      }
+
+      header.site-header .nav-list {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 720px; /* keep it centered and readable */
+      }
+
+      header.site-header .nav-list li {
+        width: 100%;
+      }
+
+      header.site-header .nav-list li a {
+        display: block;
+        padding: 0.6rem 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    /* tiny screens fine tuning */
+    @media (max-width: 420px) {
+      header.site-header .site-title { font-size: 1.2rem; }
+      header.site-header .nav-list li a { font-size: 0.95rem; padding: 0.5rem 0; }
+    }
+
+</style>
   <!-- Fonts from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header>
-  <div>Westside SciOly</div>
-  <nav>
-    <ul class="nav-list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="events.html" class="active">Events</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="accomplishments.html">Accomplishments</a></li>
-      <li><a href="donate.html">Donate</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header class="site-header">
+    <div class="site-title">
+      <!-- you can swap this text for <img class="logo" src="images/logo.png"> if you prefer the logo -->
+      Westside SciOly
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
 
 
   <section class="hero">
