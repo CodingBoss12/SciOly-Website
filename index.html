@@ -228,18 +228,21 @@
     @media (max-width: 600px) {
       header {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
+        text-align: center;
       }
-      .hero h1 {
-        font-size: 2.8rem;
+
+      .nav-list {
+        flex-direction: column; /* stack nav links vertically */
+        gap: 0.75rem;
+        margin-top: 0.75rem;
       }
-      .hero p {
-        font-size: 1.2rem;
-      }
-      .announcements {
-        padding: 2rem 1rem;
+
+      .nav-list li a {
+        font-size: 1rem;
       }
     }
+
   </style>
   <!-- Fonts from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
