@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Events | Westside SciOly</title>
+  <title>Events | Westside JH SciOly</title>
   <link rel="icon" type="image/png" href="images/logo.png" />
   <style>
     /* ===== COLORS & FONTS ===== */
@@ -1055,6 +1055,35 @@
     title.addEventListener("click", () => {
       title.classList.toggle("active");
       const description = title.nextElementSibling.nextElementSibling; // skips meta, gets description
+      if (description.style.maxHeight) {
+        description.style.maxHeight = null;
+      } else {
+        description.style.maxHeight = description.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+<script>
+  // Handle category dropdowns
+  const categoryHeaders = document.querySelectorAll('.category-header');
+  categoryHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('active');
+      const eventsList = header.nextElementSibling;
+      if (eventsList.style.maxHeight) {
+        eventsList.style.maxHeight = null;
+      } else {
+        eventsList.style.maxHeight = eventsList.scrollHeight + "px";
+      }
+    });
+  });
+
+  // Handle event dropdowns inside each category
+  const eventTitles = document.querySelectorAll('.event-title');
+  eventTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      title.classList.toggle('active');
+      const description = title.nextElementSibling.nextElementSibling;
       if (description.style.maxHeight) {
         description.style.maxHeight = null;
       } else {

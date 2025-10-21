@@ -235,19 +235,11 @@
     }
 
     /* ===== FAIL-SAFE: Responsive header (place at BOTTOM of your <style>) ===== */
-    header.site-header {
-      background-color: var(--main-red);
-      padding: 1rem 2rem;
+    header.site-header .nav-list {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 9999; /* make sure it's on top */
+      gap: 1.5rem;
+      flex-wrap: nowrap; /* do NOT wrap unless really tiny */
+      justify-content: flex-end;
     }
 
     /* Title / logo */
@@ -363,7 +355,7 @@
     <div class="announcement-item">Important Dates: February 21st(Regionals) and March 28th(State)</div>
     <div class="announcement-item">Regionals @ Butler University</div>
     <div class="announcement-item">State @ North Ridge High School</div>
-    <div class="announcement-item">Next meet: September 14th, 2-4pm</div>
+    <div class="announcement-item">Next meeting: October 5th, 2-4pm</div>
     <div class="announcement-item">Website designed/coded by Anahita</div>
   </section>
 
