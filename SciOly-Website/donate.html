@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donate | Westside JH SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <style>
+    /* ===== COLORS & FONTS ===== */
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('images/team.jpg') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--light-base);
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+    .logo {
+      width: 150px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 4px var(--hover-gold));
+    }
+
+    /* ===== DONATE SECTION ===== */
+    .donate {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #1F1F1F, #2E2E2E);
+      color: var(--hover-gold);
+      min-height: 60vh;
+    }
+
+    .donate h2 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .donate-intro {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      color: #f0f0f0;
+    }
+
+    .donate-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .donate-card {
+      background: var(--main-red);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .donate-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 12px 24px rgba(255,183,3,0.6);
+    }
+
+    .donate-card h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+    }
+
+    .donate-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .donate-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--hover-gold);
+      color: #1F1F1F;
+      border-radius: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+
+    .donate-btn:hover {
+      background: #FFD700;
+    }
+
+    .custom-donate {
+      margin: 2rem 0;
+    }
+
+    .custom-donate .custom {
+      background: transparent;
+      border: 2px solid var(--hover-gold);
+      color: var(--hover-gold);
+    }
+
+    .custom-donate .custom:hover {
+      background: var(--hover-gold);
+      color: #1F1F1F;
+    }
+
+    .donate-footer {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: #aaa;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .donate {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
+  <!-- Fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div>Westside JH SciOly </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="images/logo.png" alt="Westside SciOly Logo" class="logo" />
+    <h1>Support Our Team!</h1>
+    <p>Your contribution keeps us building, competing, and winning 🏆</p>
+  </section>
+
+  <section class="donate">
+    <h2>Support Our Team ❤️</h2>
+    <p class="donate-intro">
+      Science Olympiad at West Lafayette thrives because of the generous support of families, alumni, and community members. 
+      Your donation helps fund event materials, travel to competitions, and keeps our team competitive at the highest level.
+    </p>
+
+    <div class="donate-options">
+      <div class="donate-card">
+        <h3>$10</h3>
+        <p>Coffee for a tired builder ☕</p>
+        <a href="#" class="donate-btn">Donate $10</a>
+      </div>
+      <div class="donate-card">
+        <h3>$25</h3>
+        <p>Supplies for one event 📦</p>
+        <a href="#" class="donate-btn">Donate $25</a>
+      </div>
+      <div class="donate-card">
+        <h3>$50</h3>
+        <p>Travel & registration costs 🚗</p>
+        <a href="#" class="donate-btn">Donate $50</a>
+      </div>
+      <div class="donate-card">
+        <h3>$100</h3>
+        <p>Sponsor a full invitational 🏆</p>
+        <a href="#" class="donate-btn">Donate $100</a>
+      </div>
+    </div>
+
+    <div class="custom-donate">
+      <h3>Choose Your Own Amount</h3>
+      <a href="#" class="donate-btn custom">Custom Donation</a>
+    </div>
+
+    <p class="donate-footer">
+      All donations are processed securely through our school’s booster club.  
+      Thank you for helping our team reach new heights! 🚀
+    </p>
+  </section>
+
+  <canvas id="particles-js"></canvas>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
+
+  <!-- Simple particle animation script -->
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+  </script>
+</body>
+</html>

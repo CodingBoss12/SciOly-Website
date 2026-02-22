@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Portal - Westside SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      margin-bottom: 2rem;
+      text-shadow: 0 0 6px rgba(255, 183, 3, 0.8);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .login-btn {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+    }
+
+    .signup-btn {
+      background-color: var(--main-red);
+      color: var(--light-base);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Westside JH SciOly
+  </header>
+  <div class="container">
+    <h1>Member Portal Access</h1>
+    <div class="btn-group">
+      <a href="login.html"><button class="btn login-btn">Log In</button></a>
+      <a href="signup.html"><button class="btn signup-btn">Sign Up</button></a>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Westside JH SciOly | Questions? <a href="mailto:info@westsidescioly.com" style="color: var(--hover-gold);">Email Us</a>
+  </footer>
+</body>
+</html>

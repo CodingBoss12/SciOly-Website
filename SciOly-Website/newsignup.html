@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Westside JH SciOly | Resources</title>
+<link rel="icon" type="image/png" href="images/logo.png" />
+<style>
+  :root {
+    --main-red: #D62828;
+    --dark-base: #1F1F1F;
+    --light-base: #F5F5F5;
+    --hover-gold: #FFB703;
+    --secondary-blue: #0077B6;
+    --font-heading: 'Bebas Neue', cursive;
+    --font-body: 'Poppins', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
+
+  body, html {
+    height: 100%;
+    font-family: var(--font-body);
+    background-color: var(--dark-base);
+    color: var(--light-base);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Dot pattern background */
+  
+  a {
+    color: var(--hover-gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #fff;
+  }
+
+  header {
+    background-color: var(--main-red);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  nav ul li a {
+    color: var(--hover-gold);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 2rem;
+    font-family: var(--font-body);
+    position: relative;
+    z-index: 10;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--hover-gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  section.category {
+    margin-bottom: 3rem;
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 15px rgba(214,40,40,0.7);
+  }
+
+  section.category h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--main-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--hover-gold);
+    padding-bottom: 0.3rem;
+  }
+
+  ul.events-list {
+    list-style: none;
+    padding-left: 1rem;
+  }
+
+  ul.events-list li {
+    padding: 0.5rem 0;
+    font-weight: 600;
+    color: var(--light-base);
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  ul.events-list li:hover {
+    color: var(--hover-gold);
+  }
+
+  /* Resource link button */
+  .resource-link {
+    background: var(--main-red);
+    color: var(--light-base);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .resource-link:hover {
+    background-color: var(--hover-gold);
+    color: var(--dark-base);
+  }
+
+  footer {
+    background-color: var(--main-red);
+    color: var(--light-base);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+    }
+    main {
+      padding: 0 1rem;
+    }
+    ul.events-list li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+    .resource-link {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  #particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header>
+  <div>Westside JH SciOly</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="accomplishments.html">Accomplishments</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Resources by Event Category</h1>
+
+  <section class="category">
+    <h2>Physical Science & Chemistry</h2>
+    <ul class="events-list">
+      <li>
+        Air Trajectory
+        <a href="resources/air-trajectory-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Optics
+        <a href="https://www.soinc.org/optics" target="_blank" class="resource-link">Official Site</a>
+      </li>
+      <li>
+        Potions and Poisons
+        <a href="resources/potions-poisons-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Scrambler
+        <a href="resources/scrambler-past-tests.zip" target="_blank" class="resource-link">Past Tests</a>
+      </li>
+      <li>
+        Wind Power
+        <a href="https://www.windpower.com/learn" target="_blank" class="resource-link">Learn More</a>
+      </li>
+      <li>
+        Circuit Lab
+        <a href="resources/circuit-lab-practice.pdf" target="_blank" class="resource-link">Practice</a>
+      </li>
+      <li>
+        Machines
+        <a href="resources/machines-cheatsheet.pdf" target="_blank" class="resource-link">Cheatsheet</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Inquiry & Nature of Science</h2>
+    <ul class="events-list">
+      <li>
+        Codebusters
+        <a href="resources/codebusters-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Crime Busters
+        <a href="resources/crime-busters-flashcards.pdf" target="_blank" class="resource-link">Flashcards</a>
+      </li>
+      <li>
+        Experimental Design
+        <a href="resources/experimental-design-tips.pdf" target="_blank" class="resource-link">Tips</a>
+      </li>
+      <li>
+        Write It Do It
+        <a href="resources/write-it-do-it-samples.pdf" target="_blank" class="resource-link">Samples</a>
+      </li>
+      <li>
+        Metric Mastery
+        <a href="resources/metric-mastery-quiz.pdf" target="_blank" class="resource-link">Quiz</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Technology & Engineering Design</h2>
+    <ul class="events-list">
+      <li>
+        Helicopter
+        <a href="resources/helicopter-building-guide.pdf" target="_blank" class="resource-link">Build Guide</a>
+      </li>
+      <li>
+        Mission Possible
+        <a href="resources/mission-possible-rules.pdf" target="_blank" class="resource-link">Rules</a>
+      </li>
+      <li>
+        Tower
+        <a href="resources/tower-strategy.pdf" target="_blank" class="resource-link">Strategy</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Earth & Space Science</h2>
+    <ul class="events-list">
+      <li>
+        Dynamic Planet (Oceanography)
+        <a href="resources/dynamic-planet-map.pdf" target="_blank" class="resource-link">Map</a>
+      </li>
+      <li>
+        Fossils
+        <a href="resources/fossils-key.pdf" target="_blank" class="resource-link">Key</a>
+      </li>
+      <li>
+        Meteorology (World Climate and Climate Change)
+        <a href="resources/meteorology-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Remote Sensing
+        <a href="resources/remote-sensing-intro.pdf" target="_blank" class="resource-link">Intro</a>
+      </li>
+      <li>
+        Rocks and Minerals
+        <a href="resources/rocks-minerals-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Solar System
+        <a href="resources/solar-system-facts.pdf" target="_blank" class="resource-link">Facts</a>
+      </li>
+      <li>
+        Reach for the Stars
+        <a href="resources/reach-for-stars-challenge.pdf" target="_blank" class="resource-link">Challenge</a>
+      </li>
+      <li>
+        Road Scholar
+        <a href="resources/road-scholar-map.pdf" target="_blank" class="resource-link">Map</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Life, Personal & Social Science</h2>
+    <ul class="events-list">
+      <li>
+        Anatomy and Physiology
+        <a href="resources/anatomy-physiology-overview.pdf" target="_blank" class="resource-link">Overview</a>
+      </li>
+      <li>
+        Disease Detectives
+        <a href="resources/disease-detectives-cases.pdf" target="_blank" class="resource-link">Cases</a>
+      </li>
+      <li>
+        Ecology
+        <a href="resources/ecology-notes.pdf" target="_blank" class="resource-link">Notes</a>
+      </li>
+      <li>
+        Entomology
+        <a href="resources/entomology-guide.pdf" target="_blank" class="resource-link">Guide</a>
+      </li>
+      <li>
+        Microbe Mission
+        <a href="resources/microbe-mission-resources.pdf" target="_blank" class="resource-link">Resources</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="category">
+    <h2>Featured Trial Events</h2>
+    <ul class="events-list">
+      <li>
+        Hovercraft
+        <a href="resources/hovercraft-build.pdf" target="_blank" class="resource-link">Build Guide</a>
+      </li>
+    </ul>
+  </section>
+  
+  <canvas id="particles-js"></canvas>
+</main>
+
+<footer>
+  &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+</footer>
+<script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+  
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+  
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+  
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+  
+    init();
+    animate();
+  </script>
+  
+</body>
+</html>

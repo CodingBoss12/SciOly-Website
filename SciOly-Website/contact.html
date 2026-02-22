@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Westside JH SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 5rem auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+      z-index: 2;
+      position: relative;
+    }
+
+    .contact-container h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--hover-gold);
+      text-align: center;
+    }
+
+    .contact-container p {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    input, textarea {
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #333;
+      color: var(--light-base);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid var(--hover-gold);
+    }
+
+    button {
+      padding: 0.8rem 1rem;
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e8a600;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-info a {
+      color: var(--hover-gold);
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-container {
+        margin: 3rem 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>Westside JH SciOly</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact-container">
+    <h1>Contact Us</h1>
+    <p>Have questions, ideas, or just want to say hi? Slide into our inbox 😎</p>
+    <form id="contact-form">
+      <input type="text" name="user_name" placeholder="Your Name" required />
+      <input type="email" name="user_email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>    
+    <div id="form-status" style="text-align: center; margin-top: 1rem; font-weight: bold;"></div>
+    <div class="contact-info">
+      <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+      <a href="https://maps.app.goo.gl/abcdef" target="_blank">West Lafayette Jr/Sr High School</a>
+    </div>
+  </section>
+
+  <canvas id="particles-js"></canvas>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+  </script>
+
+<!-- EMAILJS SDK FIRST!!! -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<!-- THEN init + form submission logic -->
+<script>
+  emailjs.init("QbrH1Enj1u9RUAfcL");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const statusDiv = document.getElementById("form-status");
+    const button = form.querySelector("button");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      emailjs.sendForm("service_g4m7nof", "template_682p24o", form)
+        .then(function () {
+          statusDiv.innerHTML = "✅ Message sent successfully!";
+          statusDiv.style.color = "#00ff88";
+          form.reset();
+        }, function (error) {
+          statusDiv.innerHTML = "❌ Something went wrong. Please try again.";
+          statusDiv.style.color = "#ff4444";
+          console.error("FAILED...", error);
+        })
+        .finally(() => {
+          button.disabled = false;
+          button.textContent = "Send Message";
+        });
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>

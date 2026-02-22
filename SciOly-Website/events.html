@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events | Westside JH SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <style>
+    /* ===== COLORS & FONTS ===== */
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+    }
+    .countdown {
+        text-align: center;
+        padding: 2rem;
+        font-family: var(--font-heading);
+        background-color: var(--dark-base);
+        color: var(--hover-gold);
+    }
+
+    #timer {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    /* Dark overlay on background image */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://chat.google.com/u/0/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fjpeg&attachment_token=AOo0EEWv3I4lhKFXuvUE2yZ8is%2BALGhC4m99z6zoRG8jNWWp2g05ugNjg9oVLwXcFMeO3YbO8BdbfISuQEYYcV7jnAOlkcc4tEYVT2v9V%2F%2B4ai0qTzos5NYjNdKIT56FptwYguG0yPs%2FKax4kADyklP5shjk2SZLuienB4fkV2AuEbqfl%2BVjlEYQao7MaOcOxjyDUnF%2BLyMle3mSj0GLhJxx2FixYz4pUtbUBLEA0Uxhj0gIrqHzEi6VOlAssmSn%2B3sb6QKU%2B1idcbQ7Vrm%2B9i%2FDwpnVmsADvmxRSTttRUyqVLN84%2B83FLaLDFZF0UsXFewL%2FQnmsFUhVVzU8i55X9uMFb%2BVxvT3wsbkO68RzLUwE5j8cTzJBnelO732VqpzQAnLpwPceQrxkQCLdXP6awABt8M9uBzhjj5SZEM%2BENfi0u0WY%2BnjtatJiMaA%2F%2FWb5rFq%2Fkw24yTLMnod1xmWGxjJHzuxMUisxaPmeUu2v9Rv6WV5dEy37SBS3iZDkXtdscljF%2FBU0ymARtAvZKo2J9RS2d%2F%2F6kZKf%2FnLT1NbUixSb184TbCzActbdXnRUznSoSqnok8ZDoWmC3oMA%2FqSB%2FofWnOi7cxvNk1eiw%3D%3D&allow_caching=true&sz=w2940-h1662&auditContext=forDisplay') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: -2;
+    }
+
+    /* Gradient overlay for subtle ombre feel */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--light-base);
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+    /* Logo styling */
+    .logo {
+      width: 150px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 4px var(--hover-gold));
+    }
+
+    /* ===== ANNOUNCEMENTS & WINS ===== */
+    .announcements {
+      background-color: var(--dark-base);
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+      color: var(--light-base);
+      font-family: var(--font-body);
+    }
+
+    .announcements h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .announcement-item {
+      background-color: var(--main-red);
+      padding: 1rem 1.5rem;
+      margin: 0.8rem 0;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(255, 183, 3, 0.5);
+      color: var(--light-base);
+      transition: background-color 0.3s ease;
+    }
+
+    .announcement-item:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+      cursor: pointer;
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      .announcements {
+        padding: 2rem 1rem;
+      }
+    }    
+    /* FIXED NAVBAR SPACING */
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    /* ===== EVENT PAGE STYLES ===== */
+    .events-hero {
+      position: relative;
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+      margin-bottom: 3rem;
+    }
+    
+    .events-hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: -2;
+    }
+    
+    .events-hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+    
+    .events-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+    
+    .event-categories {
+      max-width: 1000px;
+      margin: 0 auto 5rem auto;
+      padding: 0 2rem;
+    }
+    
+    .event-category {
+      margin-bottom: 2rem;
+      background: rgba(31, 31, 31, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(214, 40, 40, 0.3);
+    }
+    
+    .category-header {
+      padding: 1.5rem;
+      background: rgba(214, 40, 40, 0.3);
+      color: var(--hover-gold);
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    .category-header:hover {
+      background: rgba(214, 40, 40, 0.5);
+    }
+    
+    .category-header::after {
+      content: "+";
+      font-size: 2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .category-header.active::after {
+      content: "-";
+    }
+    
+    .events-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .event-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 183, 3, 0.1);
+    }
+    
+    .event-item:last-child {
+      border-bottom: none;
+    }
+    
+    .event-title {
+      color: var(--light-base);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .event-title::after {
+      content: "▼";
+      font-size: 0.8rem;
+      color: var(--hover-gold);
+      transition: transform 0.3s ease;
+    }
+    
+    .event-title.active::after {
+      transform: rotate(180deg);
+    }
+    
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--hover-gold);
+    }
+    
+    .event-description {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      padding: 0;
+    }
+    
+    .event-description-content {
+      padding: 1rem 0;
+      line-height: 1.6;
+    }
+    
+    .event-resources {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(255, 183, 3, 0.3);
+    }
+    
+    .resource-link {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    
+    .resource-link:hover {
+      text-decoration: underline;
+      transform: translateX(5px);
+    }
+    
+    /* ===== PARTICLES & FOOTER (same as about.html) ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-list {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .events-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .category-header {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header with fixed navbar -->
+  <header>
+    <div>Westside SciOly</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Particle background -->
+  <canvas id="particles-js"></canvas>
+
+  <!-- Events Hero Section -->
+  <section class="events-hero">
+    <h1>2025 Events</h1>
+    <h2>Click on any event for details and resources</h2>
+  </section>
+
+  
+  <!-- Main Events Content -->
+  <div class="event-categories">
+    <!-- Life, Personal & Social Science -->
+    <div class="event-category">
+      <div class="category-header">Life, Personal & Social Science</div>
+      <div class="events-list">
+        <!-- Experimental Design -->
+        <div class="event-item">
+          <div class="event-title">Experimental Design</div>
+          <div class="event-meta">
+            <span>📅 May 17, 2025</span>
+            <span>🔬 Lab Event</span>
+            <span>👥 Team of 3</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design, conduct, and present an experiment based on provided materials. Judges evaluate hypothesis formation, variable control, data collection, and analysis.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📝 Method Templates</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📊 Data Sheets</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Mastery -->
+        <div class="event-item">
+          <div class="event-title">Metric Mastery</div>
+          <div class="event-meta">
+            <span>📅 May 24, 2025</span>
+            <span>📏 Study Event</span>
+            <span>👥 Individual</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants demonstrate proficiency in metric system measurements and conversions, testing estimation skills and precision measurement techniques.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Conversion Charts</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧮 Practice Problems</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Write It, Do It -->
+        <div class="event-item">
+          <div class="event-title">Write It, Do It</div>
+          <div class="event-meta">
+            <span>📅 May 31, 2025</span>
+            <span>✍️ Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>One team member writes a description of a contraption while the other attempts to rebuild it using only the written instructions, testing technical communication skills.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📝 Writing Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧩 Sample Builds</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Earth & Space Science -->
+    <div class="event-category">
+      <div class="category-header">Earth & Space Science</div>
+      <div class="events-list">
+        <!-- Dynamic Planet -->
+        <div class="event-item">
+          <div class="event-title">Dynamic Planet</div>
+          <div class="event-meta">
+            <span>📅 Feb 21, 2026</span>
+            <span>📝 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>This event explores the dynamic systems and processes that shape our Earth. Participants may focus on specific topics such as oceanography, climate change, plate tectonics, or geological activity. Students demonstrate their understanding of these processes through written tests, data analysis, and the interpretation of maps and charts.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://www.soinc.org/dynamic-planet-b">📐 Official Website Description</a>
+              <a href="https://scioly.org/wiki/Dynamic_Planet_Topics" class="resource-link" target="_blank">🏅 Scioly Wiki Website</a>
+            </div>
+          </div>
+        </div>
+        <!-- Meteorology -->
+        <div class="event-item">
+          <div class="event-title">Meteorology</div>
+          <div class="event-meta">
+            <span>📅 Feb 21, 2026</span>
+            <span>📝 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>This event covers the study of weather patterns, climate, atmospheric science, and the interpretation of meteorological data. Participants may analyze weather maps, interpret satellite images, and answer questions about atmospheric conditions, weather forecasting, and climate change.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://www.soinc.org/meteorology-b">📐 Official Website Description</a>
+              <a href="https://scioly.org/wiki/Meteorology">🏅 Scioly Wiki Website</a>
+            </div>
+          </div>
+        </div>
+        <!-- Remote Sensing -->
+        <div class="event-item">
+          <div class="event-title">Remote Sensing</div>
+          <div class="event-meta">
+            <span>📅 Feb 21, 2026</span>
+            <span>📝 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>This event covers the study of weather patterns, climate, atmospheric science, and the interpretation of meteorological data. Participants may analyze weather maps, interpret satellite images, and answer questions about atmospheric conditions, weather forecasting, and climate change.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://www.soinc.org/meteorology-b">📐 Official Website Description</a>
+              <a href="https://scioly.org/wiki/Meteorology">🏅 Scioly Wiki Website</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other earth/space events remain the same -->
+      </div>
+    </div>
+    
+    <!-- Physical Science & Chemistry -->
+    <div class="event-category">
+      <div class="category-header">Physical Science & Chemistry</div>
+      <div class="events-list">
+        <!-- Air Trajectory -->
+        <div class="event-item">
+          <div class="event-title">Air Trajectory</div>
+          <div class="event-meta">
+            <span>📅 Mar 1, 2025</span>
+            <span>🏗️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design and construct a device that uses compressed air to launch a projectile at a target. The event tests understanding of projectile motion, air pressure, and trajectory calculations.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Design Specs</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📅 Build Schedule</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crime Busters -->
+        <div class="event-item">
+          <div class="event-title">Crime Busters</div>
+          <div class="event-meta">
+            <span>📅 Mar 8, 2025</span>
+            <span>🔬 Lab Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants analyze evidence from a mock crime scene using chemistry and forensic techniques. Tests may include fingerprint analysis, chemical testing, and fiber examination to solve the mystery.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🕵️♂️ Forensic Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧪 Lab Procedures</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optics -->
+        <div class="event-item">
+          <div class="event-title">Optics</div>
+          <div class="event-meta">
+            <span>📅 Mar 15, 2025</span>
+            <span>🔭 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>This event tests knowledge of geometric and physical optics, including reflection, refraction, lenses, and mirrors. Participants solve problems and perform calculations related to light behavior.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📚 Study Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧮 Practice Problems</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Potions and Poisons -->
+        <div class="event-item">
+          <div class="event-title">Potions and Poisons</div>
+          <div class="event-meta">
+            <span>📅 Mar 22, 2025</span>
+            <span>🧪 Lab Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams demonstrate knowledge of chemistry concepts through the analysis of household substances and their effects. The event combines chemical testing with toxicology principles.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧪 Lab Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⚠️ Safety Protocols</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wind Power -->
+        <div class="event-item">
+          <div class="event-title">Wind Power</div>
+          <div class="event-meta">
+            <span>📅 Mar 29, 2025</span>
+            <span>🏗️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants design and build a device that converts wind energy into electrical energy. The event tests understanding of renewable energy concepts and engineering design principles.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🌀 Design Specs</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⚡ Energy Tests</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology & Engineering Design -->
+    <div class="event-category">
+      <div class="category-header">Technology & Engineering Design</div>
+      <div class="events-list">
+        <!-- Boomilever -->
+        <div class="event-item">
+          <div class="event-title">Boomilever</div>
+          <div class="event-meta">
+            <span>📅 Apr 5, 2025</span>
+            <span>🏗️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design and construct a cantilevered structure that must support a load at its end. The event tests structural engineering principles and efficient use of materials.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Blueprints</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⚖️ Load Tests</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Helicopter -->
+        <div class="event-item">
+          <div class="event-title">Helicopter</div>
+          <div class="event-meta">
+            <span>📅 Apr 12, 2025</span>
+            <span>✈️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants design, build, and test a rubber-powered helicopter for maximum flight duration. The event emphasizes aerodynamics and energy transfer principles.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">✈️ Design Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⏱️ Flight Log</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hovercraft -->
+        <div class="event-item">
+          <div class="event-title">Hovercraft</div>
+          <div class="event-meta">
+            <span>📅 Apr 19, 2025</span>
+            <span>🛸 Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams construct a working hovercraft that uses air pressure to reduce friction. The event tests understanding of fluid dynamics and propulsion systems.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Design Specs</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⚙️ Parts List</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Possible -->
+        <div class="event-item">
+          <div class="event-title">Mission Possible</div>
+          <div class="event-meta">
+            <span>📅 Apr 26, 2025</span>
+            <span>⚙️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>A Rube Goldberg-style event where teams create complex chain reaction devices. Scoring emphasizes creativity, reliability, and number of successful energy transfers.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📝 Design Journal</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🎬 Demo Videos</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scrambler -->
+        <div class="event-item">
+          <div class="event-title">Scrambler</div>
+          <div class="event-meta">
+            <span>📅 May 3, 2025</span>
+            <span>🏎️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design and build a vehicle that must stop as close as possible to a target without breaking an egg. The challenge combines physics principles with precision engineering.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📏 Measurements</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🥚 Safety Tests</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tower -->
+        <div class="event-item">
+          <div class="event-title">Tower</div>
+          <div class="event-meta">
+            <span>📅 May 10, 2025</span>
+            <span>🗼 Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants design and build the tallest possible tower using limited materials that can support a specified load. The event tests structural engineering principles.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Blueprints</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">⚖️ Load Tests</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry & Nature of Science -->
+    <div class="event-category">
+      <div class="category-header">Inquiry & Nature of Science</div>
+      <div class="events-list">
+        <!-- Experimental Design -->
+        <div class="event-item">
+          <div class="event-title">Experimental Design</div>
+          <div class="event-meta">
+            <span>📅 May 17, 2025</span>
+            <span>🔬 Lab Event</span>
+            <span>👥 Team of 3</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design, conduct, and present an experiment based on provided materials. Judges evaluate hypothesis formation, variable control, data collection, and analysis.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📝 Method Templates</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📊 Data Sheets</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Mastery -->
+        <div class="event-item">
+          <div class="event-title">Metric Mastery</div>
+          <div class="event-meta">
+            <span>📅 May 24, 2025</span>
+            <span>📏 Study Event</span>
+            <span>👥 Individual</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants demonstrate proficiency in metric system measurements and conversions, testing estimation skills and precision measurement techniques.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Conversion Charts</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧮 Practice Problems</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Write It, Do It -->
+        <div class="event-item">
+          <div class="event-title">Write It, Do It</div>
+          <div class="event-meta">
+            <span>📅 May 31, 2025</span>
+            <span>✍️ Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>One team member writes a description of a contraption while the other attempts to rebuild it using only the written instructions, testing technical communication skills.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📝 Writing Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧩 Sample Builds</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Trial Events -->
+    <div class="event-category">
+      <div class="category-header">Featured Trial Events</div>
+      <div class="events-list">
+        <!-- Aerial Scramble -->
+        <div class="event-item">
+          <div class="event-title">Aerial Scramble</div>
+          <div class="event-meta">
+            <span>📅 Jun 7, 2025</span>
+            <span>✈️ Build Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Teams design and fly paper airplanes to complete specific flight challenges, testing aerodynamics knowledge and precision engineering.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Folding Guides</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📊 Flight Logs</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agricultural Science -->
+        <div class="event-item">
+          <div class="event-title">Agricultural Science</div>
+          <div class="event-meta">
+            <span>📅 Jun 14, 2025</span>
+            <span>🌱 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>This event explores modern agricultural techniques, including plant science, soil chemistry, and sustainable farming practices.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🌾 Study Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🧪 Lab Protocols</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botany -->
+        <div class="event-item">
+          <div class="event-title">Botany</div>
+          <div class="event-meta">
+            <span>📅 Jun 21, 2025</span>
+            <span>🌿 Study Event</span>
+            <span>👥 Team of 2</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants demonstrate knowledge of plant biology, including identification, anatomy, physiology, and ecology through specimen analysis.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🌻 Plant Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🔬 Lab Sheets</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engineering CAD -->
+        <div class="event-item">
+          <div class="event-title">Engineering CAD</div>
+          <div class="event-meta">
+            <span>📅 Jun 28, 2025</span>
+            <span>💻 Build Event</span>
+            <span>👥 Individual</span>
+          </div>
+          <div class="event-description">
+            <div class="event-description-content">
+              <p>Participants use computer-aided design software to solve engineering challenges, creating precise technical drawings and 3D models.</p>
+            </div>
+            <div class="event-resources">
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">🖥️ Software Guide</a>
+              <a href="https://docs.google.com/document/d/YOUR_DOC_ID/edit" class="resource-link" target="_blank">📐 Design Challenges</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <footer>
+    &copy; 2025 Westside SciOly | Contact us at <a href="mailto:itsanahitarai@gmail.com">info@westsidescioly.com</a>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+    // Initialize particles (paste your existing particle script here)
+    
+    // Make categories collapsible
+    document.querySelectorAll('.category-header').forEach(header => {
+      header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const list = header.nextElementSibling;
+        list.style.maxHeight = list.style.maxHeight ? null : list.scrollHeight + 'px';
+      });
+    });
+    
+    // Make event descriptions collapsible
+    document.querySelectorAll('.event-title').forEach(title => {
+      title.addEventListener('click', () => {
+        title.classList.toggle('active');
+        const description = title.parentElement.querySelector('.event-description');
+        description.style.maxHeight = description.style.maxHeight ? null : description.scrollHeight + 'px';
+      });
+    });
+  </script>
+  <script>
+    
+  // Toggle category sections
+  document.querySelectorAll(".category-header").forEach(header => {
+    header.addEventListener("click", () => {
+      header.classList.toggle("active");
+      const eventsList = header.nextElementSibling;
+      if (eventsList.style.maxHeight) {
+        eventsList.style.maxHeight = null;
+      } else {
+        eventsList.style.maxHeight = eventsList.scrollHeight + "px";
+      }
+    });
+  });
+
+  // Toggle event descriptions
+  document.querySelectorAll(".event-title").forEach(title => {
+    title.addEventListener("click", () => {
+      title.classList.toggle("active");
+      const description = title.nextElementSibling.nextElementSibling; // skips meta, gets description
+      if (description.style.maxHeight) {
+        description.style.maxHeight = null;
+      } else {
+        description.style.maxHeight = description.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+<script>
+  // Handle category dropdowns
+  const categoryHeaders = document.querySelectorAll('.category-header');
+  categoryHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('active');
+      const eventsList = header.nextElementSibling;
+      if (eventsList.style.maxHeight) {
+        eventsList.style.maxHeight = null;
+      } else {
+        eventsList.style.maxHeight = eventsList.scrollHeight + "px";
+      }
+    });
+  });
+
+  // Handle event dropdowns inside each category
+  const eventTitles = document.querySelectorAll('.event-title');
+  eventTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      title.classList.toggle('active');
+      const description = title.nextElementSibling.nextElementSibling;
+      if (description.style.maxHeight) {
+        description.style.maxHeight = null;
+      } else {
+        description.style.maxHeight = description.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join SciOly | Westside JH SciOly</title>
+  <link rel="stylesheet" href="signup.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="signup-container">
+    <form id="signup-form">
+      <div class="form-step active" id="step-1">
+        <h2>Welcome to SciOly!</h2>
+        <p>Let’s get to know you.</p>
+        <input type="text" name="fullName" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="text" name="username" placeholder="Username (optional)" />
+        <select name="pronouns">
+          <option value="">Pronouns (optional)</option>
+          <option value="she/her">She/Her</option>
+          <option value="he/him">He/Him</option>
+          <option value="they/them">They/Them</option>
+          <option value="custom">Custom</option>
+        </select>
+        <input type="text" name="grade" placeholder="Grade (e.g. 7th)" required />
+        <button type="button" class="next-btn">Next</button>
+      </div>
+
+      <div class="form-step" id="step-2">
+        <h2>Your Preferences</h2>
+        <input type="color" name="accentColor" value="#FFB703" />
+        <label>Select a profile picture (optional):</label>
+        <input type="file" name="profilePic" accept="image/*" />
+        <label>Tell us about your interests:</label>
+        <textarea name="interests" placeholder="What excites you about SciOly?"></textarea>
+        <button type="button" class="prev-btn">Back</button>
+        <button type="button" class="next-btn">Next</button>
+      </div>
+
+      <div class="form-step" id="step-3">
+        <h2>Event Compatibility Quiz</h2>
+        <p>Let us recommend your top SciOly events.</p>
+        <div id="quiz-placeholder">[Quiz will go here]</div>
+        <button type="button" class="prev-btn">Back</button>
+        <button type="button" class="next-btn">Next</button>
+      </div>
+
+      <div class="form-step" id="step-4">
+        <h2>Terms & Final Touches</h2>
+        <label><input type="checkbox" name="terms" required /> I agree to the <a href="#" id="terms-link">terms and conditions</a></label>
+        <button type="button" class="prev-btn">Back</button>
+        <button type="submit">Create Account</button>
+      </div>
+    </form>
+
+    <div class="progress-bar">
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+  </div>
+
+  <div id="terms-popup" class="hidden">
+    <div class="popup-content">
+      <h3>Terms & Conditions</h3>
+      <p>✨ Legal stuff goes here. Scroll and agree or else... you know... no SciOly fun 😭</p>
+      <button id="close-terms">Close</button>
+    </div>
+  </div>
+
+  <script src="signup.js" type="module"></script>
+</body>
+</html>

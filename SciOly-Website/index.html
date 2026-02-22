@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Westside JH SciOly</title>
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <style>
+    /* ===== COLORS & FONTS ===== */
+    :root {
+      --main-red: #D62828;
+      --dark-base: #1F1F1F;
+      --light-base: #F5F5F5;
+      --hover-gold: #FFB703;
+      --secondary-blue: #0077B6;
+
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Poppins', sans-serif;
+    }
+
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--dark-base);
+      color: var(--light-base);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--hover-gold);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: var(--main-red);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      padding: 0 2rem;
+      z-index: 1;
+    }
+    
+    .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      filter: brightness(0.35);
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .countdown {
+        text-align: center;
+        padding: 2rem;
+        font-family: var(--font-heading);
+        background-color: var(--dark-base);
+        color: var(--hover-gold);
+    }
+
+    #timer {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    /* Dark overlay on background image */
+
+    /* Gradient overlay for subtle ombre feel */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(214,40,40,0.7), rgba(255,183,3,0.7));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--hover-gold);
+      text-shadow: 0 0 8px rgba(255, 183, 3, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--light-base);
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+    /* Logo styling */
+    .logo {
+      width: 150px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 4px var(--hover-gold));
+    }
+
+    /* ===== ANNOUNCEMENTS & WINS ===== */
+    .announcements {
+      background-color: var(--dark-base);
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(214,40,40,0.7);
+      color: var(--light-base);
+      font-family: var(--font-body);
+    }
+
+    .announcements h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main-red);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .announcement-item {
+      background-color: var(--main-red);
+      padding: 1rem 1.5rem;
+      margin: 0.8rem 0;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(255, 183, 3, 0.5);
+      color: var(--light-base);
+      transition: background-color 0.3s ease;
+    }
+
+    .announcement-item:hover {
+      background-color: var(--hover-gold);
+      color: var(--dark-base);
+      cursor: pointer;
+    }
+
+    /* ===== PARTICLES CANVAS ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--main-red);
+      color: var(--light-base);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+    }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  .nav-list li a {
+    color: var(--hover-gold);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+
+  .nav-list li a:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+
+
+    /* ===== RESPONSIVE NAVBAR ===== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .nav-list li a {
+        font-size: 1rem;
+      }
+    }
+
+    /* ===== FAIL-SAFE: Responsive header (place at BOTTOM of your <style>) ===== */
+    header.site-header .nav-list {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: nowrap; /* do NOT wrap unless really tiny */
+      justify-content: flex-end;
+    }
+
+    /* Title / logo */
+    header.site-header .site-title {
+      font-family: var(--font-heading);
+      color: var(--hover-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Nav list always flex, but will wrap / stack on small screens */
+    header.site-header .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      flex-wrap: wrap; /* allows nicer wrapping on mid-size screens */
+    }
+
+    /* links */
+    header.site-header .nav-list li a {
+      color: var(--hover-gold);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.22s ease;
+      display: inline-block;
+      padding: 0.25rem 0.25rem;
+    }
+
+    header.site-header .nav-list li a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Small screens: stack nav under title, full-width-ish links */
+    @media (max-width: 768px) {
+      header.site-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+      }
+
+      header.site-header .nav-list {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 720px; /* keep it centered and readable */
+      }
+
+      header.site-header .nav-list li {
+        width: 100%;
+      }
+
+      header.site-header .nav-list li a {
+        display: block;
+        padding: 0.6rem 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    /* tiny screens fine tuning */
+    @media (max-width: 420px) {
+      header.site-header .site-title { font-size: 1.2rem; }
+      header.site-header .nav-list li a { font-size: 0.95rem; padding: 0.5rem 0; }
+    }
+
+</style>
+  <!-- Fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-title">
+      <!-- you can swap this text for <img class="logo" src="images/logo.png"> if you prefer the logo -->
+      Westside SciOly
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="accomplishments.html">Accomplishments</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <section class="hero">
+
+  <div class="slideshow">
+    <img src="team.jpg" class="slide active">
+    <img src="Medal.jpg" class="slide">
+    <img src="images/team3.jpg" class="slide">
+    <img src="images/team4.jpg" class="slide">
+  </div>
+
+    <img src= "images/logo.png" alt="Westside SciOly Logo" class="logo" />
+    <h1>Welcome to Westside Jh SciOly</h1>
+    <!-- Placeholder for dynamic login message -->
+    <!-- If logged in, replace with "Hey, Anahita! Ready to crush it?" -->
+    <p><a href="https://www.soinc.org/sites/default/files/uploaded_files/Science_Olympiad_Div_B_Rules_2026_for_Web_Secured.pdf" target="_blank" class="rules-link">RULES ARE OUT</a></p>
+
+  </section>
+
+  <section class="announcements">
+    <h2>Recent Announcements & Wins</h2>
+    <div class="announcement-item">Important Dates: February 21st(Regionals) and March 28th(State)</div>
+    <div class="announcement-item">Regionals @ Butler University</div>
+    <div class="announcement-item">State @ North Ridge High School</div>
+    <div class="announcement-item">Next meeting: October 5th, 2-4pm</div>
+    <div class="announcement-item">Website designed/coded by Anahita</div>
+  </section>
+
+  <section class="countdown">
+    <h2>Next Meeting Countdown</h2>
+    <div id="timer">
+      <span id="days">00</span>d :
+      <span id="hours">00</span>h :
+      <span id="minutes">00</span>m :
+      <span id="seconds">00</span>s
+    </div>
+  </section>
+  <div id="countdown" style="text-align: center; font-weight: bold; padding: 1rem; color: var(--hover-gold);"></div>
+
+
+  <canvas id="particles-js"></canvas>
+
+  <footer>
+    &copy; 2025 Westside JH SciOly | Contact us at <a href="mailto:info@westsidescioly.com">info@westsidescioly.com</a>
+  </footer>
+
+  <!-- Simple particle animation script -->
+  <script>
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = 'rgba(255, 183, 3, 0.8)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 80; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+
+  // Set the date and time for next Sunday at 2 PM
+  const nextMeeting = new Date();
+  nextMeeting.setDate(nextMeeting.getDate() + ((7 - nextMeeting.getDay()) % 7));
+  nextMeeting.setHours(14, 0, 0, 0);
+  if (nextMeeting < new Date()) {
+    nextMeeting.setDate(nextMeeting.getDate() + 7); // bump a week ahead if already passed
+  }
+
+
+
+
+  const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = nextMeeting.getTime() - now;
+
+    if (distance <= 0) {
+      clearInterval(countdown);
+      document.getElementById("timer").innerHTML = "It's meeting time! 🎉";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = String(days).padStart(2, '0');
+    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+  }, 1000);
+
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
+
+  function showNextSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+  }
+
+  setInterval(showNextSlide, 4000); // changes every 4 sec
+
+  </script>
+</body>
+</html>
